@@ -75,7 +75,6 @@ private slots:
     void writeINI(QString);
     QString loadINI();
     void printpreview();
-    void printThis();
     void zoomIn();
     void zoomOut();
     void zoomNormal();

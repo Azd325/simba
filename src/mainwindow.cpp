@@ -2,33 +2,29 @@
 
 MainWindow::MainWindow(QStringList list, QWidget *parent)
     : QMainWindow(parent){
-    setWindowTitle( "Simba -- For better use of leo.org" );
+    setWindowTitle( QCoreApplication::applicationName () + tr(" -- For better use of leo.org" ));
 
     createBars();
     createSystemTray();
 
-    para = "",
     url = "http://pda.leo.org/";
 
+    // Remove the path item of the argv-list
     list.removeFirst();
     para = list.join(" ");
 
     view = new QWebView;
-        view->load(QUrl( url + loadINI() + para));
+        view->load( QUrl( url + loadINI() + para ));
         connect(view, SIGNAL(loadStarted()),this,SLOT(startedLoad()));
         connect(view,SIGNAL(loadProgress(int)),this,SLOT(progressLoad(int)));
         connect(view,SIGNAL(loadFinished(bool)),this,SLOT(finishedLoad(bool)));
     setCentralWidget(view);
+    view->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     clipboard = QApplication::clipboard();
         connect(clipboard,SIGNAL(selectionChanged()),this,SLOT(clipboardChange()));
                 view->addAction(qaAbout);
                 view->addAction(qaPreferences);
-        view->setContextMenuPolicy(Qt::ActionsContextMenu);
-}
-
-void MainWindow::printThis() {
-    qDebug("Hi");
 }
 
 void MainWindow::createBars(){
@@ -40,35 +36,35 @@ void MainWindow::createBars(){
         qpbMain->setTextVisible(0);
 
     setStatusBar(qsbMain = new QStatusBar);
-        qsbMain->showMessage("Ready");
-        qsbMain->addPermanentWidget(qpbMain);
+        qsbMain->showMessage( tr( "Ready" ));
+        qsbMain->addPermanentWidget( qpbMain );
 
-    setMenuBar(qmbMain = new QMenuBar);
-        qmbMain->addMenu(qmFile = new QMenu(tr("&File")));
+    setMenuBar( qmbMain = new QMenuBar );
+        qmbMain->addMenu( qmFile = new QMenu( tr( "&File" )));
             qmFile->addSeparator();
-            qmFile->addAction(qaPrintDialog);
+            qmFile->addAction( qaPrintDialog );
             qmFile->addSeparator();
-            qmFile->addAction(qaPreferences);
+            qmFile->addAction( qaPreferences );
             qmFile->addSeparator();
-            qmFile->addAction(qaExit);
-        qmbMain->addMenu(qmEdit = new QMenu(tr("&Edit")));
-            qmEdit->addAction(qaHome);
+            qmFile->addAction( qaExit );
+        qmbMain->addMenu( qmEdit = new QMenu(tr("&Edit")));
+            qmEdit->addAction( qaHome );
             qmEdit->addSeparator();
-            qmEdit->addAction(qaBack);
-            qmEdit->addAction(qaForward);
+            qmEdit->addAction( qaBack );
+            qmEdit->addAction( qaForward );
             qmEdit->addSeparator();
-            qmEdit->addAction(qaReload);
-            qmEdit->addAction(qaStop);
+            qmEdit->addAction( qaReload );
+            qmEdit->addAction( qaStop );
             qmEdit->addSeparator();
-            qmEdit->addAction(qaSearch);
-        qmbMain->addMenu(qmView = new QMenu( tr( "&View")));
-            qmView->addAction(qaZoomIn);
-            qmView->addAction(qaZoomOut);
-            qmView->addAction(qaZoomNormal);
-        qmbMain->addMenu(qmHelp = new QMenu(tr("&Help")));
-            qmHelp->addAction(qaAboutQt);
+            qmEdit->addAction( qaSearch );
+        qmbMain->addMenu( qmView = new QMenu( tr( "&View" )));
+            qmView->addAction( qaZoomIn );
+            qmView->addAction( qaZoomOut );
+            qmView->addAction( qaZoomNormal );
+        qmbMain->addMenu( qmHelp = new QMenu( tr( "&Help" )));
+            qmHelp->addAction( qaAboutQt );
             qmHelp->addSeparator();
-            qmHelp->addAction(qaAbout);
+            qmHelp->addAction( qaAbout );
 
     qleSearch = new QLineEdit;
         connect(qleSearch, SIGNAL(returnPressed()), this, SLOT(lineSearch()));
@@ -76,27 +72,27 @@ void MainWindow::createBars(){
         qleSearch->setPlaceholderText("Search ...");
 #endif
 
-    qtbMain = new QToolBar("Toolbar");
-        qtbMain->addAction(qaHome);
+    qtbMain = new QToolBar( "Toolbar" );
+        qtbMain->addAction( qaHome );
         qtbMain->addSeparator();
-        qtbMain->addAction(qaBack);
-        qtbMain->addAction(qaReload);
-        qtbMain->addAction(qaForward);
-        qtbMain->addWidget(qleSearch);
-        qtbMain->addAction(qaStop);
-        addToolBar(qtbMain);
+        qtbMain->addAction( qaBack );
+        qtbMain->addAction( qaReload );
+        qtbMain->addAction( qaForward );
+        qtbMain->addWidget( qleSearch );
+        qtbMain->addAction( qaStop );
+        addToolBar( qtbMain );
 }
 
 void MainWindow::createActions(){
-    qaHome = new QAction(QIcon(":/home.png"),tr("Home"),this);
-        qaHome->setShortcut(Qt::ControlModifier + Qt::Key_H);
-        qaHome->setStatusTip(tr("Click to go home"));
-        connect(qaHome,SIGNAL(triggered()),this,SLOT(goHome()));
+    qaHome = new QAction( QIcon( ":/home.png" ), tr( "Home" ), this );
+        qaHome->setShortcut( Qt::ControlModifier + Qt::Key_H );
+        qaHome->setStatusTip( tr( "Click to go home" ));
+        connect( qaHome, SIGNAL( triggered()), this, SLOT( goHome()));
 
-    qaExit = new QAction( QIcon(":/exit.png"), tr("&Exit"),this);
-        qaExit->setShortcut(QKeySequence::Quit);
-        qaExit->setStatusTip(tr("Exit the application"));
-        connect(qaExit,SIGNAL(triggered()),qApp,SLOT(quit()));
+    qaExit = new QAction( QIcon( ":/exit.png" ), tr( "&Exit" ), this);
+        qaExit->setShortcut( QKeySequence::Quit );
+        qaExit->setStatusTip( tr( "Exit the application" ));
+        connect( qaExit, SIGNAL( triggered()), qApp, SLOT( quit()));
 
     qaPreferences = new QAction( QIcon(":/preferences.png"), tr("Preferences"),this);
         qaPreferences->setShortcut(QKeySequence::Preferences);
@@ -174,8 +170,7 @@ void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ){
     if( reason == QSystemTrayIcon::DoubleClick ){
         if( !isHidden() ){
             hide();
-            tray->showMessage("INFO","The application is minimize to the tray",
-                              QSystemTrayIcon::Information, 10000);
+            tray->showMessage("INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000);
         }
         else{
             show();
@@ -209,6 +204,7 @@ void MainWindow::clipboardChange(){
 }
 
 void MainWindow::changeLanguage( int value ){
+    // the language part of the url
     switch( value ){
     case 0:
         writeINI( "?lp=ende&search=" );
@@ -300,17 +296,17 @@ void MainWindow::about() {
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
     qglDialog = new QGridLayout;
-        qglDialog->addWidget( new QLabel( tr("<center><h1>Simba 0.89</h1>"
-                                         "<h3>For better use of leo.org </h3>"
-                                         "Copyright \251 2010 Tim Kleinschmidt"
-                                         "</center>" )), 0, 0, 1, 3);
+        qglDialog->addWidget( new QLabel( "<center><h1>" +QCoreApplication::applicationName () + " "
+                                         + QCoreApplication::applicationVersion () + "</h1><h3>" +
+                                         tr("For better use of leo.org") + "</h3>Copyright \251 2010 "+
+                                         QCoreApplication::organizationName () + "</center>"), 0, 0, 1, 3);
         qglDialog->addWidget( qpbCredits, 1, 0, Qt::AlignCenter );
         qglDialog->addWidget( qpbLicense, 1, 1, Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 2, Qt::AlignCenter );
 
-        dialog->setWindowTitle( tr( "About Simba" ));
-        dialog->setLayout(qglDialog);
-        dialog->setFixedSize(312,156);
+        dialog->setWindowTitle( tr( "About " ) + QCoreApplication::applicationName ());
+        dialog->setLayout( qglDialog );
+        dialog->setFixedSize( 312, 156 );
         dialog->exec();
 }
 
@@ -319,7 +315,7 @@ void MainWindow::aboutLicense() {
 
     QFile file( ":/GPL" );
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text )) {
-        qCritical("File not found");
+        qCritical("GPL LicenseFile not found");
     }
     QTextStream out(&file);
     out.setFieldAlignment(QTextStream::AlignCenter);
@@ -328,15 +324,15 @@ void MainWindow::aboutLicense() {
         qteLicense->setText(out.readAll());
         qteLicense->setReadOnly(1);
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
-        connect(qpbClose,SIGNAL(clicked()),dialog,SLOT(close()));
+        connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
     qglDialog = new QGridLayout;
-        qglDialog->addWidget(qteLicense,0,0);
-        qglDialog->addWidget(qpbClose, 1,0, Qt::AlignRight);
+        qglDialog->addWidget( qteLicense, 0, 0 );
+        qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
-        dialog->setLayout(qglDialog);
+        dialog->setLayout( qglDialog);
         dialog->setWindowTitle( tr( "GNU General Public License" ));
-        dialog->setFixedSize(550,400);
+        dialog->setFixedSize( 550, 400 );
         dialog->exec();
 }
 
@@ -344,14 +340,14 @@ void MainWindow::aboutCredits() {
     dialog = new QDialog;
 
     QTextEdit *qteCreditsWritten = new QTextEdit;
-        qteCreditsWritten->setReadOnly(1);
-        qteCreditsWritten->setLineWrapMode(QTextEdit::NoWrap);
-        qteCreditsWritten->setText("Tim Kleinschmidt <tim.kleinschmidt@googlemail.com>");
+        qteCreditsWritten->setReadOnly( 1 );
+        qteCreditsWritten->setLineWrapMode( QTextEdit::NoWrap );
+        qteCreditsWritten->setText( "Tim Kleinschmidt <tim.kleinschmidt@googlemail.com>" );
 
     QTextEdit *qteCreditsArtwork = new QTextEdit;
-        qteCreditsArtwork->setReadOnly(1);
-        qteCreditsArtwork->setLineWrapMode(QTextEdit::NoWrap);
-        qteCreditsArtwork->setText( "Elementary Theme\n");
+        qteCreditsArtwork->setReadOnly( 1 );
+        qteCreditsArtwork->setLineWrapMode( QTextEdit::NoWrap );
+        qteCreditsArtwork->setText( "Elementary Theme\n" );
 
     QTabWidget *qtwCredits = new QTabWidget;
         qtwCredits->addTab(qteCreditsWritten, tr( "Written by" ));
@@ -359,15 +355,15 @@ void MainWindow::aboutCredits() {
         qtwCredits->setElideMode(Qt::ElideRight);
 
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
-        connect(qpbClose,SIGNAL(clicked()),dialog,SLOT(close()));
+        connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
     qglDialog = new QGridLayout;
-    qglDialog->addWidget(qtwCredits, 0, 0,Qt::AlignCenter);
-        qglDialog->addWidget(qpbClose, 1, 0, Qt::AlignRight);
+    qglDialog->addWidget(qtwCredits, 0, 0,Qt::AlignCenter );
+        qglDialog->addWidget(qpbClose, 1, 0, Qt::AlignRight );
 
         dialog->setWindowTitle( tr( "Credits" ));
-        dialog->setLayout(qglDialog);
-        dialog->setFixedSize(250,200);
+        dialog->setLayout( qglDialog );
+        dialog->setFixedSize( 250, 200 );
         dialog->exec();
 }
 
@@ -406,9 +402,9 @@ void MainWindow::progressLoad( int i ) {
 void MainWindow::finishedLoad( bool value ) {
     if( value == false ) {
         qpbMain->hide();
-        QResource res(":/noLeo.html");
-        QByteArray html((const char*)res.data(), res.size());
-        view->setHtml(html);
+        QResource res( ":/noLeo.html" );
+        QByteArray html(( const char* )res.data(), res.size());
+        view->setHtml( html );
     }else {
         qpbMain->hide();
     }
@@ -416,11 +412,11 @@ void MainWindow::finishedLoad( bool value ) {
 
 void MainWindow::printpreview() {
     QPrintPreviewDialog dialog;
-    connect(&dialog,SIGNAL(paintRequested(QPrinter*)),view,SLOT(print(QPrinter*)));
+    connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
     dialog.showMaximized();
-    if(dialog.exec() == QDialog::Accepted) {
+    if( dialog.exec() == QDialog::Accepted ) {
         QMessageBox msg;
-            msg.setIcon(QMessageBox::Information );
+            msg.setIcon( QMessageBox::Information );
             msg.setWindowTitle( "Information" );
             msg.setText( "Print was successful!" );
             msg.exec();
@@ -428,13 +424,13 @@ void MainWindow::printpreview() {
 }
 
 void MainWindow::zoomIn() {
-    view->setZoomFactor(view->zoomFactor() + 0.1);
+    view->setZoomFactor( view->zoomFactor() + 0.1);
 }
 
 void MainWindow::zoomOut() {
-    view->setZoomFactor(view->zoomFactor() - 0.1);
+    view->setZoomFactor( view->zoomFactor() - 0.1);
 }
 
 void MainWindow::zoomNormal() {
-    view->setZoomFactor(1);
+    view->setZoomFactor( 1 );
 }
