@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QStringList list, QWidget *parent)
-    : QMainWindow(parent){
-    setWindowTitle( QCoreApplication::applicationName () + tr(" -- For better use of leo.org" ));
+MainWindow::MainWindow( QStringList list, QWidget *parent )
+    : QMainWindow( parent ){
+    setWindowTitle( QCoreApplication::applicationName() + tr( " -- For better use of leo.org" ));
 
     createBars();
     createSystemTray();
@@ -15,25 +15,25 @@ MainWindow::MainWindow(QStringList list, QWidget *parent)
 
     view = new QWebView;
         view->load( QUrl( url + loadINI() + para ));
-        connect(view, SIGNAL(loadStarted()),this,SLOT(startedLoad()));
-        connect(view,SIGNAL(loadProgress(int)),this,SLOT(progressLoad(int)));
-        connect(view,SIGNAL(loadFinished(bool)),this,SLOT(finishedLoad(bool)));
-    setCentralWidget(view);
-    view->setContextMenuPolicy(Qt::ActionsContextMenu);
+        connect( view, SIGNAL( loadStarted()), this, SLOT( startedLoad()));
+        connect( view, SIGNAL( loadProgress( int )), this, SLOT( progressLoad( int )));
+        connect( view, SIGNAL( loadFinished( bool )), this, SLOT( finishedLoad( bool )));
+    setCentralWidget( view );
+    view->setContextMenuPolicy( Qt::ActionsContextMenu );
 
     clipboard = QApplication::clipboard();
-        connect(clipboard,SIGNAL(selectionChanged()),this,SLOT(clipboardChange()));
-                view->addAction(qaAbout);
-                view->addAction(qaPreferences);
+        connect(clipboard,SIGNAL( selectionChanged()), this, SLOT( clipboardChange()));
+                view->addAction( qaAbout );
+                view->addAction( qaPreferences );
 }
 
 void MainWindow::createBars(){
     createActions();
 
     qpbMain = new QProgressBar;
-        qpbMain->setMaximumSize(150,25);
-        qpbMain->setRange(0,99);
-        qpbMain->setTextVisible(0);
+        qpbMain->setMaximumSize( 150, 25 );
+        qpbMain->setRange( 0, 99 );
+        qpbMain->setTextVisible( 0 );
 
     setStatusBar(qsbMain = new QStatusBar);
         qsbMain->showMessage( tr( "Ready" ));
@@ -47,7 +47,7 @@ void MainWindow::createBars(){
             qmFile->addAction( qaPreferences );
             qmFile->addSeparator();
             qmFile->addAction( qaExit );
-        qmbMain->addMenu( qmEdit = new QMenu(tr("&Edit")));
+        qmbMain->addMenu( qmEdit = new QMenu( tr( "&Edit" )));
             qmEdit->addAction( qaHome );
             qmEdit->addSeparator();
             qmEdit->addAction( qaBack );
@@ -67,9 +67,9 @@ void MainWindow::createBars(){
             qmHelp->addAction( qaAbout );
 
     qleSearch = new QLineEdit;
-        connect(qleSearch, SIGNAL(returnPressed()), this, SLOT(lineSearch()));
+        connect(qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
 #if ( QT_VERSION >= 0x040700 )
-        qleSearch->setPlaceholderText("Search ...");
+        qleSearch->setPlaceholderText( "Search" );
 #endif
 
     qtbMain = new QToolBar( "Toolbar" );
@@ -94,63 +94,63 @@ void MainWindow::createActions(){
         qaExit->setStatusTip( tr( "Exit the application" ));
         connect( qaExit, SIGNAL( triggered()), qApp, SLOT( quit()));
 
-    qaPreferences = new QAction( QIcon(":/preferences.png"), tr("Preferences"),this);
-        qaPreferences->setShortcut(QKeySequence::Preferences);
-        qaPreferences->setStatusTip(tr("Change preferences of the application"));
-        connect(qaPreferences,SIGNAL(triggered()),this,SLOT(preferences()));
+    qaPreferences = new QAction( QIcon( ":/preferences.png" ), tr( "Preferences" ), this );
+        qaPreferences->setShortcut( QKeySequence::Preferences );
+        qaPreferences->setStatusTip( tr( "Change preferences of the application" ));
+        connect( qaPreferences, SIGNAL( triggered()),this, SLOT( preferences()));
 
-    qaBack = new QAction(QIcon(":/back.png"),tr("Back"),this);
-        qaBack->setShortcut(Qt::ControlModifier + Qt::Key_Left);
-        qaBack->setStatusTip(tr("Click to go back"));
-        connect(qaBack,SIGNAL(triggered()),this,SLOT(goBack()));
+    qaBack = new QAction( QIcon( ":/back.png" ), tr( "Back" ), this);
+        qaBack->setShortcut( Qt::ControlModifier + Qt::Key_Left );
+        qaBack->setStatusTip(  tr( "Click to go back" ));
+        connect( qaBack, SIGNAL( triggered()), this, SLOT( goBack()));
 
-    qaForward = new QAction(QIcon(":/forward.png"),tr("Forward"),this);
-        qaForward->setShortcut(Qt::ControlModifier + Qt::Key_Right);
-        qaForward->setStatusTip(tr("Click to go forward"));
-        connect(qaForward,SIGNAL(triggered()),this,SLOT(goForward()));
+    qaForward = new QAction( QIcon( ":/forward.png" ), tr( "Forward" ), this );
+        qaForward->setShortcut( Qt::ControlModifier + Qt::Key_Right );
+        qaForward->setStatusTip( tr( "Click to go forward" ));
+        connect( qaForward, SIGNAL( triggered()),this, SLOT( goForward()));
 
-    qaStop = new QAction(QIcon(":/stop.png"),tr("Stop"),this);
-        qaStop->setShortcut(Qt::Key_Escape);
-        qaStop->setStatusTip(tr("Click to go stop"));
-        connect(qaStop,SIGNAL(triggered()),this,SLOT(stop()));
+    qaStop = new QAction( QIcon( ":/stop.png" ), tr( "Stop" ), this);
+        qaStop->setShortcut( Qt::Key_Escape );
+        qaStop->setStatusTip( tr( "Click to go stop" ));
+        connect( qaStop, SIGNAL( triggered()), this, SLOT( stop()));
 
-    qaReload = new QAction(QIcon(":/reload.png"),tr("Reload"),this);
-        qaReload->setShortcut(QKeySequence::Refresh);
-        qaReload->setStatusTip(tr("Click to go reload"));
-        connect(qaReload,SIGNAL(triggered()),this,SLOT(reload()));
+    qaReload = new QAction( QIcon( ":/reload.png" ), tr( "Reload" ), this );
+        qaReload->setShortcut( QKeySequence::Refresh );
+        qaReload->setStatusTip( tr( "Click to go reload" ));
+        connect( qaReload, SIGNAL( triggered()), this, SLOT( reload()));
 
-     qaAbout = new QAction( QIcon(":/about.png"), tr("&About"),this);
-        qaAbout->setStatusTip(tr("About the application"));
-        connect(qaAbout,SIGNAL(triggered()),this,SLOT(about()));
+     qaAbout = new QAction( QIcon( ":/about.png" ), tr( "&About" ), this );
+        qaAbout->setStatusTip( tr( "About the application" ));
+        connect( qaAbout, SIGNAL( triggered()), this, SLOT( about()));
 
-    qaAboutQt = new QAction(tr("About &Qt"),this);
-        qaAboutQt->setStatusTip(tr("About the Qt version"));
-        connect(qaAboutQt,SIGNAL(triggered()),qApp,SLOT(aboutQt()));
+    qaAboutQt = new QAction( tr( "About &Qt" ), this);
+        qaAboutQt->setStatusTip( tr( "About the Qt version" ));
+        connect( qaAboutQt, SIGNAL( triggered()), qApp, SLOT( aboutQt()));
 
-    qaSearch = new QAction( QIcon(":/search.png"), tr("Search"),this);
-        qaSearch->setShortcut(QKeySequence::Find);
-        qaSearch->setStatusTip(tr("Search words"));
-        connect(qaSearch,SIGNAL(triggered()),this,SLOT(search()));
+    qaSearch = new QAction( QIcon( ":/search.png" ), tr( "Search" ), this );
+        qaSearch->setShortcut( QKeySequence::Find );
+        qaSearch->setStatusTip( tr( "Search words" ));
+        connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
-    qaPrintDialog = new QAction( QIcon(":/print.png"), tr( "Print" ), this );
-        qaPrintDialog->setShortcut(QKeySequence::Print);
+    qaPrintDialog = new QAction( QIcon( ":/print.png" ), tr( "Print" ), this );
+        qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
-        connect(qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
+        connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
 
-    qaZoomIn = new QAction( QIcon(":/zoom-in.png"), tr( "Zoom &In"), this);
-        qaZoomIn->setShortcut( QKeySequence::ZoomIn);
-        qaZoomIn->setStatusTip( tr( "Zoom in of the page"));
-        connect(qaZoomIn, SIGNAL(triggered()), this, SLOT(zoomIn()));
+    qaZoomIn = new QAction( QIcon( ":/zoom-in.png" ), tr( "Zoom &In" ), this );
+        qaZoomIn->setShortcut( QKeySequence::ZoomIn );
+        qaZoomIn->setStatusTip( tr( "Zoom in of the page" ));
+        connect( qaZoomIn, SIGNAL( triggered()), this, SLOT( zoomIn()));
 
-    qaZoomOut = new QAction( QIcon(":/zoom-out.png"), tr( "Zoom &Out"), this);
-        qaZoomOut->setShortcut( QKeySequence::ZoomOut);
-        qaZoomOut->setStatusTip( tr( "Zoom out of the page"));
-        connect(qaZoomOut, SIGNAL(triggered()), this, SLOT(zoomOut()));
+    qaZoomOut = new QAction( QIcon( ":/zoom-out.png" ), tr( "Zoom &Out" ), this );
+        qaZoomOut->setShortcut( QKeySequence::ZoomOut );
+        qaZoomOut->setStatusTip( tr( "Zoom out of the page" ));
+        connect( qaZoomOut, SIGNAL( triggered()), this, SLOT( zoomOut()));
 
-   qaZoomNormal = new QAction( QIcon(":/zoom-normal.png"),tr( "Zoom &Normal"), this);
-        qaZoomNormal->setShortcut( QKeySequence("CTRL+0"));
-        qaZoomNormal->setStatusTip( tr( "Zoom normal of the page"));
-        connect(qaZoomNormal, SIGNAL(triggered()), this, SLOT(zoomNormal()));
+   qaZoomNormal = new QAction( QIcon( ":/zoom-normal.png" ), tr( "Zoom &Normal" ), this );
+        qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
+        qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
+        connect( qaZoomNormal, SIGNAL( triggered()), this, SLOT( zoomNormal()));
 }
 
 void MainWindow::createSystemTray(){
@@ -249,6 +249,19 @@ QString MainWindow::loadINI() {
     return in.readLine();
 }
 
+void MainWindow::printpreview() {
+    QPrintPreviewDialog dialog;
+    connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
+    dialog.showMaximized();
+    if( dialog.exec() == QDialog::Accepted ) {
+        QMessageBox msg;
+            msg.setIcon( QMessageBox::Information );
+            msg.setWindowTitle( "Information" );
+            msg.setText( "Print was successful!" );
+            msg.exec();
+    }
+}
+
 void MainWindow::preferences() {
     dialog = new QDialog;
         dialog->setFixedSize(225,100);
@@ -281,6 +294,8 @@ void MainWindow::preferences() {
 
     dialog->exec();
 }
+
+/* about functions*/
 
 void MainWindow::about() {
     dialog = new QDialog;
@@ -367,6 +382,8 @@ void MainWindow::aboutCredits() {
         dialog->exec();
 }
 
+/* toolbar actions functions */
+
 void MainWindow::search() {
     qleSearch->setFocus();
 }
@@ -391,6 +408,8 @@ void MainWindow::stop() {
     view->stop();
 }
 
+/* progressbar functions */
+
 void MainWindow::startedLoad() {
     qpbMain->show();
 }
@@ -410,18 +429,7 @@ void MainWindow::finishedLoad( bool value ) {
     }
 }
 
-void MainWindow::printpreview() {
-    QPrintPreviewDialog dialog;
-    connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
-    dialog.showMaximized();
-    if( dialog.exec() == QDialog::Accepted ) {
-        QMessageBox msg;
-            msg.setIcon( QMessageBox::Information );
-            msg.setWindowTitle( "Information" );
-            msg.setText( "Print was successful!" );
-            msg.exec();
-    }
-}
+/* zoom funcctions */
 
 void MainWindow::zoomIn() {
     view->setZoomFactor( view->zoomFactor() + 0.1);
