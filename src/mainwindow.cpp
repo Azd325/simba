@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
-    : QMainWindow( parent ){
+    : QMainWindow( parent ) {
     setWindowTitle( QCoreApplication::applicationName() + tr( " -- For better use of leo.org" ));
 
     createBars();
@@ -27,7 +27,7 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
                 view->addAction( qaPreferences );
 }
 
-void MainWindow::createBars(){
+void MainWindow::createBars() {
     createActions();
 
     qpbMain = new QProgressBar;
@@ -83,7 +83,7 @@ void MainWindow::createBars(){
         addToolBar( qtbMain );
 }
 
-void MainWindow::createActions(){
+void MainWindow::createActions() {
     qaHome = new QAction( QIcon( ":/home.png" ), tr( "Home" ), this );
         qaHome->setShortcut( Qt::ControlModifier + Qt::Key_H );
         qaHome->setStatusTip( tr( "Click to go home" ));
@@ -153,24 +153,25 @@ void MainWindow::createActions(){
         connect( qaZoomNormal, SIGNAL( triggered()), this, SLOT( zoomNormal()));
 }
 
-void MainWindow::createSystemTray(){
+void MainWindow::createSystemTray() {
     tray = new QSystemTrayIcon( QIcon( ":/tray.png" ));
     tray->setContextMenu( qmTray = new QMenu );
-        qmTray->addAction( qaShow = new QAction( tr( "Show" ), this));
-            connect(qaShow,SIGNAL( triggered() ),this,SLOT( show() ));
+        qmTray->addAction( qaShow = new QAction( tr( "Show" ), this ));
+            connect( qaShow, SIGNAL( triggered() ), this, SLOT( show() ));
         qmTray->addSeparator();
         qmTray->addAction( qaPreferences );
         qmTray->addSeparator();
         qmTray->addAction( qaExit );
-    connect( tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason )), this, SLOT( trayActivate( QSystemTrayIcon::ActivationReason )));
+    connect( tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason )), this,
+            SLOT( trayActivate( QSystemTrayIcon::ActivationReason )));
     tray->show();
 }
 
-void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ){
+void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ) {
     if( reason == QSystemTrayIcon::DoubleClick ){
         if( !isHidden() ){
             hide();
-            tray->showMessage("INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000);
+            tray->showMessage( "INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000 );
         }
         else{
             show();
@@ -179,19 +180,19 @@ void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ){
 
 }
 
-void MainWindow::closeEvent(QCloseEvent *event){
+void MainWindow::closeEvent( QCloseEvent *event ) {
     if ( !this->isHidden() ) {
         this->hide();
-        tray->showMessage("INFO","The application is minimize to the tray",QSystemTrayIcon::Information, 10000);
+        tray->showMessage( "INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000 );
         event->ignore();
     }
 }
 
-void MainWindow::lineSearch(){
+void MainWindow::lineSearch() {
     view->load( QUrl( url + loadINI() + qleSearch->text()));
 }
 
-void MainWindow::clipboardChange(){
+void MainWindow::clipboardChange() {
 #ifdef Q_WS_X11
     view->load( QUrl( url + loadINI() + clipboard->text( QClipboard::Selection )));
 #elif Q_OS_WIN32
@@ -203,7 +204,7 @@ void MainWindow::clipboardChange(){
 #endif
 }
 
-void MainWindow::changeLanguage( int value ){
+void MainWindow::changeLanguage( int value ) {
     // the language part of the url
     switch( value ){
     case 0:
@@ -227,7 +228,7 @@ void MainWindow::changeLanguage( int value ){
     }
 }
 
-void MainWindow::writeINI( QString language ){
+void MainWindow::writeINI( QString language ) {
     QFile file( "simba.ini" );
     if ( !file.open( QIODevice::WriteOnly | QIODevice::Text )){
         writeINI( url + "ende?lp=ende&search=" );
@@ -240,8 +241,8 @@ void MainWindow::writeINI( QString language ){
 QString MainWindow::loadINI() {
     QFile file( "simba.ini" );
         if ( !file.open( QIODevice::ReadOnly | QIODevice::Text )){
-            writeINI("ende?lp=ende&search=" );
-            return "ende?lp=ende&search=";
+            writeINI( "ende?lp=ende&search=" );
+            return "ende?lp=ende&search=" ;
         }
 
     QTextStream in( &file );
@@ -264,7 +265,7 @@ void MainWindow::printpreview() {
 
 void MainWindow::preferences() {
     dialog = new QDialog;
-        dialog->setFixedSize(225,100);
+        dialog->setFixedSize( 225, 100 );
 
     qcbLanguage = new QComboBox;
         qcbLanguage->addItem( QIcon( ":/gb.png" ), tr( "English" ));
@@ -280,12 +281,13 @@ void MainWindow::preferences() {
 
         QPushButton *qpbOk = new QPushButton( QIcon( ":/ok.png" ), tr( "&OK" ));
             connect( qpbOk, SIGNAL( clicked()), dialog, SLOT( accept()));
+
         QPushButton *qpbCancel = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Cancel" ));
-            connect( qpbCancel, SIGNAL( clicked()), dialog, SLOT( reject() ));
+            connect( qpbCancel, SIGNAL( clicked()), dialog, SLOT( reject()));
 
     qglDialog = new QGridLayout;
     qglDialog->addWidget( new QLabel( tr( "Language:" )), 0, 0 );
-        qglDialog->addWidget( qcbLanguage, 0, 1  );
+        qglDialog->addWidget( qcbLanguage, 0, 1 );
         qglDialog->addWidget( qpbOk, 1, 0 );
         qglDialog->addWidget( qpbCancel, 1, 1 );
 
