@@ -303,13 +303,13 @@ void MainWindow::about() {
     dialog = new QDialog;
 
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
-        qpbClose->setFixedSize(93,34);
+        qpbClose->setFixedSize( 93, 34 );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
-    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits"));
-        qpbCredits->setFixedSize(93,34);
+    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ));
+        qpbCredits->setFixedSize( 93, 34 );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
-    QPushButton *qpbLicense = new QPushButton( tr( "&License"));
-        qpbLicense->setFixedSize(93,34);
+    QPushButton *qpbLicense = new QPushButton( tr( "&License" ));
+        qpbLicense->setFixedSize( 93, 34 );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
     qglDialog = new QGridLayout;
@@ -331,16 +331,16 @@ void MainWindow::aboutLicense() {
     dialog = new QDialog;
 
     QFile file( ":/GPL" );
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text )) {
-        qCritical("GPL LicenseFile not found");
+    if(!file.open( QIODevice::ReadOnly | QIODevice::Text )) {
+        qCritical( "GPL LicenseFile not found" );
     }
-    QTextStream out(&file);
-    out.setFieldAlignment(QTextStream::AlignCenter);
+    QTextStream out( &file );
+    out.setFieldAlignment( QTextStream::AlignCenter );
 
     QTextEdit *qteLicense = new QTextEdit;
-        qteLicense->setText(out.readAll());
-        qteLicense->setReadOnly(1);
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
+        qteLicense->setText( out.readAll());
+        qteLicense->setReadOnly( 1 );
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ));
         connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
     qglDialog = new QGridLayout;
@@ -367,16 +367,16 @@ void MainWindow::aboutCredits() {
         qteCreditsArtwork->setText( "Elementary Theme\n" );
 
     QTabWidget *qtwCredits = new QTabWidget;
-        qtwCredits->addTab(qteCreditsWritten, tr( "Written by" ));
-        qtwCredits->addTab(qteCreditsArtwork, tr( "Artwork by" ));
-        qtwCredits->setElideMode(Qt::ElideRight);
+        qtwCredits->addTab( qteCreditsWritten, tr( "Written by" ));
+        qtwCredits->addTab( qteCreditsArtwork, tr( "Artwork by" ));
+        qtwCredits->setElideMode( Qt::ElideRight );
 
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
     qglDialog = new QGridLayout;
-    qglDialog->addWidget(qtwCredits, 0, 0,Qt::AlignCenter );
-        qglDialog->addWidget(qpbClose, 1, 0, Qt::AlignRight );
+    qglDialog->addWidget( qtwCredits, 0, 0,Qt::AlignCenter );
+        qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
         dialog->setWindowTitle( tr( "Credits" ));
         dialog->setLayout( qglDialog );
@@ -399,7 +399,7 @@ void MainWindow::goForward() {
 }
 
 void MainWindow::goHome() {
-    view->load( QUrl( url + loadINI() ));
+    view->load( QUrl( url + loadINI()));
 }
 
 void MainWindow::reload() {
@@ -434,11 +434,11 @@ void MainWindow::finishedLoad( bool value ) {
 /* zoom funcctions */
 
 void MainWindow::zoomIn() {
-    view->setZoomFactor( view->zoomFactor() + 0.1);
+    view->setZoomFactor( view->zoomFactor() + 0.1 );
 }
 
 void MainWindow::zoomOut() {
-    view->setZoomFactor( view->zoomFactor() - 0.1);
+    view->setZoomFactor( view->zoomFactor() - 0.1 );
 }
 
 void MainWindow::zoomNormal() {
