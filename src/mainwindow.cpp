@@ -35,18 +35,20 @@ MainWindow::~MainWindow() {
 
 void MainWindow::loadSettings() {
     QSettings settings;
-    if( settings.contains ( "MainWindow/Size" )) {
-        resize(settings.value ( "MainWindow/Size", sizeHint ()).toSize ());
-    } else {
-        setGeometry (50,50,600,400);
-    }
+
+    settings.beginGroup ( "MainWindow" );
+    resize(settings.value ( "Size", QSize( 400, 600 )).toSize ());
+    move(settings.value ( "Pos", QPoint( 100, 100 )).toPoint ());
+    settings.endGroup ();
 }
 
 void MainWindow::writeSettings() {
     QSettings settings;
-    //settings.beginGroup ("MainWindow");
-    settings.setValue ( "MainWindow/Size", size());
-    //settings.endGroup ();
+
+    settings.beginGroup ( "MainWindow" );
+    settings.setValue ( "Size", size());
+    settings.setValue ( "Pos", pos ());
+    settings.endGroup ();
 }
 
 void MainWindow::createBars() {
@@ -228,48 +230,36 @@ void MainWindow::clipboardChange() {
 
 void MainWindow::changeLanguage( int value ) {
     // the language part of the url
+    QString lang = "";
     switch( value ){
     case 0:
-        writeINI( "?lp=ende&search=" );
+        lang = "?lp=ende&search=";
         break;
     case 1:
-        writeINI( "?lp=frde&search=" );
+        lang = "?lp=frde&search=";
         break;
     case 2:
-        writeINI( "?lp=esde&search=" );
+        lang = "?lp=esde&search=";
         break;
     case 3:
-        writeINI( "?lp=itde&search=" );
+        lang = "?lp=itde&search=";
         break;
     case 4:
-        writeINI( "?lp=chde&search=" );
+        // is crash install libfreetype(Linux) or install chinese font from the win cd
+        // http://developer.qt.nokia.com/faq/answer/qwebview_does_not_display_chinese_fonts_from_a_chinese_web_site
+        lang = "?lp=chde&search=";
         break;
     case 5:
-        writeINI( "?lp=rude&search=" );
+        lang = "?lp=rude&search=";
         break;
     }
-}
-
-void MainWindow::writeINI( QString language ) {
-    QFile file( "simba.ini" );
-    if ( !file.open( QIODevice::WriteOnly | QIODevice::Text )){
-        writeINI( url + "ende?lp=ende&search=" );
-    }
-
-    QTextStream out( &file );
-    out << language<< "\n";
+    QSettings settings;
+    settings.setValue ( "Simba/Language", lang );
 }
 
 QString MainWindow::loadINI() {
-    QFile file( "simba.ini" );
-        if ( !file.open( QIODevice::ReadOnly | QIODevice::Text )){
-            writeINI( "ende?lp=ende&search=" );
-            return "ende?lp=ende&search=" ;
-        }
-
-    QTextStream in( &file );
-
-    return in.readLine();
+    QSettings settings;
+    return settings.value ( "Simba/Language", "?lp=ende&search=" ).toString ();
 }
 
 void MainWindow::printpreview() {

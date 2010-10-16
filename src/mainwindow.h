@@ -74,7 +74,6 @@ private slots:
     void clipboardChange();
     void lineSearch();
     void trayActivate(QSystemTrayIcon::ActivationReason);
-    void writeINI(QString);
     QString loadINI();
     void printpreview();
     void zoomIn();
