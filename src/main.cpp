@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName ("Simba");
     QCoreApplication::setApplicationVersion ("0.89");
     QCoreApplication::setOrganizationDomain ("github.com/azd325/simba");
-    QCoreApplication::setOrganizationName ("Tim Kleinschmidt");
+    QCoreApplication::setOrganizationName (QCoreApplication::applicationName ());
 
     // delivery the cli argument
     MainWindow w(QCoreApplication::arguments());

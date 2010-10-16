@@ -30,6 +30,7 @@
 #include <QSystemTrayIcon>
 
 #include <QSettings>
+//#include <QSize>
 
 #include <QCloseEvent>
 
@@ -45,6 +46,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QStringList, QWidget *parent = 0);
+    ~MainWindow();
 
 private:
     void createBars();
@@ -78,6 +80,8 @@ private slots:
     void zoomIn();
     void zoomOut();
     void zoomNormal();
+    void loadSettings();
+    void writeSettings();
 
 private:
     QMenuBar *qmbMain;

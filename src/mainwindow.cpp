@@ -2,6 +2,8 @@
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
+    loadSettings ();
+
     setWindowTitle( QCoreApplication::applicationName() + tr( " -- For better use of leo.org" ));
 
     createBars();
@@ -25,6 +27,26 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
         connect(clipboard,SIGNAL( selectionChanged()), this, SLOT( clipboardChange()));
                 view->addAction( qaAbout );
                 view->addAction( qaPreferences );
+}
+
+MainWindow::~MainWindow() {
+    writeSettings ();
+}
+
+void MainWindow::loadSettings() {
+    QSettings settings;
+    if( settings.contains ( "MainWindow/Size" )) {
+        resize(settings.value ( "MainWindow/Size", sizeHint ()).toSize ());
+    } else {
+        setGeometry (50,50,600,400);
+    }
+}
+
+void MainWindow::writeSettings() {
+    QSettings settings;
+    //settings.beginGroup ("MainWindow");
+    settings.setValue ( "MainWindow/Size", size());
+    //settings.endGroup ();
 }
 
 void MainWindow::createBars() {
