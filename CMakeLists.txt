@@ -2,4 +2,5 @@ PROJECT(simba)
 FIND_PACKAGE(Qt4 REQUIRED)
 SET(simba_SOURES src/main.cpp src/mainwindow.cpp)
 SET(simba_HEADERS src/mainwindow.h)
-
+SET(simba_RESOURCES src/data/data.qrc)
+SET(QT_USE_QTWEBKIT TRUE)
