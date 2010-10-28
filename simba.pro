@@ -4,7 +4,7 @@
 QT += webkit
 TEMPLATE = app
 TARGET = 
-DEPENDPATH += . build src src/data
+DEPENDPATH += . src src/data
 INCLUDEPATH += . src
 
 # Input
