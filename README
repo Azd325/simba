@@ -1,6 +1,6 @@
-Create simba
+Create simba ap app
 ######################################################
 
-mkdir build 
-cd build
-qmake .. && make
+./configure
+make
+sudo make install
