@@ -1,5 +1,4 @@
 #include <QtGui/QApplication>
-
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
@@ -10,7 +9,7 @@ int main(int argc, char *argv[])
 
     // QSettings stuff
     QCoreApplication::setApplicationName ("Simba");
-    QCoreApplication::setApplicationVersion ("0.89");
+    QCoreApplication::setApplicationVersion ("0.93");
     QCoreApplication::setOrganizationDomain ("github.com/azd325/simba");
     QCoreApplication::setOrganizationName (QCoreApplication::applicationName ());
 

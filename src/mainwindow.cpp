@@ -26,7 +26,6 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     clipboard = QApplication::clipboard();
         connect(clipboard,SIGNAL( selectionChanged()), this, SLOT( clipboardChange()));
                 view->addAction( qaAbout );
-                view->addAction( qaPreferences );
 }
 
 MainWindow::~MainWindow() {
@@ -68,8 +67,6 @@ void MainWindow::createBars() {
             qmFile->addSeparator();
             qmFile->addAction( qaPrintDialog );
             qmFile->addSeparator();
-            qmFile->addAction( qaPreferences );
-            qmFile->addSeparator();
             qmFile->addAction( qaExit );
         qmbMain->addMenu( qmEdit = new QMenu( tr( "&Edit" )));
             qmEdit->addAction( qaHome );
@@ -81,6 +78,8 @@ void MainWindow::createBars() {
             qmEdit->addAction( qaStop );
             qmEdit->addSeparator();
             qmEdit->addAction( qaSearch );
+            qmEdit->addMenu (qmSubEdit = new QMenu( tr( "Languages" )));
+                qmSubEdit->addActions (qagLanguages->actions ());
         qmbMain->addMenu( qmView = new QMenu( tr( "&View" )));
             qmView->addAction( qaZoomIn );
             qmView->addAction( qaZoomOut );
@@ -117,11 +116,6 @@ void MainWindow::createActions() {
         qaExit->setShortcut( QKeySequence::Quit );
         qaExit->setStatusTip( tr( "Exit the application" ));
         connect( qaExit, SIGNAL( triggered()), qApp, SLOT( quit()));
-
-    qaPreferences = new QAction( QIcon( ":/preferences.png" ), tr( "Preferences" ), this );
-        qaPreferences->setShortcut( QKeySequence::Preferences );
-        qaPreferences->setStatusTip( tr( "Change preferences of the application" ));
-        connect( qaPreferences, SIGNAL( triggered()),this, SLOT( preferences()));
 
     qaBack = new QAction( QIcon( ":/back.png" ), tr( "Back" ), this);
         qaBack->setShortcut( Qt::ControlModifier + Qt::Key_Left );
@@ -175,6 +169,52 @@ void MainWindow::createActions() {
         qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
         qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
         connect( qaZoomNormal, SIGNAL( triggered()), this, SLOT( zoomNormal()));
+
+    qaEnglish = new QAction( QIcon( ":/gb.png" ), tr( "English" ), this );
+        qaEnglish->setCheckable(true);
+    qaSpanish = new QAction( QIcon( ":/es.png" ), tr( "Spanish" ), this );
+        qaSpanish->setCheckable(true);
+    qaFrench = new QAction( QIcon( ":/fr.png" ), tr( "French" ), this );
+        qaFrench->setCheckable(true);
+    qaItalian = new QAction( QIcon( ":/it.png" ), tr( "Italian" ), this );
+            qaItalian->setCheckable(true);
+    qaChinese = new QAction( QIcon( ":/cn.png" ), tr( "Chinese" ), this );
+        qaChinese->setCheckable(true);
+    qaRussian = new QAction( QIcon( ":/ru.png" ), tr( "Russian" ), this );
+            qaRussian->setCheckable(true);
+
+    qagLanguages = new QActionGroup(this);
+        qagLanguages->addAction ( qaEnglish );
+        qagLanguages->addAction ( qaSpanish );
+        qagLanguages->addAction ( qaFrench );
+        qagLanguages->addAction ( qaItalian );
+        qagLanguages->addAction ( qaChinese );
+        qagLanguages->addAction ( qaRussian );
+        qDebug ()<<qagLanguages->actions ();
+        connect( qagLanguages, SIGNAL( triggered( QAction* )), this, SLOT( languageActionTriggered( QAction* )));
+
+}
+
+void MainWindow::languageActionTriggered( QAction *action ) {
+    QSettings settings;
+    if( action == qaEnglish ){
+        settings.setValue ( "Simba/Language", "?lp=ende&search=" );
+    }
+    else if( action == qaSpanish ) {
+        settings.setValue ( "Simba/Language", "?lp=esde&search=" );
+    }
+    else if( action == qaFrench ) {
+        settings.setValue ( "Simba/Language", "?lp=frde&search=" );
+    }
+    else if( action == qaItalian ) {
+        settings.setValue ( "Simba/Language", "?lp=itde&search=" );
+    }
+    else if( action == qaChinese ) {
+        settings.setValue ( "Simba/Language", "?lp=chde&search=" );
+    }
+    else if( action == qaRussian ) {
+        settings.setValue ( "Simba/Language", "?lp=rude&search=" );
+    }
 }
 
 void MainWindow::createSystemTray() {
@@ -182,8 +222,6 @@ void MainWindow::createSystemTray() {
     tray->setContextMenu( qmTray = new QMenu );
         qmTray->addAction( qaShow = new QAction( tr( "Show" ), this ));
             connect( qaShow, SIGNAL( triggered() ), this, SLOT( show() ));
-        qmTray->addSeparator();
-        qmTray->addAction( qaPreferences );
         qmTray->addSeparator();
         qmTray->addAction( qaExit );
     connect( tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason )), this,
@@ -228,35 +266,6 @@ void MainWindow::clipboardChange() {
 #endif
 }
 
-void MainWindow::changeLanguage( int value ) {
-    // the language part of the url
-    QString lang = "";
-    switch( value ){
-    case 0:
-        lang = "?lp=ende&search=";
-        break;
-    case 1:
-        lang = "?lp=frde&search=";
-        break;
-    case 2:
-        lang = "?lp=esde&search=";
-        break;
-    case 3:
-        lang = "?lp=itde&search=";
-        break;
-    case 4:
-        // is crash install libfreetype(Linux) or install chinese font from the win cd
-        // http://developer.qt.nokia.com/faq/answer/qwebview_does_not_display_chinese_fonts_from_a_chinese_web_site
-        lang = "?lp=chde&search=";
-        break;
-    case 5:
-        lang = "?lp=rude&search=";
-        break;
-    }
-    QSettings settings;
-    settings.setValue ( "Simba/Language", lang );
-}
-
 QString MainWindow::loadINI() {
     QSettings settings;
     return settings.value ( "Simba/Language", "?lp=ende&search=" ).toString ();
@@ -273,40 +282,6 @@ void MainWindow::printpreview() {
             msg.setText( "Print was successful!" );
             msg.exec();
     }
-}
-
-void MainWindow::preferences() {
-    dialog = new QDialog;
-        dialog->setFixedSize( 225, 100 );
-
-    qcbLanguage = new QComboBox;
-        qcbLanguage->addItem( QIcon( ":/gb.png" ), tr( "English" ));
-        qcbLanguage->addItem( QIcon( ":/fr.png" ), tr( "French" ));
-        qcbLanguage->addItem( QIcon( ":/es.png" ), tr( "Spanish" ));
-        qcbLanguage->addItem( QIcon( ":/it.png" ), tr( "Italian" ));
-        qcbLanguage->addItem( QIcon( ":/cn.png" ), tr( "Chinese" ));
-        qcbLanguage->addItem( QIcon( ":/ru.png" ), tr( "Russian" ));
-        if (dialog->Accepted) {
-            connect( qcbLanguage, SIGNAL( currentIndexChanged( int )), this, SLOT( changeLanguage( int )));
-            goHome();
-        }
-
-        QPushButton *qpbOk = new QPushButton( QIcon( ":/ok.png" ), tr( "&OK" ));
-            connect( qpbOk, SIGNAL( clicked()), dialog, SLOT( accept()));
-
-        QPushButton *qpbCancel = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Cancel" ));
-            connect( qpbCancel, SIGNAL( clicked()), dialog, SLOT( reject()));
-
-    qglDialog = new QGridLayout;
-    qglDialog->addWidget( new QLabel( tr( "Language:" )), 0, 0 );
-        qglDialog->addWidget( qcbLanguage, 0, 1 );
-        qglDialog->addWidget( qpbOk, 1, 0 );
-        qglDialog->addWidget( qpbCancel, 1, 1 );
-
-    dialog->setLayout( qglDialog );
-
-
-    dialog->exec();
 }
 
 /* about functions*/
