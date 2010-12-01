@@ -8,6 +8,7 @@
 #include <QToolBar>
 #include <QMenu>
 #include <QAction>
+#include <QActionGroup>
 
 #include <QWebView>
 #include <QProgressBar>
@@ -18,7 +19,6 @@
 
 #include <QLabel>
 #include <QLineEdit>
-#include <QComboBox>
 #include <QPushButton>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -30,7 +30,6 @@
 #include <QSystemTrayIcon>
 
 #include <QSettings>
-//#include <QSize>
 
 #include <QCloseEvent>
 
@@ -63,14 +62,12 @@ private slots:
     void reload();
     void stop();
     void search();
-    void preferences();
     void about();
     void aboutLicense();
     void aboutCredits();
     void startedLoad();
     void progressLoad(int);
     void finishedLoad(bool);
-    void changeLanguage(int);
     void clipboardChange();
     void lineSearch();
     void trayActivate(QSystemTrayIcon::ActivationReason);
@@ -81,6 +78,7 @@ private slots:
     void zoomNormal();
     void loadSettings();
     void writeSettings();
+    void languageActionTriggered( QAction* );
 
 private:
     QMenuBar *qmbMain;
@@ -89,11 +87,12 @@ private:
     QProgressBar *qpbMain;
     QMenu *qmFile,
         *qmEdit,
+        *qmSubEdit,
         *qmView,
         *qmHelp,
         *qmTray;
+    QActionGroup *qagLanguages;
     QAction *qaExit,
-        *qaPreferences,
         *qaReload,
         *qaBack,
         *qaHome,
@@ -106,10 +105,15 @@ private:
         *qaPrintDialog,
         *qaZoomIn,
         *qaZoomOut,
-        *qaZoomNormal;
+        *qaZoomNormal,
+        *qaEnglish,
+        *qaFrench,
+        *qaSpanish,
+        *qaItalian,
+        *qaChinese,
+        *qaRussian;
     QWebView *view;
 
-    QComboBox *qcbLanguage;
     QGridLayout *qglDialog;
     QDialog *dialog;
     QClipboard *clipboard;
