@@ -17,15 +17,15 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
 
     view = new QWebView;
         view->load( QUrl( url + loadINI() + para ));
+        view->setContextMenuPolicy( Qt::ActionsContextMenu );
+        view->addAction( qaAbout );
         connect( view, SIGNAL( loadStarted()), this, SLOT( startedLoad()));
         connect( view, SIGNAL( loadProgress( int )), this, SLOT( progressLoad( int )));
         connect( view, SIGNAL( loadFinished( bool )), this, SLOT( finishedLoad( bool )));
     setCentralWidget( view );
-    view->setContextMenuPolicy( Qt::ActionsContextMenu );
 
     clipboard = QApplication::clipboard();
         connect(clipboard,SIGNAL( selectionChanged()), this, SLOT( clipboardChange()));
-                view->addAction( qaAbout );
 }
 
 MainWindow::~MainWindow() {
@@ -300,10 +300,10 @@ void MainWindow::about() {
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
     qglDialog = new QGridLayout;
-        qglDialog->addWidget( new QLabel( "<center><h1>" +QCoreApplication::applicationName () + " "
-                                         + QCoreApplication::applicationVersion () + "</h1><h3>" +
-                                         tr("For better use of leo.org") + "</h3>Copyright \251 2010 "+
-                                         QCoreApplication::organizationName () + "</center>"), 0, 0, 1, 3);
+        qglDialog->addWidget( new QLabel( "<center><h1>" +QCoreApplication::applicationName ()
+                                         + " " + QCoreApplication::applicationVersion () + "</h1><h3>"
+                                         + tr("For better use of leo.org") + "</h3>Copyright \251 2010 "
+                                         + QCoreApplication::organizationName () + "</center>"), 0, 0, 1, 3);
         qglDialog->addWidget( qpbCredits, 1, 0, Qt::AlignCenter );
         qglDialog->addWidget( qpbLicense, 1, 1, Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 2, Qt::AlignCenter );
