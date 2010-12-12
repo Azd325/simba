@@ -81,9 +81,7 @@ void MainWindow::createBars() {
             qmEdit->addMenu (qmSubEdit = new QMenu( tr( "Languages" )));
                 qmSubEdit->addActions (qagLanguages->actions ());
         qmbMain->addMenu( qmView = new QMenu( tr( "&View" )));
-            qmView->addAction( qaZoomIn );
-            qmView->addAction( qaZoomOut );
-            qmView->addAction( qaZoomNormal );
+            qmView->addActions ( qagZoom->actions ());
         qmbMain->addMenu( qmHelp = new QMenu( tr( "&Help" )));
             qmHelp->addAction( qaAboutQt );
             qmHelp->addSeparator();
@@ -158,17 +156,20 @@ void MainWindow::createActions() {
     qaZoomIn = new QAction( QIcon( ":/zoom-in.png" ), tr( "Zoom &In" ), this );
         qaZoomIn->setShortcut( QKeySequence::ZoomIn );
         qaZoomIn->setStatusTip( tr( "Zoom in of the page" ));
-        connect( qaZoomIn, SIGNAL( triggered()), this, SLOT( zoomIn()));
 
     qaZoomOut = new QAction( QIcon( ":/zoom-out.png" ), tr( "Zoom &Out" ), this );
         qaZoomOut->setShortcut( QKeySequence::ZoomOut );
         qaZoomOut->setStatusTip( tr( "Zoom out of the page" ));
-        connect( qaZoomOut, SIGNAL( triggered()), this, SLOT( zoomOut()));
 
    qaZoomNormal = new QAction( QIcon( ":/zoom-normal.png" ), tr( "Zoom &Normal" ), this );
         qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
         qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
-        connect( qaZoomNormal, SIGNAL( triggered()), this, SLOT( zoomNormal()));
+
+    qagZoom = new QActionGroup(this);
+        qagZoom->addAction (qaZoomIn);
+        qagZoom->addAction (qaZoomNormal);
+        qagZoom->addAction (qaZoomOut);
+        connect (qagZoom,SIGNAL(triggered(QAction*)),this,SLOT( zoomActionTriggered( QAction* )));
 
     qaEnglish = new QAction( QIcon( ":/gb.png" ), tr( "English" ), this );
         qaEnglish->setCheckable(true);
@@ -190,7 +191,6 @@ void MainWindow::createActions() {
         qagLanguages->addAction ( qaItalian );
         qagLanguages->addAction ( qaChinese );
         qagLanguages->addAction ( qaRussian );
-        qDebug ()<<qagLanguages->actions ();
         connect( qagLanguages, SIGNAL( triggered( QAction* )), this, SLOT( languageActionTriggered( QAction* )));
 
 }
@@ -214,6 +214,17 @@ void MainWindow::languageActionTriggered( QAction *action ) {
     }
     else if( action == qaRussian ) {
         settings.setValue ( "Simba/Language", "?lp=rude&search=" );
+    }
+}
+void MainWindow::zoomActionTriggered( QAction* action ) {
+    if( action == qaZoomIn ) {
+        view->setZoomFactor( view->zoomFactor() + 0.1 );
+    }
+    else if( action == qaZoomNormal ) {
+        view->setZoomFactor( 1 );
+    }
+    else if( action == qaZoomOut ) {
+        view->setZoomFactor( view->zoomFactor() - 0.1 );
     }
 }
 
@@ -416,18 +427,4 @@ void MainWindow::finishedLoad( bool value ) {
     }else {
         qpbMain->hide();
     }
-}
-
-/* zoom funcctions */
-
-void MainWindow::zoomIn() {
-    view->setZoomFactor( view->zoomFactor() + 0.1 );
-}
-
-void MainWindow::zoomOut() {
-    view->setZoomFactor( view->zoomFactor() - 0.1 );
-}
-
-void MainWindow::zoomNormal() {
-    view->setZoomFactor( 1 );
 }
