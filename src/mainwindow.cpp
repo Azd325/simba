@@ -69,14 +69,7 @@ void MainWindow::createBars() {
             qmFile->addSeparator();
             qmFile->addAction( qaExit );
         qmbMain->addMenu( qmEdit = new QMenu( tr( "&Edit" )));
-            qmEdit->addAction( qaHome );
-            qmEdit->addSeparator();
-            qmEdit->addAction( qaBack );
-            qmEdit->addAction( qaForward );
-            qmEdit->addSeparator();
-            qmEdit->addAction( qaReload );
-            qmEdit->addAction( qaStop );
-            qmEdit->addSeparator();
+            qmEdit->addActions( qagNavigation->actions ());
             qmEdit->addAction( qaSearch );
             qmEdit->addMenu (qmSubEdit = new QMenu( tr( "Languages" )));
                 qmSubEdit->addActions (qagLanguages->actions ());
@@ -96,11 +89,8 @@ void MainWindow::createBars() {
     qtbMain = new QToolBar( "Toolbar" );
         qtbMain->addAction( qaHome );
         qtbMain->addSeparator();
-        qtbMain->addAction( qaBack );
-        qtbMain->addAction( qaReload );
-        qtbMain->addAction( qaForward );
+        qtbMain->addActions( qagNavigation->actions ());
         qtbMain->addWidget( qleSearch );
-        qtbMain->addAction( qaStop );
         addToolBar( qtbMain );
 }
 
@@ -108,7 +98,6 @@ void MainWindow::createActions() {
     qaHome = new QAction( QIcon( ":/home.png" ), tr( "Home" ), this );
         qaHome->setShortcut( Qt::ControlModifier + Qt::Key_H );
         qaHome->setStatusTip( tr( "Click to go home" ));
-        connect( qaHome, SIGNAL( triggered()), this, SLOT( goHome()));
 
     qaExit = new QAction( QIcon( ":/exit.png" ), tr( "&Exit" ), this);
         qaExit->setShortcut( QKeySequence::Quit );
@@ -118,22 +107,18 @@ void MainWindow::createActions() {
     qaBack = new QAction( QIcon( ":/back.png" ), tr( "Back" ), this);
         qaBack->setShortcut( Qt::ControlModifier + Qt::Key_Left );
         qaBack->setStatusTip(  tr( "Click to go back" ));
-        connect( qaBack, SIGNAL( triggered()), this, SLOT( goBack()));
 
     qaForward = new QAction( QIcon( ":/forward.png" ), tr( "Forward" ), this );
         qaForward->setShortcut( Qt::ControlModifier + Qt::Key_Right );
         qaForward->setStatusTip( tr( "Click to go forward" ));
-        connect( qaForward, SIGNAL( triggered()),this, SLOT( goForward()));
 
     qaStop = new QAction( QIcon( ":/stop.png" ), tr( "Stop" ), this);
         qaStop->setShortcut( Qt::Key_Escape );
         qaStop->setStatusTip( tr( "Click to go stop" ));
-        connect( qaStop, SIGNAL( triggered()), this, SLOT( stop()));
 
     qaReload = new QAction( QIcon( ":/reload.png" ), tr( "Reload" ), this );
         qaReload->setShortcut( QKeySequence::Refresh );
         qaReload->setStatusTip( tr( "Click to go reload" ));
-        connect( qaReload, SIGNAL( triggered()), this, SLOT( reload()));
 
      qaAbout = new QAction( QIcon( ":/about.png" ), tr( "&About" ), this );
         qaAbout->setStatusTip( tr( "About the application" ));
@@ -143,10 +128,18 @@ void MainWindow::createActions() {
         qaAboutQt->setStatusTip( tr( "About the Qt version" ));
         connect( qaAboutQt, SIGNAL( triggered()), qApp, SLOT( aboutQt()));
 
+    qagNavigation = new QActionGroup( this );
+        qagNavigation->addAction (qaHome);
+        qagNavigation->addAction ( qaBack );
+        qagNavigation->addAction ( qaReload );
+        qagNavigation->addAction ( qaForward );
+        qagNavigation->addAction ( qaStop );
+        connect (qagNavigation, SIGNAL(triggered(QAction*)), this, SLOT(navigationActionTriggered(QAction*)));
+
     qaSearch = new QAction( QIcon( ":/search.png" ), tr( "Search" ), this );
         qaSearch->setShortcut( QKeySequence::Find );
         qaSearch->setStatusTip( tr( "Search words" ));
-        connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
+        connect( qaSearch, SIGNAL( triggered()), this, SLOT(search()));
 
     qaPrintDialog = new QAction( QIcon( ":/print.png" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
@@ -226,6 +219,28 @@ void MainWindow::zoomActionTriggered( QAction* action ) {
     else if( action == qaZoomOut ) {
         view->setZoomFactor( view->zoomFactor() - 0.1 );
     }
+}
+
+void MainWindow::navigationActionTriggered ( QAction *action ) {
+    if( action == qaHome ) {
+        view->load( QUrl( url + loadINI()));
+    }
+    else if( action == qaBack ) {
+        view->back ();
+    }
+    else if( action == qaForward ) {
+        view->forward ();
+    }
+    else if( action == qaReload ) {
+        view->reload ();
+    }
+    else if( action == qaStop ) {
+        view->stop ();
+    }
+}
+
+void MainWindow::search() {
+    qleSearch->setFocus();
 }
 
 void MainWindow::createSystemTray() {
@@ -380,32 +395,6 @@ void MainWindow::aboutCredits() {
         dialog->setLayout( qglDialog );
         dialog->setFixedSize( 250, 200 );
         dialog->exec();
-}
-
-/* toolbar actions functions */
-
-void MainWindow::search() {
-    qleSearch->setFocus();
-}
-
-void MainWindow::goBack() {
-    view->back();
-}
-
-void MainWindow::goForward() {
-    view->forward();
-}
-
-void MainWindow::goHome() {
-    view->load( QUrl( url + loadINI()));
-}
-
-void MainWindow::reload() {
-    view->reload();
-}
-
-void MainWindow::stop() {
-    view->stop();
 }
 
 /* progressbar functions */
