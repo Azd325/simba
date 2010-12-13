@@ -12,7 +12,6 @@
 
 #include <QWebView>
 #include <QProgressBar>
-#include <QDialog>
 #include <QTextEdit>
 #include <QMessageBox>
 #include <QTabWidget>
