@@ -298,11 +298,11 @@ QString MainWindow::loadINI() {
 }
 
 void MainWindow::printpreview() {
-    QPrintPreviewDialog dialog;
+    QPrintPreviewDialog dialog( this );
     connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
     dialog.showMaximized();
     if( dialog.exec() == QDialog::Accepted ) {
-        QMessageBox msg;
+        QMessageBox msg( &dialog );
             msg.setIcon( QMessageBox::Information );
             msg.setWindowTitle( "Information" );
             msg.setText( "Print was successful!" );
@@ -315,13 +315,13 @@ void MainWindow::printpreview() {
 void MainWindow::about() {
     dialog = new QDialog( this );
 
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
         qpbClose->setFixedSize( 93, 34 );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
-    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ));
+    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ), dialog );
         qpbCredits->setFixedSize( 93, 34 );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
-    QPushButton *qpbLicense = new QPushButton( tr( "&License" ));
+    QPushButton *qpbLicense = new QPushButton( tr( "&License" ), dialog );
         qpbLicense->setFixedSize( 93, 34 );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
@@ -350,10 +350,10 @@ void MainWindow::aboutLicense() {
     QTextStream out( &file );
     out.setFieldAlignment( QTextStream::AlignCenter );
 
-    QTextEdit *qteLicense = new QTextEdit;
+    QTextEdit *qteLicense = new QTextEdit( dialog );
         qteLicense->setText( out.readAll());
         qteLicense->setReadOnly( 1 );
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ));
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ), dialog );
         connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
 
     qglDialog = new QGridLayout( dialog );
@@ -369,22 +369,22 @@ void MainWindow::aboutLicense() {
 void MainWindow::aboutCredits() {
     dialog = new QDialog( this );
 
-    QTextEdit *qteCreditsWritten = new QTextEdit;
+    QTextEdit *qteCreditsWritten = new QTextEdit( dialog );
         qteCreditsWritten->setReadOnly( 1 );
         qteCreditsWritten->setLineWrapMode( QTextEdit::NoWrap );
         qteCreditsWritten->setText( "Tim Kleinschmidt <tim.kleinschmidt@googlemail.com>" );
 
-    QTextEdit *qteCreditsArtwork = new QTextEdit;
+    QTextEdit *qteCreditsArtwork = new QTextEdit( dialog );
         qteCreditsArtwork->setReadOnly( 1 );
         qteCreditsArtwork->setLineWrapMode( QTextEdit::NoWrap );
         qteCreditsArtwork->setText( "Elementary Theme\n" );
 
-    QTabWidget *qtwCredits = new QTabWidget;
+    QTabWidget *qtwCredits = new QTabWidget( dialog );
         qtwCredits->addTab( qteCreditsWritten, tr( "Written by" ));
         qtwCredits->addTab( qteCreditsArtwork, tr( "Artwork by" ));
         qtwCredits->setElideMode( Qt::ElideRight );
 
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
     qglDialog = new QGridLayout( dialog );
