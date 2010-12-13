@@ -313,11 +313,11 @@ void MainWindow::printpreview() {
 /* about functions*/
 
 void MainWindow::about() {
-    dialog = new QDialog;
+    dialog = new QDialog( this );
 
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
         qpbClose->setFixedSize( 93, 34 );
-        connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
+        connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
     QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ));
         qpbCredits->setFixedSize( 93, 34 );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
@@ -325,7 +325,7 @@ void MainWindow::about() {
         qpbLicense->setFixedSize( 93, 34 );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
-    qglDialog = new QGridLayout;
+    qglDialog = new QGridLayout(dialog);
         qglDialog->addWidget( new QLabel( "<center><h1>" +QCoreApplication::applicationName ()
                                          + " " + QCoreApplication::applicationVersion () + "</h1><h3>"
                                          + tr("For better use of leo.org") + "</h3>Copyright \251 2010 "
@@ -341,7 +341,7 @@ void MainWindow::about() {
 }
 
 void MainWindow::aboutLicense() {
-    dialog = new QDialog;
+    dialog = new QDialog( this );
 
     QFile file( ":/GPL" );
     if(!file.open( QIODevice::ReadOnly | QIODevice::Text )) {
@@ -354,9 +354,9 @@ void MainWindow::aboutLicense() {
         qteLicense->setText( out.readAll());
         qteLicense->setReadOnly( 1 );
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ));
-        connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
+        connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
 
-    qglDialog = new QGridLayout;
+    qglDialog = new QGridLayout( dialog );
         qglDialog->addWidget( qteLicense, 0, 0 );
         qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
@@ -367,7 +367,7 @@ void MainWindow::aboutLicense() {
 }
 
 void MainWindow::aboutCredits() {
-    dialog = new QDialog;
+    dialog = new QDialog( this );
 
     QTextEdit *qteCreditsWritten = new QTextEdit;
         qteCreditsWritten->setReadOnly( 1 );
@@ -387,7 +387,7 @@ void MainWindow::aboutCredits() {
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
-    qglDialog = new QGridLayout;
+    qglDialog = new QGridLayout( dialog );
     qglDialog->addWidget( qtwCredits, 0, 0,Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
