@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     // QSettings stuff
     QCoreApplication::setApplicationName ("Simba");
     QCoreApplication::setApplicationVersion ("0.93");
-    QCoreApplication::setOrganizationDomain ("github.com/azd325/simba");
+    QCoreApplication::setOrganizationDomain ("azd325.github.com/simba/");
     QCoreApplication::setOrganizationName (QCoreApplication::applicationName ());
 
     // delivery the cli argument
@@ -18,3 +18,4 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
+

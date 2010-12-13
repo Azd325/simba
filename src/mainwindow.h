@@ -56,11 +56,6 @@ protected:
     void closeEvent(QCloseEvent *);
 
 private slots:
-    void goBack();
-    void goForward();
-    void goHome();
-    void reload();
-    void stop();
     void search();
     void about();
     void aboutLicense();
@@ -73,12 +68,11 @@ private slots:
     void trayActivate(QSystemTrayIcon::ActivationReason);
     QString loadINI();
     void printpreview();
-    void zoomIn();
-    void zoomOut();
-    void zoomNormal();
     void loadSettings();
     void writeSettings();
     void languageActionTriggered( QAction* );
+    void zoomActionTriggered( QAction* );
+    void navigationActionTriggered( QAction* );
 
 private:
     QMenuBar *qmbMain;
@@ -91,7 +85,9 @@ private:
         *qmView,
         *qmHelp,
         *qmTray;
-    QActionGroup *qagLanguages;
+    QActionGroup *qagLanguages,
+        *qagZoom,
+        *qagNavigation;
     QAction *qaExit,
         *qaReload,
         *qaBack,
@@ -124,3 +120,4 @@ private:
 };
 
 #endif // MAINWINDOW_H
+
