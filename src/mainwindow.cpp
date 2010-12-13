@@ -288,7 +288,7 @@ void MainWindow::clipboardChange() {
 #elif Q_OS_MAC
     view->load( QUrl( url + loadINI() + clipboard->text( QClipboard::FindBuffer )));
 #else
-    view->load( QUrl( url + loadINI() + clipboard->text());
+    view->load( QUrl( url + loadINI() + clipboard->text()));
 #endif
 }
 
