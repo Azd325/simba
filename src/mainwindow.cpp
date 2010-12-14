@@ -1,3 +1,23 @@
+/* -*- coding: utf-8 -*-
+*
+* Copyright (C) 2010 Tim Kleinschmidt
+*
+* This file is part of Simba.
+*
+* Simba is free software: you can redistribute it and/or modify it under the
+* terms of the GNU Affero General Public License as published by the Free
+* Software Foundation, either version 3 of the License, or (at your option) any
+* later version.
+*
+* Simba is distributed in the hope that it will be useful, but WITHOUT ANY
+* WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+* A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with Zeya. If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "mainwindow.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
@@ -289,7 +309,7 @@ void MainWindow::clipboardChange() {
 #elif Q_OS_MAC
     view->load( QUrl( url + loadINI() + clipboard->text( QClipboard::FindBuffer )));
 #else
-    view->load( QUrl( url + loadINI() + clipboard->text());
+    view->load( QUrl( url + loadINI() + clipboard->text()));
 #endif
 }
 
@@ -299,11 +319,11 @@ QString MainWindow::loadINI() {
 }
 
 void MainWindow::printpreview() {
-    QPrintPreviewDialog dialog;
+    QPrintPreviewDialog dialog( this );
     connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
     dialog.showMaximized();
     if( dialog.exec() == QDialog::Accepted ) {
-        QMessageBox msg;
+        QMessageBox msg( &dialog );
             msg.setIcon( QMessageBox::Information );
             msg.setWindowTitle( "Information" );
             msg.setText( "Print was successful!" );
@@ -314,19 +334,19 @@ void MainWindow::printpreview() {
 /* about functions*/
 
 void MainWindow::about() {
-    dialog = new QDialog;
+    dialog = new QDialog( this );
 
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
         qpbClose->setFixedSize( 93, 34 );
-        connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
-    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ));
+        connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
+    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ), dialog );
         qpbCredits->setFixedSize( 93, 34 );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
-    QPushButton *qpbLicense = new QPushButton( tr( "&License" ));
+    QPushButton *qpbLicense = new QPushButton( tr( "&License" ), dialog );
         qpbLicense->setFixedSize( 93, 34 );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
-    qglDialog = new QGridLayout;
+    qglDialog = new QGridLayout(dialog);
         qglDialog->addWidget( new QLabel( "<center><h1>" +QCoreApplication::applicationName ()
                                          + " " + QCoreApplication::applicationVersion () + "</h1><h3>"
                                          + tr("For better use of leo.org") + "</h3>Copyright \251 2010 "
@@ -342,7 +362,7 @@ void MainWindow::about() {
 }
 
 void MainWindow::aboutLicense() {
-    dialog = new QDialog;
+    dialog = new QDialog( this );
 
     QFile file( ":/GPL" );
     if(!file.open( QIODevice::ReadOnly | QIODevice::Text )) {
@@ -351,13 +371,13 @@ void MainWindow::aboutLicense() {
     QTextStream out( &file );
     out.setFieldAlignment( QTextStream::AlignCenter );
 
-    QTextEdit *qteLicense = new QTextEdit;
+    QTextEdit *qteLicense = new QTextEdit( dialog );
         qteLicense->setText( out.readAll());
         qteLicense->setReadOnly( 1 );
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ));
-        connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ), dialog );
+        connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
 
-    qglDialog = new QGridLayout;
+    qglDialog = new QGridLayout( dialog );
         qglDialog->addWidget( qteLicense, 0, 0 );
         qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
@@ -368,27 +388,27 @@ void MainWindow::aboutLicense() {
 }
 
 void MainWindow::aboutCredits() {
-    dialog = new QDialog;
+    dialog = new QDialog( this );
 
-    QTextEdit *qteCreditsWritten = new QTextEdit;
+    QTextEdit *qteCreditsWritten = new QTextEdit( dialog );
         qteCreditsWritten->setReadOnly( 1 );
         qteCreditsWritten->setLineWrapMode( QTextEdit::NoWrap );
         qteCreditsWritten->setText( "Tim Kleinschmidt <tim.kleinschmidt@googlemail.com>" );
 
-    QTextEdit *qteCreditsArtwork = new QTextEdit;
+    QTextEdit *qteCreditsArtwork = new QTextEdit( dialog );
         qteCreditsArtwork->setReadOnly( 1 );
         qteCreditsArtwork->setLineWrapMode( QTextEdit::NoWrap );
         qteCreditsArtwork->setText( "Elementary Theme\n" );
 
-    QTabWidget *qtwCredits = new QTabWidget;
+    QTabWidget *qtwCredits = new QTabWidget( dialog );
         qtwCredits->addTab( qteCreditsWritten, tr( "Written by" ));
         qtwCredits->addTab( qteCreditsArtwork, tr( "Artwork by" ));
         qtwCredits->setElideMode( Qt::ElideRight );
 
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ));
+    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
-    qglDialog = new QGridLayout;
+    qglDialog = new QGridLayout( dialog );
     qglDialog->addWidget( qtwCredits, 0, 0,Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
