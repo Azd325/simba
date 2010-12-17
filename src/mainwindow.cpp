@@ -287,15 +287,7 @@ void MainWindow::lineSearch() {
 }
 
 void MainWindow::clipboardChange() {
-#ifdef Q_WS_X11
-    view->load( QUrl( url + loadINI() + clipboard->text( QClipboard::Selection )));
-#elif Q_OS_WIN32
-    view->load( QUrl( url + loadINI() + clipboard->text( QClipboard::Clipboard )));
-#elif Q_OS_MAC
-    view->load( QUrl( url + loadINI() + clipboard->text( QClipboard::FindBuffer )));
-#else
     view->load( QUrl( url + loadINI() + clipboard->text()));
-#endif
 }
 
 QString MainWindow::loadINI() {
