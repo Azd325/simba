@@ -31,7 +31,7 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     setCentralWidget( view );
 
     clipboard = QApplication::clipboard();
-        connect(clipboard,SIGNAL( selectionChanged()), this, SLOT( clipboardChange()));
+        connect(clipboard,SIGNAL( changed(QClipboard::Mode)), this, SLOT( clipboardChange()));
 }
 
 MainWindow::~MainWindow() {
