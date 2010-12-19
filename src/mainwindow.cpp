@@ -5,6 +5,7 @@
 */
 
 #include "mainwindow.h"
+#include "iconloader.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
@@ -100,28 +101,29 @@ void MainWindow::createBars() {
 }
 
 void MainWindow::createActions() {
-    qaHome = new QAction( QIcon( ":/home.png" ), tr( "Home" ), this );
+    qaHome = new QAction( IconLoader::Load( "go-home" ), tr( "Home" ), this );
+
         qaHome->setShortcut( Qt::ControlModifier + Qt::Key_H );
         qaHome->setStatusTip( tr( "Click to go home" ));
 
-    qaExit = new QAction( QIcon( ":/exit.png" ), tr( "&Exit" ), this);
+    qaExit = new QAction( IconLoader::Load( "system-shutdown" ), tr( "&Exit" ), this);
         qaExit->setShortcut( QKeySequence::Quit );
         qaExit->setStatusTip( tr( "Exit the application" ));
         connect( qaExit, SIGNAL( triggered()), qApp, SLOT( quit()));
 
-    qaBack = new QAction( QIcon( ":/back.png" ), tr( "Back" ), this);
+    qaBack = new QAction( IconLoader::Load( "go-previous" ), tr( "Back" ), this);
         qaBack->setShortcut( Qt::ControlModifier + Qt::Key_Left );
         qaBack->setStatusTip(  tr( "Click to go back" ));
 
-    qaForward = new QAction( QIcon( ":/forward.png" ), tr( "Forward" ), this );
+    qaForward = new QAction( IconLoader::Load( "go-next" ), tr( "Forward" ), this );
         qaForward->setShortcut( Qt::ControlModifier + Qt::Key_Right );
         qaForward->setStatusTip( tr( "Click to go forward" ));
 
-    qaStop = new QAction( QIcon( ":/stop.png" ), tr( "Stop" ), this);
+    qaStop = new QAction( IconLoader::Load( "process-stop" ), tr( "Stop" ), this);
         qaStop->setShortcut( Qt::Key_Escape );
         qaStop->setStatusTip( tr( "Click to go stop" ));
 
-    qaReload = new QAction( QIcon( ":/reload.png" ), tr( "Reload" ), this );
+    qaReload = new QAction( IconLoader::Load( "view-refresh" ), tr( "Reload" ), this );
         qaReload->setShortcut( QKeySequence::Refresh );
         qaReload->setStatusTip( tr( "Click to go reload" ));
 
@@ -141,25 +143,25 @@ void MainWindow::createActions() {
         qagNavigation->addAction ( qaStop );
         connect ( qagNavigation, SIGNAL( triggered( QAction* )), this, SLOT( navigationActionTriggered( QAction* )));
 
-    qaSearch = new QAction( QIcon( ":/search.png" ), tr( "Search" ), this );
+    qaSearch = new QAction( IconLoader::Load( "edit-find" ), tr( "Search" ), this );
         qaSearch->setShortcut( QKeySequence::Find );
         qaSearch->setStatusTip( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
-    qaPrintDialog = new QAction( QIcon( ":/print.png" ), tr( "Print" ), this );
+    qaPrintDialog = new QAction( IconLoader::Load( "document-print" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
         connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
 
-    qaZoomIn = new QAction( QIcon( ":/zoom-in.png" ), tr( "Zoom &In" ), this );
+    qaZoomIn = new QAction( IconLoader::Load( "zoom-in" ), tr( "Zoom &In" ), this );
         qaZoomIn->setShortcut( QKeySequence::ZoomIn );
         qaZoomIn->setStatusTip( tr( "Zoom in of the page" ));
 
-    qaZoomOut = new QAction( QIcon( ":/zoom-out.png" ), tr( "Zoom &Out" ), this );
+    qaZoomOut = new QAction( IconLoader::Load( "zoom-out" ), tr( "Zoom &Out" ), this );
         qaZoomOut->setShortcut( QKeySequence::ZoomOut );
         qaZoomOut->setStatusTip( tr( "Zoom out of the page" ));
 
-   qaZoomNormal = new QAction( QIcon( ":/zoom-normal.png" ), tr( "Zoom &Normal" ), this );
+   qaZoomNormal = new QAction( IconLoader::Load( "zoom-original" ), tr( "Zoom &Normal" ), this );
         qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
         qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
 
@@ -169,17 +171,17 @@ void MainWindow::createActions() {
         qagZoom->addAction ( qaZoomOut );
         connect ( qagZoom, SIGNAL( triggered( QAction* )), this, SLOT( zoomActionTriggered( QAction* )));
 
-    qaEnglish = new QAction( QIcon( ":/gb.png" ), tr( "English" ), this );
+    qaEnglish = new QAction( QIcon( ":/flags/gb.png" ), tr( "English" ), this );
         qaEnglish->setCheckable(true);
-    qaSpanish = new QAction( QIcon( ":/es.png" ), tr( "Spanish" ), this );
+    qaSpanish = new QAction( QIcon( ":/flags/es.png" ), tr( "Spanish" ), this );
         qaSpanish->setCheckable(true);
-    qaFrench = new QAction( QIcon( ":/fr.png" ), tr( "French" ), this );
+    qaFrench = new QAction( QIcon( ":/flags/fr.png" ), tr( "French" ), this );
         qaFrench->setCheckable(true);
-    qaItalian = new QAction( QIcon( ":/it.png" ), tr( "Italian" ), this );
+    qaItalian = new QAction( QIcon( ":/flags/it.png" ), tr( "Italian" ), this );
             qaItalian->setCheckable(true);
-    qaChinese = new QAction( QIcon( ":/cn.png" ), tr( "Chinese" ), this );
+    qaChinese = new QAction( QIcon( ":/flags/cn.png" ), tr( "Chinese" ), this );
         qaChinese->setCheckable(true);
-    qaRussian = new QAction( QIcon( ":/ru.png" ), tr( "Russian" ), this );
+    qaRussian = new QAction( QIcon( ":/flags/ru.png" ), tr( "Russian" ), this );
             qaRussian->setCheckable(true);
 
     qagLanguages = new QActionGroup( this );

@@ -6,6 +6,7 @@
 
 #include <QtGui/QApplication>
 #include "mainwindow.h"
+#include "iconloader.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,9 +16,12 @@ int main(int argc, char *argv[])
 
     // QSettings stuff
     QCoreApplication::setApplicationName ("Simba");
-    QCoreApplication::setApplicationVersion ("0.93");
+    QCoreApplication::setApplicationVersion ("0.94");
     QCoreApplication::setOrganizationDomain ("azd325.github.com/simba/");
     QCoreApplication::setOrganizationName (QCoreApplication::applicationName ());
+
+    // Icons
+    IconLoader::Init();
 
     // delivery the cli argument
     MainWindow w(QCoreApplication::arguments());
