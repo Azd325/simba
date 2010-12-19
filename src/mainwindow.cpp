@@ -5,6 +5,7 @@
 */
 
 #include "mainwindow.h"
+#include "iconloader.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
@@ -100,7 +101,8 @@ void MainWindow::createBars() {
 }
 
 void MainWindow::createActions() {
-    qaHome = new QAction( QIcon( ":/home.png" ), tr( "Home" ), this );
+    qaHome = new QAction( IconLoader::Load( "go-home" ), tr( "Home" ), this );
+
         qaHome->setShortcut( Qt::ControlModifier + Qt::Key_H );
         qaHome->setStatusTip( tr( "Click to go home" ));
 
@@ -109,19 +111,19 @@ void MainWindow::createActions() {
         qaExit->setStatusTip( tr( "Exit the application" ));
         connect( qaExit, SIGNAL( triggered()), qApp, SLOT( quit()));
 
-    qaBack = new QAction( QIcon( ":/back.png" ), tr( "Back" ), this);
+    qaBack = new QAction( IconLoader::Load( "go-previous" ), tr( "Back" ), this);
         qaBack->setShortcut( Qt::ControlModifier + Qt::Key_Left );
         qaBack->setStatusTip(  tr( "Click to go back" ));
 
-    qaForward = new QAction( QIcon( ":/forward.png" ), tr( "Forward" ), this );
+    qaForward = new QAction( IconLoader::Load( "go-next" ), tr( "Forward" ), this );
         qaForward->setShortcut( Qt::ControlModifier + Qt::Key_Right );
         qaForward->setStatusTip( tr( "Click to go forward" ));
 
-    qaStop = new QAction( QIcon( ":/stop.png" ), tr( "Stop" ), this);
+    qaStop = new QAction( IconLoader::Load( "process-stop" ), tr( "Stop" ), this);
         qaStop->setShortcut( Qt::Key_Escape );
         qaStop->setStatusTip( tr( "Click to go stop" ));
 
-    qaReload = new QAction( QIcon( ":/reload.png" ), tr( "Reload" ), this );
+    qaReload = new QAction( IconLoader::Load( "view-refresh" ), tr( "Reload" ), this );
         qaReload->setShortcut( QKeySequence::Refresh );
         qaReload->setStatusTip( tr( "Click to go reload" ));
 
@@ -141,12 +143,12 @@ void MainWindow::createActions() {
         qagNavigation->addAction ( qaStop );
         connect ( qagNavigation, SIGNAL( triggered( QAction* )), this, SLOT( navigationActionTriggered( QAction* )));
 
-    qaSearch = new QAction( QIcon( ":/search.png" ), tr( "Search" ), this );
+    qaSearch = new QAction( IconLoader::Load( "edit-find" ), tr( "Search" ), this );
         qaSearch->setShortcut( QKeySequence::Find );
         qaSearch->setStatusTip( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
-    qaPrintDialog = new QAction( QIcon( ":/print.png" ), tr( "Print" ), this );
+    qaPrintDialog = new QAction( IconLoader::Load( "document-print.png" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
         connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
