@@ -10,13 +10,10 @@ ADD_DEFINITIONS( ${QT_DEFINITIONS} -Wall )
 SET( simba_cpp 
 	src/main.cpp
 	src/mainwindow.cpp)
-MESSAGE( STATUS "Simba Sources: " "${simba_cpp}" )
 SET( simba_h 
 	src/mainwindow.h)
-MESSAGE( STATUS "Simba Headers: " "${simba_h}" )
 SET( simba_qrc 
 	data/data.qrc)
-MESSAGE( STATUS "Simba Resource: " "${simba_qrc}" )
 
 QT4_WRAP_CPP(simba_h_moc ${simba_h})
 QT4_ADD_RESOURCES(simba_qrc_rcc ${simba_qrc})
