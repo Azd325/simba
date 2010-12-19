@@ -229,7 +229,7 @@ void MainWindow::zoomActionTriggered( QAction* action ) {
 
 void MainWindow::navigationActionTriggered ( QAction *action ) {
     if( action == qaHome ) {
-        view->load( QUrl( url + loadINI()));
+        view->load( QString("%1%2" ).arg( url ).arg( loadINI ()));
     }
     else if( action == qaBack ) {
         view->back ();
@@ -283,11 +283,11 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 }
 
 void MainWindow::lineSearch() {
-    view->load( QUrl( url + loadINI() + qleSearch->text()));
+    view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( qleSearch->text()));
 }
 
 void MainWindow::clipboardChange() {
-    view->load( QUrl( url + loadINI() + clipboard->text()));
+    view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( qleSearch->text()));
 }
 
 QString MainWindow::loadINI() {
