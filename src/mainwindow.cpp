@@ -10,7 +10,7 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
     loadSettings ();
 
-    setWindowTitle( QCoreApplication::applicationName() + tr( " -- For better use of leo.org" ));
+    setWindowTitle( tr( "%1 -- For better use of leo.org" ).arg( QCoreApplication::applicationName()));
 
     createBars();
     createSystemTray();
@@ -323,16 +323,20 @@ void MainWindow::about() {
         qpbLicense->setFixedSize( 93, 34 );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
-    qglDialog = new QGridLayout(dialog);
-        qglDialog->addWidget( new QLabel( "<center><h1>" +QCoreApplication::applicationName ()
-                                         + " " + QCoreApplication::applicationVersion () + "</h1><h3>"
-                                         + tr("For better use of leo.org") + "</h3>Copyright \251 2010 "
-                                         + QCoreApplication::organizationName () + "</center>"), 0, 0, 1, 3);
+   QLabel *qlAbout = new QLabel( dialog );
+	qlAbout->setText( tr("<center><h1>%1%2</h1><h3>For better use of leo.org</h3>Copyright \251 2010 %3</center>")
+			.arg( QCoreApplication::applicationName())
+			.arg( QCoreApplication::applicationVersion())
+			.arg( QCoreApplication::organizationName()));
+
+
+    qglDialog = new QGridLayout( dialog );
+        qglDialog->addWidget( qlAbout, 0, 0, 1, 3, Qt::AlignCenter );
         qglDialog->addWidget( qpbCredits, 1, 0, Qt::AlignCenter );
         qglDialog->addWidget( qpbLicense, 1, 1, Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 2, Qt::AlignCenter );
 
-        dialog->setWindowTitle( tr( "About " ) + QCoreApplication::applicationName ());
+        dialog->setWindowTitle( tr( "About %1").arg( QCoreApplication::applicationName()));
         dialog->setLayout( qglDialog );
         dialog->setFixedSize( 312, 156 );
         dialog->exec();
