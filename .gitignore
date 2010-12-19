@@ -9,3 +9,6 @@ moc_*.cpp
 moc_*.o
 simba
 *.o
+conf.log
+conf.pri
+*.swp

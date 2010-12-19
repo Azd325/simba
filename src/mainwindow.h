@@ -116,7 +116,6 @@ private:
     QWebView *view;
 
     QGridLayout *qglDialog;
-    QDialog *dialog;
     QClipboard *clipboard;
     QLineEdit *qleSearch;
     QSystemTrayIcon *tray;
