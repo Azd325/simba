@@ -15,7 +15,7 @@ SET( simba_h
 	src/mainwindow.h)
 MESSAGE( STATUS "Simba Headers: " "${simba_h}" )
 SET( simba_qrc 
-	src/data/data.qrc)
+	data/data.qrc)
 MESSAGE( STATUS "Simba Resource: " "${simba_qrc}" )
 
 QT4_WRAP_CPP(simba_h_moc ${simba_h})
