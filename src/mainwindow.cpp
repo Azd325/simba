@@ -89,7 +89,7 @@ void MainWindow::createBars() {
     qleSearch = new QLineEdit;
         connect(qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
 #if ( QT_VERSION >= 0x040700 )
-        qleSearch->setPlaceholderText( "Search" );
+        qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
 
     qtbMain = new QToolBar( "Toolbar" );
