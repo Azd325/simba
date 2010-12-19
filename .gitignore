@@ -3,9 +3,7 @@ CMakeLists.txt.user
 Makefile
 build/*
 qrc_*.cpp
-qrc_*.o
 moc_*.cpp
-moc_*.o
 simba
 *.o
 conf.log
