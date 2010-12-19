@@ -169,17 +169,17 @@ void MainWindow::createActions() {
         qagZoom->addAction ( qaZoomOut );
         connect ( qagZoom, SIGNAL( triggered( QAction* )), this, SLOT( zoomActionTriggered( QAction* )));
 
-    qaEnglish = new QAction( QIcon( ":/gb.png" ), tr( "English" ), this );
+    qaEnglish = new QAction( QIcon( ":/flags/gb.png" ), tr( "English" ), this );
         qaEnglish->setCheckable(true);
-    qaSpanish = new QAction( QIcon( ":/es.png" ), tr( "Spanish" ), this );
+    qaSpanish = new QAction( QIcon( ":/flags/es.png" ), tr( "Spanish" ), this );
         qaSpanish->setCheckable(true);
-    qaFrench = new QAction( QIcon( ":/fr.png" ), tr( "French" ), this );
+    qaFrench = new QAction( QIcon( ":/flags/fr.png" ), tr( "French" ), this );
         qaFrench->setCheckable(true);
-    qaItalian = new QAction( QIcon( ":/it.png" ), tr( "Italian" ), this );
+    qaItalian = new QAction( QIcon( ":/flags/it.png" ), tr( "Italian" ), this );
             qaItalian->setCheckable(true);
-    qaChinese = new QAction( QIcon( ":/cn.png" ), tr( "Chinese" ), this );
+    qaChinese = new QAction( QIcon( ":/flags/cn.png" ), tr( "Chinese" ), this );
         qaChinese->setCheckable(true);
-    qaRussian = new QAction( QIcon( ":/ru.png" ), tr( "Russian" ), this );
+    qaRussian = new QAction( QIcon( ":/flags/ru.png" ), tr( "Russian" ), this );
             qaRussian->setCheckable(true);
 
     qagLanguages = new QActionGroup( this );
