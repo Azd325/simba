@@ -106,7 +106,7 @@ void MainWindow::createActions() {
         qaHome->setShortcut( Qt::ControlModifier + Qt::Key_H );
         qaHome->setStatusTip( tr( "Click to go home" ));
 
-    qaExit = new QAction( QIcon( ":/exit.png" ), tr( "&Exit" ), this);
+    qaExit = new QAction( IconLoader::Load( "system-shutdown" ), tr( "&Exit" ), this);
         qaExit->setShortcut( QKeySequence::Quit );
         qaExit->setStatusTip( tr( "Exit the application" ));
         connect( qaExit, SIGNAL( triggered()), qApp, SLOT( quit()));
