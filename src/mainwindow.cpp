@@ -22,7 +22,7 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     para = list.join(" ");
 
     view = new QWebView;
-        view->load( QUrl( url + loadINI() + para ));
+        view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( para ));
         view->setContextMenuPolicy( Qt::ActionsContextMenu );
         view->addAction( qaAbout );
         connect( view, SIGNAL( loadStarted()), this, SLOT( startedLoad()));
