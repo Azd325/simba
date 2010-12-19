@@ -60,8 +60,7 @@ void MainWindow::createBars() {
     createActions();
 
     qpbMain = new QProgressBar;
-        qpbMain->setMaximumSize( 150, 25 );
-        qpbMain->setRange( 0, 99 );
+        qpbMain->setMaximumSize( 150, 15 );
         qpbMain->setTextVisible( 0 );
 
     setStatusBar(qsbMain = new QStatusBar);
@@ -246,15 +245,15 @@ void MainWindow::navigationActionTriggered ( QAction *action ) {
     }
 }
 
-void MainWindow::search() {
-    qleSearch->setFocus();
+void MainWindow::search () {
+    qleSearch->setFocus ();
 }
 
 void MainWindow::createSystemTray() {
     tray = new QSystemTrayIcon( QIcon( ":/tray.png" ));
     tray->setContextMenu( qmTray = new QMenu );
         qmTray->addAction( qaShow = new QAction( tr( "Show" ), this ));
-            connect( qaShow, SIGNAL( triggered() ), this, SLOT( show() ));
+            connect( qaShow, SIGNAL( triggered() ), this, SLOT( show()));
         qmTray->addSeparator();
         qmTray->addAction( qaExit );
     connect( tray, SIGNAL( activated( QSystemTrayIcon::ActivationReason )), this,
@@ -315,13 +314,10 @@ void MainWindow::about() {
     QDialog *dialog = new QDialog( this );
 
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
-        qpbClose->setFixedSize( 93, 34 );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
     QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ), dialog );
-        qpbCredits->setFixedSize( 93, 34 );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
     QPushButton *qpbLicense = new QPushButton( tr( "&License" ), dialog );
-        qpbLicense->setFixedSize( 93, 34 );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
    QLabel *qlAbout = new QLabel( dialog );
