@@ -311,7 +311,7 @@ void MainWindow::printpreview() {
 /* about functions*/
 
 void MainWindow::about() {
-    dialog = new QDialog( this );
+    QDialog *dialog = new QDialog( this );
 
     QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
         qpbClose->setFixedSize( 93, 34 );
@@ -343,7 +343,7 @@ void MainWindow::about() {
 }
 
 void MainWindow::aboutLicense() {
-    dialog = new QDialog( this );
+    QDialog *dialog = new QDialog( this );
 
     QFile file( ":/GPL" );
     if(!file.open( QIODevice::ReadOnly | QIODevice::Text )) {
@@ -369,7 +369,7 @@ void MainWindow::aboutLicense() {
 }
 
 void MainWindow::aboutCredits() {
-    dialog = new QDialog( this );
+    QDialog *dialog = new QDialog( this );
 
     QTextEdit *qteCreditsWritten = new QTextEdit( dialog );
         qteCreditsWritten->setReadOnly( 1 );
