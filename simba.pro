@@ -4,10 +4,10 @@
 QT += webkit
 TEMPLATE = app
 TARGET = 
-DEPENDPATH += . src src/data
+DEPENDPATH += . src data
 INCLUDEPATH += . src
 
 # Input
 HEADERS += src/mainwindow.h
 SOURCES += src/main.cpp src/mainwindow.cpp
-RESOURCES += src/data/data.qrc
+RESOURCES += data/data.qrc
