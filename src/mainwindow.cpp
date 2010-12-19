@@ -148,7 +148,7 @@ void MainWindow::createActions() {
         qaSearch->setStatusTip( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
-    qaPrintDialog = new QAction( IconLoader::Load( "document-print" ), tr( "Print" ), this );
+    qaPrintDialog = new QAction( IconLoader::Load( "document-print-preview" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
         connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
