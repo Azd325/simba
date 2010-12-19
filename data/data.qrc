@@ -1,27 +1,27 @@
 <RCC>
     <qresource prefix="/">
         <file>GPL</file>
-        <file>about.png</file>
-        <file>back.png</file>
+
+
         <file>cancel.png</file>
         <file>flags/cn.png</file>
         <file>flags/es.png</file>
-        <file>exit.png</file>
-        <file>forward.png</file>
+
+
         <file>flags/fr.png</file>
         <file>flags/gb.png</file>
-        <file>home.png</file>
+
         <file>flags/it.png</file>
         <file>ok.png</file>
-        <file>print.png</file>
-        <file>reload.png</file>
+
+
         <file>flags/ru.png</file>
-        <file>search.png</file>
-        <file>stop.png</file>
+
+
         <file>tray.png</file>
-        <file>zoom-in.png</file>
-        <file>zoom-normal.png</file>
-        <file>zoom-out.png</file>
+
+
+
         <file>noLeo.html</file>
     </qresource>
 </RCC>
