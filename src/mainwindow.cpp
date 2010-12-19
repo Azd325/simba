@@ -135,17 +135,17 @@ void MainWindow::createActions() {
         connect( qaAboutQt, SIGNAL( triggered()), qApp, SLOT( aboutQt()));
 
     qagNavigation = new QActionGroup( this );
-        qagNavigation->addAction (qaHome);
+        qagNavigation->addAction ( qaHome );
         qagNavigation->addAction ( qaBack );
         qagNavigation->addAction ( qaReload );
         qagNavigation->addAction ( qaForward );
         qagNavigation->addAction ( qaStop );
-        connect (qagNavigation, SIGNAL(triggered(QAction*)), this, SLOT(navigationActionTriggered(QAction*)));
+        connect ( qagNavigation, SIGNAL( triggered( QAction* )), this, SLOT( navigationActionTriggered( QAction* )));
 
     qaSearch = new QAction( QIcon( ":/search.png" ), tr( "Search" ), this );
         qaSearch->setShortcut( QKeySequence::Find );
         qaSearch->setStatusTip( tr( "Search words" ));
-        connect( qaSearch, SIGNAL( triggered()), this, SLOT(search()));
+        connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
     qaPrintDialog = new QAction( QIcon( ":/print.png" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
@@ -164,11 +164,11 @@ void MainWindow::createActions() {
         qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
         qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
 
-    qagZoom = new QActionGroup(this);
-        qagZoom->addAction (qaZoomIn);
-        qagZoom->addAction (qaZoomNormal);
-        qagZoom->addAction (qaZoomOut);
-        connect (qagZoom,SIGNAL(triggered(QAction*)),this,SLOT( zoomActionTriggered( QAction* )));
+    qagZoom = new QActionGroup( this );
+        qagZoom->addAction ( qaZoomIn );
+        qagZoom->addAction ( qaZoomNormal );
+        qagZoom->addAction ( qaZoomOut );
+        connect ( qagZoom, SIGNAL( triggered( QAction* )), this, SLOT( zoomActionTriggered( QAction* )));
 
     qaEnglish = new QAction( QIcon( ":/gb.png" ), tr( "English" ), this );
         qaEnglish->setCheckable(true);
@@ -183,7 +183,7 @@ void MainWindow::createActions() {
     qaRussian = new QAction( QIcon( ":/ru.png" ), tr( "Russian" ), this );
             qaRussian->setCheckable(true);
 
-    qagLanguages = new QActionGroup(this);
+    qagLanguages = new QActionGroup( this );
         qagLanguages->addAction ( qaEnglish );
         qagLanguages->addAction ( qaSpanish );
         qagLanguages->addAction ( qaFrench );
