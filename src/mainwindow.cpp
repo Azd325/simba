@@ -61,7 +61,6 @@ void MainWindow::createBars() {
 
     qpbMain = new QProgressBar;
         qpbMain->setMaximumSize( 150, 15 );
-        qpbMain->setRange( 0, 99 );
         qpbMain->setTextVisible( 0 );
 
     setStatusBar(qsbMain = new QStatusBar);
