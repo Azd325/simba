@@ -148,20 +148,20 @@ void MainWindow::createActions() {
         qaSearch->setStatusTip( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
-    qaPrintDialog = new QAction( IconLoader::Load( "document-print.png" ), tr( "Print" ), this );
+    qaPrintDialog = new QAction( IconLoader::Load( "document-print" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
         connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
 
-    qaZoomIn = new QAction( QIcon( ":/zoom-in.png" ), tr( "Zoom &In" ), this );
+    qaZoomIn = new QAction( IconLoader::Load( "zoom-in" ), tr( "Zoom &In" ), this );
         qaZoomIn->setShortcut( QKeySequence::ZoomIn );
         qaZoomIn->setStatusTip( tr( "Zoom in of the page" ));
 
-    qaZoomOut = new QAction( QIcon( ":/zoom-out.png" ), tr( "Zoom &Out" ), this );
+    qaZoomOut = new QAction( IconLoader::Load( "zoom-out" ), tr( "Zoom &Out" ), this );
         qaZoomOut->setShortcut( QKeySequence::ZoomOut );
         qaZoomOut->setStatusTip( tr( "Zoom out of the page" ));
 
-   qaZoomNormal = new QAction( QIcon( ":/zoom-normal.png" ), tr( "Zoom &Normal" ), this );
+   qaZoomNormal = new QAction( IconLoader::Load( "zoom-original" ), tr( "Zoom &Normal" ), this );
         qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
         qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
 
