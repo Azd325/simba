@@ -30,7 +30,7 @@ QIcon IconLoader::Load(const QString &name) {
 #endif
 
   // Otherwise use our fallback theme
-  const QString path(":/icons/%1x%2/%3.svg");
+  const QString path(":/icons/%1x%2/%3.png");
   foreach (int size, sizes_) {
     QString filename(path.arg(size).arg(size).arg(name));
 
