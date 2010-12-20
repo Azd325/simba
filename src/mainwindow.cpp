@@ -317,7 +317,7 @@ void MainWindow::about() {
 
     QPushButton *qpbClose = new QPushButton( IconLoader::Load( "window-close"), tr( "&Close" ), dialog );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
-    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ), dialog );
+    QPushButton *qpbCredits = new QPushButton( IconLoader::Load( "help-about"), tr( "C&redits" ), dialog );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
     QPushButton *qpbLicense = new QPushButton( tr( "&License" ), dialog );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
