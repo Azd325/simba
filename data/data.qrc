@@ -2,11 +2,11 @@
     <qresource prefix="/">
         <file>GPL</file>
         <file>flags/cn.png</file>
-        <file>flags/es.png</file>
-        <file>flags/fr.png</file>
-        <file>flags/gb.png</file>
-        <file>flags/it.png</file>
-        <file>flags/ru.png</file>
+        <file>flags/es.svg</file>
+        <file>flags/fr.svg</file>
+        <file>flags/en.svg</file>
+        <file>flags/it.svg</file>
+        <file>flags/ru.svg</file>
         <file>tray.png</file>
         <file>noLeo.html</file>
         <file>icons/22x22/edit-find.png</file>
