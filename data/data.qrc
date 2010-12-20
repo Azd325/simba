@@ -1,27 +1,33 @@
 <RCC>
     <qresource prefix="/">
         <file>GPL</file>
-        <file>about.png</file>
-        <file>back.png</file>
         <file>cancel.png</file>
         <file>flags/cn.png</file>
         <file>flags/es.png</file>
-        <file>exit.png</file>
-        <file>forward.png</file>
         <file>flags/fr.png</file>
         <file>flags/gb.png</file>
-        <file>home.png</file>
         <file>flags/it.png</file>
         <file>ok.png</file>
-        <file>print.png</file>
-        <file>reload.png</file>
         <file>flags/ru.png</file>
-        <file>search.png</file>
-        <file>stop.png</file>
         <file>tray.png</file>
-        <file>zoom-in.png</file>
-        <file>zoom-normal.png</file>
-        <file>zoom-out.png</file>
         <file>noLeo.html</file>
+        <file>icons/22x22/edit-find.svg</file>
+        <file>icons/22x22/go-next.svg</file>
+        <file>icons/22x22/go-previous.svg</file>
+        <file>icons/22x22/help-about.svg</file>
+        <file>icons/22x22/process-stop.svg</file>
+        <file>icons/22x22/system-shutdown.svg</file>
+        <file>icons/22x22/view-refresh.svg</file>
+        <file>icons/32x32/process-stop.svg</file>
+        <file>icons/32x32/system-shutdown.svg</file>
+        <file>icons/32x32/view-refresh.svg</file>
+        <file>icons/48x48/document-print-preview.svg</file>
+        <file>icons/48x48/edit-find.svg</file>
+        <file>icons/48x48/go-home.svg</file>
+        <file>icons/48x48/go-next.svg</file>
+        <file>icons/48x48/go-previous.svg</file>
+        <file>icons/48x48/help-about.svg</file>
+        <file>icons/48x48/system-shutdown.svg</file>
+        <file>icons/48x48/view-refresh.svg</file>
     </qresource>
 </RCC>
