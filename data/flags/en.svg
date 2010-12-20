@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128"
+   height="128"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="de.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3861">
+      <stop
+         id="stop3863"
+         offset="0"
+         style="stop-color:#6c6c6c;stop-opacity:1;" />
+      <stop
+         id="stop3865"
+         offset="1"
+         style="stop-color:#393939;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3755">
+      <stop
+         style="stop-color:#2b2b2b;stop-opacity:1;"
+         offset="0"
+         id="stop3757" />
+      <stop
+         style="stop-color:#0a0a0a;stop-opacity:1"
+         offset="1"
+         id="stop3759" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3861"
+       id="linearGradient3884"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(7.5004537,0,0,5.7144516,-21.65874,-2.04858)"
+       x1="11.514"
+       y1="21.114983"
+       x2="11.649764"
+       y2="2.2996519" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.2279093"
+     inkscape:cx="61.879492"
+     inkscape:cy="69.04937"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1224"
+     inkscape:window-height="776"
+     inkscape:window-x="56"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-924.3622)">
+    <rect
+       style="fill:none;stroke:#ffffff;stroke-width:6.08091927;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3873"
+       width="119.20181"
+       height="105.67072"
+       x="4.7127986"
+       y="936.14252"
+       ry="4.6536536" />
+    <path
+       style="fill:url(#linearGradient3884);fill-opacity:1;stroke:#efefef;stroke-width:0;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 9.09375 13.65625 C 5.587878 13.65625 2.84375 15.79724 2.84375 18.46875 L 2.84375 110.625 C 2.84375 113.2959 5.587878 115.4375 9.09375 115.4375 L 119.75 115.4375 C 123.25587 115.4375 126.1875 113.2959 126.1875 110.625 L 126.1875 18.46875 C 126.1875 15.79724 123.25587 13.65625 119.75 13.65625 L 9.09375 13.65625 z M 13.71875 35.625 L 53.03125 35.625 L 53.03125 46.625 L 26.8125 46.625 L 26.8125 58.0625 L 50.09375 58.0625 L 50.09375 68.8125 L 26.8125 68.8125 L 26.8125 82.84375 L 54.96875 82.84375 L 54.96875 93.84375 L 13.71875 93.84375 L 13.71875 35.625 z M 64.5625 35.625 L 75.25 35.625 C 77.09798 37.47305 79.134978 39.74955 81.375 42.4375 C 83.614974 45.12555 85.891472 48.01379 88.1875 51.09375 C 90.539467 54.11779 92.860215 57.25853 95.15625 60.5625 C 97.45221 63.81053 99.608959 66.97602 101.625 70 L 101.625 35.625 L 114.625 35.625 L 114.625 93.84375 L 103.625 93.84375 C 99.872959 87.17975 95.805462 80.58974 91.4375 74.09375 C 87.06947 67.59777 82.427975 61.48678 77.5 55.71875 L 77.5 93.84375 L 64.5625 93.84375 L 64.5625 35.625 z "
+       transform="translate(0,924.3622)"
+       id="rect3753" />
+    <g
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       id="text3763" />
+    <g
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Yanone Kaffeesatz;-inkscape-font-specification:Yanone Kaffeesatz"
+       id="text3855" />
+    <g
+       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       id="text3918" />
+  </g>
+</svg>
