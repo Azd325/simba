@@ -179,7 +179,7 @@ void MainWindow::createActions() {
         qaFrench->setCheckable(true);
     qaItalian = new QAction( QIcon( ":/flags/it.svg" ), tr( "Italian" ), this );
             qaItalian->setCheckable(true);
-    qaChinese = new QAction( QIcon( ":/flags/cn.png" ), tr( "Chinese" ), this );
+    qaChinese = new QAction( QIcon( ":/flags/cn.svg" ), tr( "Chinese" ), this );
         qaChinese->setCheckable(true);
     qaRussian = new QAction( QIcon( ":/flags/ru.svg" ), tr( "Russian" ), this );
             qaRussian->setCheckable(true);

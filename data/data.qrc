@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>GPL</file>
-        <file>flags/cn.png</file>
+        <file>flags/cn.svg</file>
         <file>flags/es.svg</file>
         <file>flags/fr.svg</file>
         <file>flags/en.svg</file>
