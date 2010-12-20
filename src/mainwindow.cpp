@@ -315,9 +315,9 @@ void MainWindow::printpreview() {
 void MainWindow::about() {
     QDialog *dialog = new QDialog( this );
 
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
+    QPushButton *qpbClose = new QPushButton( IconLoader::Load( "window-close"), tr( "&Close" ), dialog );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
-    QPushButton *qpbCredits = new QPushButton( QIcon( ":/about.png"), tr( "C&redits" ), dialog );
+    QPushButton *qpbCredits = new QPushButton( IconLoader::Load( "help-about"), tr( "C&redits" ), dialog );
         connect( qpbCredits, SIGNAL( clicked()), this, SLOT( aboutCredits()));
     QPushButton *qpbLicense = new QPushButton( tr( "&License" ), dialog );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
@@ -354,7 +354,7 @@ void MainWindow::aboutLicense() {
     QTextEdit *qteLicense = new QTextEdit( dialog );
         qteLicense->setText( out.readAll());
         qteLicense->setReadOnly( 1 );
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png" ), tr( "&Close" ), dialog );
+    QPushButton *qpbClose = new QPushButton( IconLoader::Load( "window-close" ), tr( "&Close" ), dialog );
         connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
 
     qglDialog = new QGridLayout( dialog );
@@ -385,7 +385,7 @@ void MainWindow::aboutCredits() {
         qtwCredits->addTab( qteCreditsArtwork, tr( "Artwork by" ));
         qtwCredits->setElideMode( Qt::ElideRight );
 
-    QPushButton *qpbClose = new QPushButton( QIcon( ":/cancel.png"), tr( "&Close" ), dialog );
+    QPushButton *qpbClose = new QPushButton( IconLoader::Load( "window-close"), tr( "&Close" ), dialog );
         connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( close()));
 
     qglDialog = new QGridLayout( dialog );

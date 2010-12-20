@@ -1,33 +1,32 @@
 <RCC>
     <qresource prefix="/">
         <file>GPL</file>
-        <file>cancel.png</file>
         <file>flags/cn.png</file>
         <file>flags/es.png</file>
         <file>flags/fr.png</file>
         <file>flags/gb.png</file>
         <file>flags/it.png</file>
-        <file>ok.png</file>
         <file>flags/ru.png</file>
         <file>tray.png</file>
         <file>noLeo.html</file>
-        <file>icons/22x22/edit-find.svg</file>
-        <file>icons/22x22/go-next.svg</file>
-        <file>icons/22x22/go-previous.svg</file>
-        <file>icons/22x22/help-about.svg</file>
-        <file>icons/22x22/process-stop.svg</file>
-        <file>icons/22x22/system-shutdown.svg</file>
-        <file>icons/22x22/view-refresh.svg</file>
-        <file>icons/32x32/process-stop.svg</file>
-        <file>icons/32x32/system-shutdown.svg</file>
-        <file>icons/32x32/view-refresh.svg</file>
-        <file>icons/48x48/document-print-preview.svg</file>
-        <file>icons/48x48/edit-find.svg</file>
-        <file>icons/48x48/go-home.svg</file>
-        <file>icons/48x48/go-next.svg</file>
-        <file>icons/48x48/go-previous.svg</file>
-        <file>icons/48x48/help-about.svg</file>
-        <file>icons/48x48/system-shutdown.svg</file>
-        <file>icons/48x48/view-refresh.svg</file>
+        <file>icons/22x22/edit-find.png</file>
+        <file>icons/22x22/go-next.png</file>
+        <file>icons/22x22/go-previous.png</file>
+        <file>icons/22x22/help-about.png</file>
+        <file>icons/22x22/process-stop.png</file>
+        <file>icons/22x22/system-shutdown.png</file>
+        <file>icons/22x22/view-refresh.png</file>
+        <file>icons/32x32/process-stop.png</file>
+        <file>icons/32x32/system-shutdown.png</file>
+        <file>icons/32x32/view-refresh.png</file>
+        <file>icons/48x48/document-print-preview.png</file>
+        <file>icons/48x48/edit-find.png</file>
+        <file>icons/48x48/go-home.png</file>
+        <file>icons/48x48/go-next.png</file>
+        <file>icons/48x48/go-previous.png</file>
+        <file>icons/48x48/help-about.png</file>
+        <file>icons/48x48/system-shutdown.png</file>
+        <file>icons/48x48/view-refresh.png</file>
     </qresource>
 </RCC>
+
