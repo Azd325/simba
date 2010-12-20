@@ -1,13 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>GPL</file>
-        <file>cancel.png</file>
         <file>flags/cn.png</file>
         <file>flags/es.png</file>
         <file>flags/fr.png</file>
         <file>flags/gb.png</file>
         <file>flags/it.png</file>
-        <file>ok.png</file>
         <file>flags/ru.png</file>
         <file>tray.png</file>
         <file>noLeo.html</file>
