@@ -1,12 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>GPL</file>
-        <file>flags/cn.png</file>
-        <file>flags/es.png</file>
-        <file>flags/fr.png</file>
-        <file>flags/gb.png</file>
-        <file>flags/it.png</file>
-        <file>flags/ru.png</file>
+        <file>flags/cn.svg</file>
+        <file>flags/es.svg</file>
+        <file>flags/fr.svg</file>
+        <file>flags/en.svg</file>
+        <file>flags/it.svg</file>
+        <file>flags/ru.svg</file>
         <file>tray.png</file>
         <file>noLeo.html</file>
         <file>icons/22x22/edit-find.png</file>
@@ -27,6 +27,11 @@
         <file>icons/48x48/help-about.png</file>
         <file>icons/48x48/system-shutdown.png</file>
         <file>icons/48x48/view-refresh.png</file>
+        <file>icons/22x22/zoom-in.svg</file>
+        <file>icons/22x22/zoom-original.svg</file>
+        <file>icons/22x22/zoom-out.svg</file>
+        <file>icons/48x48/zoom-in.svg</file>
+        <file>icons/48x48/zoom-original.svg</file>
+        <file>icons/48x48/zoom-out.svg</file>
     </qresource>
 </RCC>
-

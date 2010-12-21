@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128"
+   height="128"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="en.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3861">
+      <stop
+         id="stop3863"
+         offset="0"
+         style="stop-color:#6c6c6c;stop-opacity:1;" />
+      <stop
+         id="stop3865"
+         offset="1"
+         style="stop-color:#393939;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3755">
+      <stop
+         style="stop-color:#2b2b2b;stop-opacity:1;"
+         offset="0"
+         id="stop3757" />
+      <stop
+         style="stop-color:#0a0a0a;stop-opacity:1"
+         offset="1"
+         id="stop3759" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3861"
+       id="linearGradient3884"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(7.5004537,0,0,5.7144516,-21.65874,922.31362)"
+       x1="11.514"
+       y1="21.114983"
+       x2="11.649764"
+       y2="2.2996519" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3861"
+       id="linearGradient4212"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(7.5004537,0,0,5.7144516,-21.65874,-2.04858)"
+       x1="11.514"
+       y1="21.114983"
+       x2="11.649764"
+       y2="2.2996519" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.2279093"
+     inkscape:cx="55.964074"
+     inkscape:cy="67.671352"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1224"
+     inkscape:window-height="776"
+     inkscape:window-x="56"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-924.3622)">
+    <rect
+       style="fill:none;stroke:#ffffff;stroke-width:6.08091927;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3873"
+       width="119.20181"
+       height="105.67072"
+       x="4.7127986"
+       y="936.14252"
+       ry="4.6536536" />
+    <path
+       style="fill:url(#linearGradient4212);fill-opacity:1;stroke:#efefef;stroke-width:0;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 9.09375 13.65625 C 5.587878 13.65625 2.84375 15.79724 2.84375 18.46875 L 2.84375 110.625 C 2.84375 113.2959 5.587878 115.4375 9.09375 115.4375 L 119.75 115.4375 C 123.25587 115.4375 126.1875 113.2959 126.1875 110.625 L 126.1875 18.46875 C 126.1875 15.79724 123.25587 13.65625 119.75 13.65625 L 9.09375 13.65625 z M 90.71875 34.28125 C 94.63872 34.28131 98.018967 34.69131 100.875 35.53125 C 103.73096 36.37131 106.08946 37.30455 107.9375 38.3125 L 104.15625 48.65625 C 102.53221 47.81629 100.70346 47.08479 98.6875 46.46875 C 96.727468 45.7968 94.362471 45.4688 91.5625 45.46875 C 88.426477 45.4688 86.149979 45.91655 84.75 46.8125 C 83.405982 47.65254 82.749982 48.95804 82.75 50.75 C 82.749982 51.81404 82.995982 52.70954 83.5 53.4375 C 84.003981 54.16554 84.69773 54.82154 85.59375 55.4375 C 86.545728 55.99754 87.605227 56.55854 88.78125 57.0625 C 90.013225 57.51053 91.356474 57.96478 92.8125 58.46875 C 95.836469 59.58878 98.478717 60.72378 100.71875 61.84375 C 102.95871 62.90778 104.79396 64.16903 106.25 65.625 C 107.76196 67.08102 108.89696 68.79002 109.625 70.75 C 110.35295 72.71002 110.7187 75.07503 110.71875 77.875 C 110.7187 83.307 108.80796 87.5385 105 90.5625 C 101.19196 93.5305 95.45322 95.03125 87.78125 95.03125 C 85.20523 95.03125 82.884482 94.836 80.8125 94.5 C 78.740486 94.22 76.873988 93.85425 75.25 93.40625 C 73.681991 92.95825 72.332243 92.504 71.15625 92 C 70.036245 91.496 69.065246 91.0105 68.28125 90.5625 L 72 80.15625 C 73.735991 81.10825 75.854989 81.966 78.375 82.75 C 80.950984 83.478 84.085231 83.84375 87.78125 83.84375 C 89.629225 83.84375 91.136474 83.7175 92.3125 83.4375 C 93.544471 83.1015 94.52197 82.66025 95.25 82.15625 C 95.977969 81.59625 96.501219 80.94675 96.78125 80.21875 C 97.061218 79.49075 97.187468 78.7085 97.1875 77.8125 C 97.187468 75.9085 96.291969 74.32577 94.5 73.09375 C 92.707972 71.80577 89.617975 70.42477 85.25 68.96875 C 83.345982 68.29677 81.466484 67.55877 79.5625 66.71875 C 77.658487 65.82278 75.949489 64.72553 74.4375 63.4375 C 72.925492 62.09353 71.670743 60.50428 70.71875 58.65625 C 69.766745 56.75229 69.312496 54.43804 69.3125 51.75 C 69.312496 49.06204 69.804495 46.6593 70.8125 44.53125 C 71.820493 42.3473 73.245742 40.51205 75.09375 39 C 76.941738 37.48805 79.180486 36.31531 81.8125 35.53125 C 84.444481 34.69131 87.414728 34.28131 90.71875 34.28125 z M 21.03125 35.625 L 60.34375 35.625 L 60.34375 46.625 L 34.15625 46.625 L 34.15625 58.0625 L 57.40625 58.0625 L 57.40625 68.8125 L 34.15625 68.8125 L 34.15625 82.84375 L 62.28125 82.84375 L 62.28125 93.84375 L 21.03125 93.84375 L 21.03125 35.625 z "
+       transform="translate(0,924.3622)"
+       id="rect3753" />
+    <g
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       id="text3763" />
+    <g
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Yanone Kaffeesatz;-inkscape-font-specification:Yanone Kaffeesatz"
+       id="text3855" />
+    <g
+       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       id="text3918" />
+  </g>
+</svg>
