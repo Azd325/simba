@@ -27,6 +27,11 @@
         <file>icons/48x48/help-about.png</file>
         <file>icons/48x48/system-shutdown.png</file>
         <file>icons/48x48/view-refresh.png</file>
+        <file>icons/22x22/zoom-in.svg</file>
+        <file>icons/22x22/zoom-original.svg</file>
+        <file>icons/22x22/zoom-out.svg</file>
+        <file>icons/48x48/zoom-in.svg</file>
+        <file>icons/48x48/zoom-original.svg</file>
+        <file>icons/48x48/zoom-out.svg</file>
     </qresource>
 </RCC>
-
