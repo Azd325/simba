@@ -86,16 +86,24 @@ void MainWindow::createBars() {
             qmHelp->addSeparator();
             qmHelp->addAction( qaAbout );
 
+    qtbDeleteSearch = new QToolButton(this);
+	qtbDeleteSearch->setDefaultAction( qaClearSearch );
+//	connect( qtbDeleteSearch , SIGNAL( clicked()), this, SLOT( clear()));
+
     qleSearch = new QLineEdit;
-        connect(qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
+        connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
 
     qtbMain = new QToolBar( "Toolbar" );
+	qtbMain->setFloatable( false );
+	qtbMain->setMovable( false );
         qtbMain->addAction( qaHome );
         qtbMain->addSeparator();
         qtbMain->addActions( qagNavigation->actions ());
+	qtbMain->addSeparator();
+	qtbMain->addWidget( qtbDeleteSearch );
         qtbMain->addWidget( qleSearch );
         addToolBar( qtbMain );
 }
@@ -147,6 +155,10 @@ void MainWindow::createActions() {
         qaSearch->setShortcut( QKeySequence::Find );
         qaSearch->setStatusTip( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
+
+    qaClearSearch = new QAction( IconLoader::Load( "edit-find" ), "", this );
+        qaClearSearch->setStatusTip( tr( "Clear search words" ));
+        connect( qaClearSearch, SIGNAL( triggered()), this, SLOT( clearSearch()));
 
     qaPrintDialog = new QAction( IconLoader::Load( "document-print-preview" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
@@ -249,6 +261,10 @@ void MainWindow::navigationActionTriggered ( QAction *action ) {
 
 void MainWindow::search () {
     qleSearch->setFocus ();
+}
+
+void MainWindow::clearSearch () {
+    qleSearch->clear();
 }
 
 void MainWindow::createSystemTray() {
