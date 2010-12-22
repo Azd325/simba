@@ -10,6 +10,12 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef Q_OS_UNIX
+    if (geteuid() == 0) {
+        fprintf(stderr, qPrintable(QObject::tr("Simba is not supposed to be run as root").append("\n")));
+        exit(0);
+    }
+#endif
     Q_INIT_RESOURCE(data);
 
     QApplication a(argc, argv);
