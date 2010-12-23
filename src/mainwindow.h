@@ -45,6 +45,8 @@
 
 #include <QDebug>
 
+#include "database.h"
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
