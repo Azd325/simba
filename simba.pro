@@ -8,8 +8,6 @@ DEPENDPATH += . src data
 INCLUDEPATH += . src
 
 # Input
-HEADERS += src/mainwindow.h src/iconloader.h \
-    src/database.h
-SOURCES += src/main.cpp src/mainwindow.cpp src/iconloader.cpp \
-RESOURCES += data/data.qrc \
-    src/database.cpp
+HEADERS += src/mainwindow.h src/iconloader.h src/database.h
+SOURCES += src/main.cpp src/mainwindow.cpp src/iconloader.cpp src/database.cpp 
+RESOURCES += data/data.qrc
