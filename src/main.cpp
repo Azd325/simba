@@ -5,6 +5,9 @@
 */
 
 #include <QtGui/QApplication>
+#include <QTranslator>
+#include <QLibraryInfo>
+
 #include "mainwindow.h"
 #include "iconloader.h"
 
@@ -12,13 +15,23 @@ int main(int argc, char *argv[])
 {
 #ifdef Q_OS_UNIX
     if (geteuid() == 0) {
-        fprintf(stderr, qPrintable(QObject::tr("Simba is not supposed to be run as root").append("\n")));
+        qDebug ()<< QObject::tr("Simba is not supposed to be run as root\n");
         exit(0);
     }
 #endif
     Q_INIT_RESOURCE(data);
 
     QApplication a(argc, argv);
+
+    // check tray exist
+    if (!QSystemTrayIcon::isSystemTrayAvailable()) {
+        QMessageBox::critical(0, QObject::tr("Systray"), QObject::tr("I couldn't detect any system tray on this system."));
+    }
+
+    // install qt translator
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    a.installTranslator(&qtTranslator);
 
     // QSettings stuff
     QCoreApplication::setApplicationName ("Simba");
