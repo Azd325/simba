@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
 #ifdef Q_OS_UNIX
     if (geteuid() == 0) {
-        qDebug ()<< QObject::tr("Simba is not supposed to be run as root\n");
+        qDebug ()<< QObject::tr("Simba is not supposed to be run as root");
         exit(0);
     }
 #endif
