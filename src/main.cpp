@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 {
     // Settings stuff
     QCoreApplication::setApplicationName ( "Simba" );
-    QCoreApplication::setApplicationVersion ( "0.94" );
+    QCoreApplication::setApplicationVersion ( "0.95" );
     QCoreApplication::setOrganizationDomain ( "azd325.github.com/simba/" );
     QCoreApplication::setOrganizationName ( QCoreApplication::applicationName ());
 
