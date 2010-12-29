@@ -1,13 +1,12 @@
 #include "database.h"
 #include <QDebug>
 
-bool Database::openDB()
-{
+bool Database::openDB () {
     // Find QSLite driver
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase db = QSqlDatabase::addDatabase ( "QSQLITE" );
 
 #ifdef Q_OS_LINUX
-    QString path( QDir::home().path() + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
+    QString path( QDir::home ().path () + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
     if( QFile::exists ( path ))
         return true;
     // NOTE: We have to store database file into user home folder in Linux
@@ -19,30 +18,23 @@ bool Database::openDB()
     db.setDatabaseName( QCoreApplication::applicationName () + ".db" );
 #endif
     if ( !db.open ()) {
-        qDebug ( "Unable to establish a database connection.\n");
+        qDebug ( "Unable to establish a database connection.\n" );
         return false;
     }
 
     QSqlQuery query;
-    query.exec("create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)");
+    query.exec( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
 
     return true;
 }
 
-//bool Database::deleteDB()
-//    {
-//    // Close database
-//    db.close();
-
-//    #ifdef Q_OS_LINUX
-//    // NOTE: We have to store database file into user home folder in Linux
-//    QString path(QDir::home().path());
-//    path.append(QDir::separator()).append("Simba.db");
-//    path = QDir::toNativeSeparators(path);
-//    return QFile::remove(path);
-//    #else
+bool Database::deleteDB () {
+#ifdef Q_OS_LINUX
+    // NOTE: We have to store database file into user home folder in Linux
+    return QFile::remove ( QDir::home ().path () + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
+#else
  
-//    // Remove created database binary file
-//    return QFile::remove("Simba.db");
-//    #endif
-//    }
+    // Remove created database binary file
+    return QFile::remove ( QCoreApplication::applicationName () + ".db" );
+#endif
+}

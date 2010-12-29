@@ -2,7 +2,6 @@
 #define DATABASE_H
 
 #include <QtGui/QApplication>
-
 #include <QSqlDatabase>
 #include <QFile>
 #include <QDir>
@@ -12,7 +11,8 @@ class Database
 {
     public:
         static bool openDB();
-//        static bool deleteDB();
+    public slots:
+        static bool deleteDB();
 };
 
 #endif // DATABASE_H
