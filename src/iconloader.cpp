@@ -6,9 +6,6 @@
 
 #include "iconloader.h"
 
-#include <QtCore/QFile>
-#include <QtCore/QtDebug>
-
 QList<int> IconLoader::sizes_;
 
 void IconLoader::Init() {

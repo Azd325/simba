@@ -7,7 +7,9 @@
 #ifndef ICONLOADER_H
 #define ICONLOADER_H
 
-#include <QIcon>
+#include <QtGui/QIcon>
+#include <QtCore/QFile>
+#include <QtCore/QtDebug>
 
 class IconLoader {
 public:
