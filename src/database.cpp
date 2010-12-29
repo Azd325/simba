@@ -1,5 +1,4 @@
 #include "database.h"
-#include <QDebug>
 
 bool Database::openDB () {
     // Find QSLite driver
