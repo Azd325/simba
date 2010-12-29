@@ -5,27 +5,50 @@
 */
 
 #include <QtGui/QApplication>
+#include <QTranslator>
+#include <QLibraryInfo>
+
 #include "mainwindow.h"
 #include "iconloader.h"
+#include "database.h"
 
 int main(int argc, char *argv[])
 {
-    Q_INIT_RESOURCE(data);
+    // Settings stuff
+    QCoreApplication::setApplicationName ( "Simba" );
+    QCoreApplication::setApplicationVersion ( "0.94" );
+    QCoreApplication::setOrganizationDomain ( "azd325.github.com/simba/" );
+    QCoreApplication::setOrganizationName ( QCoreApplication::applicationName ());
 
-    QApplication a(argc, argv);
+    if( !Database::openDB ())
+        exit (0);
 
-    // QSettings stuff
-    QCoreApplication::setApplicationName ("Simba");
-    QCoreApplication::setApplicationVersion ("0.94");
-    QCoreApplication::setOrganizationDomain ("azd325.github.com/simba/");
-    QCoreApplication::setOrganizationName (QCoreApplication::applicationName ());
+#ifdef Q_OS_UNIX
+    if ( geteuid () == 0 ) {
+        qDebug ()<< QCoreApplication::applicationName () + QObject::tr ( " is not supposed to be run as root" );
+        exit(0);
+    }
+#endif
+    Q_INIT_RESOURCE( data );
+
+    QApplication a( argc, argv );
+
+    // check tray exist
+    if (!QSystemTrayIcon::isSystemTrayAvailable ()) {
+        QMessageBox::critical ( 0, QObject::tr( "Systray" ), QObject::tr ( "I couldn't detect any system tray on this system." ));
+    }
+
+    // install qt translator
+    QTranslator qtTranslator;
+    qtTranslator.load( "qt_" + QLocale::system ().name (), QLibraryInfo::location( QLibraryInfo::TranslationsPath ));
+    a.installTranslator( &qtTranslator );
 
     // Icons
-    IconLoader::Init();
+    IconLoader::Init ();
 
     // delivery the cli argument
-    MainWindow w(QCoreApplication::arguments());
-    w.show();
-    return a.exec();
+    MainWindow w( QCoreApplication::arguments ());
+    w.show ();
+    return a.exec ();
 }
 

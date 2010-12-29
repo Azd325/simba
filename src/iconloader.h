@@ -12,7 +12,7 @@
 class IconLoader {
 public:
   static void Init();
-  static QIcon Load(const QString& name);
+  static QIcon Load( const QString& name );
 
 private:
   IconLoader() {}

@@ -12,6 +12,7 @@
 #include <QMenuBar>
 #include <QStatusBar>
 #include <QToolBar>
+#include <QToolButton>
 #include <QMenu>
 #include <QAction>
 #include <QActionGroup>
@@ -44,6 +45,9 @@
 
 #include <QDebug>
 
+#include "iconloader.h"
+#include "database.h"
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -62,6 +66,7 @@ protected:
 
 private slots:
     void search();
+    void clearSearch();
     void about();
     void aboutLicense();
     void aboutCredits();
@@ -103,6 +108,7 @@ private:
         *qaAboutQt,
         *qaShow,
         *qaSearch,
+	*qaClearSearch,
         *qaPrintDialog,
         *qaZoomIn,
         *qaZoomOut,
@@ -114,6 +120,7 @@ private:
         *qaChinese,
         *qaRussian;
     QWebView *view;
+    QToolButton *qtbDeleteSearch;
 
     QGridLayout *qglDialog;
     QClipboard *clipboard;

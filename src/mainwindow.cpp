@@ -5,7 +5,6 @@
 */
 
 #include "mainwindow.h"
-#include "iconloader.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
@@ -86,16 +85,23 @@ void MainWindow::createBars() {
             qmHelp->addSeparator();
             qmHelp->addAction( qaAbout );
 
+    qtbDeleteSearch = new QToolButton(this);
+	qtbDeleteSearch->setDefaultAction( qaClearSearch );
+
     qleSearch = new QLineEdit;
-        connect(qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
+        connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
 
     qtbMain = new QToolBar( "Toolbar" );
+	qtbMain->setFloatable( false );
+	qtbMain->setMovable( false );
         qtbMain->addAction( qaHome );
         qtbMain->addSeparator();
         qtbMain->addActions( qagNavigation->actions ());
+	qtbMain->addSeparator();
+	qtbMain->addWidget( qtbDeleteSearch );
         qtbMain->addWidget( qleSearch );
         addToolBar( qtbMain );
 }
@@ -148,6 +154,10 @@ void MainWindow::createActions() {
         qaSearch->setStatusTip( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
+    qaClearSearch = new QAction( IconLoader::Load( "edit-find" ), "", this );
+        qaClearSearch->setStatusTip( tr( "Clear search words" ));
+        connect( qaClearSearch, SIGNAL( triggered()), this, SLOT( clearSearch()));
+
     qaPrintDialog = new QAction( IconLoader::Load( "document-print-preview" ), tr( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
@@ -198,22 +208,22 @@ void MainWindow::createActions() {
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
     if( action == qaEnglish ){
-        settings.setValue ( "Simba/Language", "?lp=ende&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" );
     }
     else if( action == qaSpanish ) {
         settings.setValue ( "Simba/Language", "?lp=esde&search=" );
     }
     else if( action == qaFrench ) {
-        settings.setValue ( "Simba/Language", "?lp=frde&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=frde&search=" );
     }
     else if( action == qaItalian ) {
-        settings.setValue ( "Simba/Language", "?lp=itde&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=itde&search=" );
     }
     else if( action == qaChinese ) {
-        settings.setValue ( "Simba/Language", "?lp=chde&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=chde&search=" );
     }
     else if( action == qaRussian ) {
-        settings.setValue ( "Simba/Language", "?lp=rude&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=rude&search=" );
     }
 }
 
@@ -249,6 +259,10 @@ void MainWindow::navigationActionTriggered ( QAction *action ) {
 
 void MainWindow::search () {
     qleSearch->setFocus ();
+}
+
+void MainWindow::clearSearch () {
+    qleSearch->clear();
 }
 
 void MainWindow::createSystemTray() {
@@ -294,7 +308,7 @@ void MainWindow::clipboardChange() {
 
 QString MainWindow::loadINI() {
     QSettings settings;
-    return settings.value ( "Simba/Language", "?lp=ende&search=" ).toString ();
+    return settings.value ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" ).toString ();
 }
 
 void MainWindow::printpreview() {
