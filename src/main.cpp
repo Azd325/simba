@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
 #ifdef Q_OS_UNIX
     if ( geteuid () == 0 ) {
-        qDebug ()<< QCoreApplication::applicationName () + QObject::tr ( " is not supposed to be run as root" );
+        qWarning ()<< QCoreApplication::applicationName () + QObject::tr ( " is not supposed to be run as root" );
         exit(0);
     }
 #endif
