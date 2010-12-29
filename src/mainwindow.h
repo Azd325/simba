@@ -37,7 +37,6 @@
 #include <QtCore/QTextStream>
 #include <QtCore/QSettings>
 #include <QtCore/QResource>
-
 #include <QtCore/QDebug>
 
 #include "iconloader.h"
