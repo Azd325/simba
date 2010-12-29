@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     // check tray exist
     if ( !QSystemTrayIcon::isSystemTrayAvailable ()) {
-        QMessageBox::critical ( 0, QObject::tr( "Systray" ), QObject::tr ( "I couldn't detect any system tray on this system." ));
+        qWarning ()<< QObject::tr ( "I couldn't detect any system tray on this system." );
     }
 
     // install qt translator
