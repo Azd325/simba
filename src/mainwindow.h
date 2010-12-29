@@ -7,43 +7,38 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtGui/QApplication>
 #include <QtGui/QMainWindow>
+#include <QtGui/QMenu>
+#include <QtGui/QMenuBar>
+#include <QtGui/QStatusBar>
+#include <QtGui/QProgressBar>
+#include <QtGui/QToolBar>
+#include <QtGui/QToolButton>
+#include <QtGui/QAction>
+#include <QtGui/QActionGroup>
+#include <QtGui/QLabel>
+#include <QtGui/QLineEdit>
+#include <QtGui/QTextEdit>
+#include <QtGui/QPushButton>
+#include <QtGui/QGridLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QMessageBox>
+#include <QtGui/QPrintPreviewDialog>
+#include <QtGui/QPrinter>
+#include <QtGui/QTabWidget>
+#include <QtGui/QClipboard>
+#include <QtGui/QSystemTrayIcon>
+#include <QtGui/QCloseEvent>
 
-#include <QMenuBar>
-#include <QStatusBar>
-#include <QToolBar>
-#include <QToolButton>
-#include <QMenu>
-#include <QAction>
-#include <QActionGroup>
+#include <QtWebKit/QWebView>
 
-#include <QWebView>
-#include <QProgressBar>
-#include <QTextEdit>
-#include <QMessageBox>
-#include <QTabWidget>
+#include <QtCore/QFile>
+#include <QtCore/QTextStream>
+#include <QtCore/QSettings>
+#include <QtCore/QResource>
 
-#include <QLabel>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QFile>
-#include <QTextStream>
-
-#include <QClipboard>
-#include <QApplication>
-#include <QSystemTrayIcon>
-
-#include <QSettings>
-
-#include <QCloseEvent>
-
-#include <QPrintPreviewDialog>
-#include <QPrinter>
-#include <QResource>
-
-#include <QDebug>
+#include <QtCore/QDebug>
 
 #include "iconloader.h"
 #include "database.h"

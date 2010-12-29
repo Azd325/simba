@@ -2,10 +2,10 @@
 #define DATABASE_H
 
 #include <QtGui/QApplication>
-#include <QSqlDatabase>
-#include <QFile>
-#include <QDir>
-#include <QSqlQuery>
+#include <QtSql/QSqlDatabase>
+#include <QtCore/QFile>
+#include <QtCore/QDir>
+#include <QtSql/QSqlQuery>
 
 class Database
 {
