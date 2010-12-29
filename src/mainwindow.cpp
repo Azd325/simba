@@ -5,7 +5,6 @@
 */
 
 #include "mainwindow.h"
-#include "iconloader.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
@@ -88,7 +87,6 @@ void MainWindow::createBars() {
 
     qtbDeleteSearch = new QToolButton(this);
 	qtbDeleteSearch->setDefaultAction( qaClearSearch );
-//	connect( qtbDeleteSearch , SIGNAL( clicked()), this, SLOT( clear()));
 
     qleSearch = new QLineEdit;
         connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
@@ -210,22 +208,22 @@ void MainWindow::createActions() {
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
     if( action == qaEnglish ){
-        settings.setValue ( "Simba/Language", "?lp=ende&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" );
     }
     else if( action == qaSpanish ) {
         settings.setValue ( "Simba/Language", "?lp=esde&search=" );
     }
     else if( action == qaFrench ) {
-        settings.setValue ( "Simba/Language", "?lp=frde&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=frde&search=" );
     }
     else if( action == qaItalian ) {
-        settings.setValue ( "Simba/Language", "?lp=itde&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=itde&search=" );
     }
     else if( action == qaChinese ) {
-        settings.setValue ( "Simba/Language", "?lp=chde&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=chde&search=" );
     }
     else if( action == qaRussian ) {
-        settings.setValue ( "Simba/Language", "?lp=rude&search=" );
+        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=rude&search=" );
     }
 }
 
@@ -310,7 +308,7 @@ void MainWindow::clipboardChange() {
 
 QString MainWindow::loadINI() {
     QSettings settings;
-    return settings.value ( "Simba/Language", "?lp=ende&search=" ).toString ();
+    return settings.value ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" ).toString ();
 }
 
 void MainWindow::printpreview() {

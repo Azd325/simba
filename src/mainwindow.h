@@ -45,6 +45,7 @@
 
 #include <QDebug>
 
+#include "iconloader.h"
 #include "database.h"
 
 class MainWindow : public QMainWindow
