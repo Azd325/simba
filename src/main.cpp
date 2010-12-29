@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName ( QCoreApplication::applicationName ());
 
     if( !Database::openDB ())
-        exit(0);
+        exit (0);
 
 #ifdef Q_OS_UNIX
-    if ( geteuid() == 0 ) {
-        qDebug ()<< QCoreApplication::applicationName () + QObject::tr( " is not supposed to be run as root" );
+    if ( geteuid () == 0 ) {
+        qDebug ()<< QCoreApplication::applicationName () + QObject::tr ( " is not supposed to be run as root" );
         exit(0);
     }
 #endif
@@ -34,21 +34,21 @@ int main(int argc, char *argv[])
     QApplication a( argc, argv );
 
     // check tray exist
-    if (!QSystemTrayIcon::isSystemTrayAvailable()) {
-        QMessageBox::critical( 0, QObject::tr( "Systray" ), QObject::tr( "I couldn't detect any system tray on this system." ));
+    if (!QSystemTrayIcon::isSystemTrayAvailable ()) {
+        QMessageBox::critical ( 0, QObject::tr( "Systray" ), QObject::tr ( "I couldn't detect any system tray on this system." ));
     }
 
     // install qt translator
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    a.installTranslator(&qtTranslator);
+    qtTranslator.load( "qt_" + QLocale::system ().name (), QLibraryInfo::location( QLibraryInfo::TranslationsPath ));
+    a.installTranslator( &qtTranslator );
 
     // Icons
-    IconLoader::Init();
+    IconLoader::Init ();
 
     // delivery the cli argument
     MainWindow w( QCoreApplication::arguments ());
-    w.show();
-    return a.exec();
+    w.show ();
+    return a.exec ();
 }
 
