@@ -5,7 +5,7 @@
 */
 
 #include <QtGui/QApplication>
-#include <QTranslator>
+#include <QtCore/QTranslator>
 #include <QLibraryInfo>
 
 #include "mainwindow.h"
