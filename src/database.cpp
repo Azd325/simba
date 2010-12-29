@@ -17,7 +17,7 @@ bool Database::openDB () {
     db.setDatabaseName( QCoreApplication::applicationName () + ".db" );
 #endif
     if ( !db.open ()) {
-        qWarning ( "Unable to establish a database connection.\n" );
+        qWarning ( "Unable to establish a database connection." );
         return false;
     }
 
