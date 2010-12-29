@@ -1,22 +1,18 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <QObject>
+#include <QtGui/QApplication>
+
 #include <QSqlDatabase>
-#include <QSqlError>
 #include <QFile>
 #include <QDir>
+#include <QSqlQuery>
 
-class Database : public QObject
+class Database
 {
-public:
     public:
-        bool openDB();
-        bool deleteDB();
-        QSqlError lastError();
- 
-    private:
-        QSqlDatabase db;
+        static bool openDB();
+//        static bool deleteDB();
 };
 
 #endif // DATABASE_H
