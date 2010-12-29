@@ -207,24 +207,26 @@ void MainWindow::createActions() {
 
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
+    settings.beginGroup ( QCoreApplication::applicationName ());
     if( action == qaEnglish ){
-        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" );
+        settings.setValue ( "Language", "?lp=ende&search=" );
     }
     else if( action == qaSpanish ) {
-        settings.setValue ( "Simba/Language", "?lp=esde&search=" );
+        settings.setValue ( "Language", "?lp=esde&search=" );
     }
     else if( action == qaFrench ) {
-        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=frde&search=" );
+        settings.setValue ( "Language", "?lp=frde&search=" );
     }
     else if( action == qaItalian ) {
-        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=itde&search=" );
+        settings.setValue ( "Language", "?lp=itde&search=" );
     }
     else if( action == qaChinese ) {
-        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=chde&search=" );
+        settings.setValue ( "Language", "?lp=chde&search=" );
     }
     else if( action == qaRussian ) {
-        settings.setValue ( QCoreApplication::applicationName () + "/Language", "?lp=rude&search=" );
+        settings.setValue ( "Language", "?lp=rude&search=" );
     }
+    settings.endGroup ();
 }
 
 void MainWindow::zoomActionTriggered( QAction* action ) {
