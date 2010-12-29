@@ -64,7 +64,6 @@ private slots:
     void about();
     void aboutLicense();
     void aboutCredits();
-    void startedLoad();
     void progressLoad(int);
     void finishedLoad(bool);
     void clipboardChange();
