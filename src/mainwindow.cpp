@@ -207,55 +207,41 @@ void MainWindow::createActions() {
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
     settings.beginGroup ( QCoreApplication::applicationName ());
-    if( action == qaEnglish ){
+    if( action == qaEnglish )
         settings.setValue ( "Language", "?lp=ende&search=" );
-    }
-    else if( action == qaSpanish ) {
+    else if( action == qaSpanish )
         settings.setValue ( "Language", "?lp=esde&search=" );
-    }
-    else if( action == qaFrench ) {
+    else if( action == qaFrench )
         settings.setValue ( "Language", "?lp=frde&search=" );
-    }
-    else if( action == qaItalian ) {
+    else if( action == qaItalian )
         settings.setValue ( "Language", "?lp=itde&search=" );
-    }
-    else if( action == qaChinese ) {
+    else if( action == qaChinese )
         settings.setValue ( "Language", "?lp=chde&search=" );
-    }
-    else if( action == qaRussian ) {
+    else if( action == qaRussian )
         settings.setValue ( "Language", "?lp=rude&search=" );
-    }
     settings.endGroup ();
 }
 
 void MainWindow::zoomActionTriggered( QAction* action ) {
-    if( action == qaZoomIn ) {
+    if( action == qaZoomIn )
         view->setZoomFactor( view->zoomFactor() + 0.1 );
-    }
-    else if( action == qaZoomNormal ) {
+    else if( action == qaZoomNormal )
         view->setZoomFactor( 1 );
-    }
-    else if( action == qaZoomOut ) {
+    else if( action == qaZoomOut )
         view->setZoomFactor( view->zoomFactor() - 0.1 );
-    }
 }
 
 void MainWindow::navigationActionTriggered ( QAction *action ) {
-    if( action == qaHome ) {
+    if( action == qaHome )
         view->load( QString("%1%2" ).arg( url ).arg( loadINI ()));
-    }
-    else if( action == qaBack ) {
+    else if( action == qaBack )
         view->back ();
-    }
-    else if( action == qaForward ) {
+    else if( action == qaForward )
         view->forward ();
-    }
-    else if( action == qaReload ) {
+    else if( action == qaReload )
         view->reload ();
-    }
-    else if( action == qaStop ) {
+    else if( action == qaStop )
         view->stop ();
-    }
 }
 
 void MainWindow::search () {
@@ -284,9 +270,8 @@ void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ) {
             hide();
             tray->showMessage( "INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000 );
         }
-        else{
+        else
             show();
-        }
     }
 
 }
@@ -402,12 +387,12 @@ void MainWindow::aboutCredits() {
 
     qglDialog = new QGridLayout( dialog );
     qglDialog->addWidget( qtwCredits, 0, 0,Qt::AlignCenter );
-        qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
+    qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
-        dialog->setWindowTitle( tr( "Credits" ));
-        dialog->setLayout( qglDialog );
-        dialog->setFixedSize( 250, 200 );
-        dialog->exec();
+    dialog->setWindowTitle( tr( "Credits" ));
+    dialog->setLayout( qglDialog );
+    dialog->setFixedSize( 250, 200 );
+    dialog->exec();
 }
 
 /* progressbar functions */
@@ -422,8 +407,7 @@ void MainWindow::finishedLoad( bool value ) {
         QResource res( ":/noLeo.html" );
         QByteArray html(( const char* )res.data(), res.size());
         view->setHtml( html );
-    }else {
+    }else
         qpbMain->hide();
-    }
 }
 
