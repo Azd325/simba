@@ -6,7 +6,7 @@
 
 #include <QtGui/QApplication>
 #include <QtCore/QTranslator>
-#include <QLibraryInfo>
+#include <QtCore/QLibraryInfo>
 
 #include "mainwindow.h"
 #include "iconloader.h"
