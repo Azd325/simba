@@ -23,12 +23,11 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
 
     view = new QWebView;
         view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( para ));
-        view->setContextMenuPolicy( Qt::ActionsContextMenu );
-        view->addAction( qaAbout );
-        connect( view, SIGNAL( loadStarted()), this, SLOT( show()));
-        connect( view, SIGNAL( loadProgress( int )), this, SLOT( progressLoad( int )));
-        connect( view, SIGNAL( loadFinished( bool )), this, SLOT( finishedLoad( bool )));
     setCentralWidget( view );
+
+    connect( view, SIGNAL( loadStarted()), this, SLOT( show()));
+    connect( view, SIGNAL( loadProgress( int )), this, SLOT( progressLoad( int )));
+    connect( view, SIGNAL( loadFinished( bool )), this, SLOT( finishedLoad( bool )));
 
     clipboard = QApplication::clipboard();
         connect(clipboard,SIGNAL( changed(QClipboard::Mode)), this, SLOT( clipboardChange()));
