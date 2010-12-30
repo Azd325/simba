@@ -207,24 +207,18 @@ void MainWindow::createActions() {
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
     settings.beginGroup ( QCoreApplication::applicationName ());
-    if( action == qaEnglish ){
+    if( action == qaEnglish )
         settings.setValue ( "Language", "?lp=ende&search=" );
-    }
-    else if( action == qaSpanish ) {
+    else if( action == qaSpanish )
         settings.setValue ( "Language", "?lp=esde&search=" );
-    }
-    else if( action == qaFrench ) {
+    else if( action == qaFrench )
         settings.setValue ( "Language", "?lp=frde&search=" );
-    }
-    else if( action == qaItalian ) {
+    else if( action == qaItalian )
         settings.setValue ( "Language", "?lp=itde&search=" );
-    }
-    else if( action == qaChinese ) {
+    else if( action == qaChinese )
         settings.setValue ( "Language", "?lp=chde&search=" );
-    }
-    else if( action == qaRussian ) {
+    else if( action == qaRussian )
         settings.setValue ( "Language", "?lp=rude&search=" );
-    }
     settings.endGroup ();
 }
 
