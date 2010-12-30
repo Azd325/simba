@@ -25,12 +25,12 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
         view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( para ));
     setCentralWidget( view );
 
-    connect( view, SIGNAL( loadStarted()), this, SLOT( show()));
-    connect( view, SIGNAL( loadProgress( int )), this, SLOT( progressLoad( int )));
-    connect( view, SIGNAL( loadFinished( bool )), this, SLOT( finishedLoad( bool )));
+    connect( view, SIGNAL( loadStarted ()), this, SLOT( show ()));
+    connect( view, SIGNAL( loadProgress ( int )), this, SLOT( progressLoad ( int )));
+    connect( view, SIGNAL( loadFinished ( bool )), this, SLOT( finishedLoad ( bool )));
 
-    clipboard = QApplication::clipboard();
-        connect(clipboard,SIGNAL( changed(QClipboard::Mode)), this, SLOT( clipboardChange()));
+    clipboard = QApplication::clipboard ();
+        connect(clipboard,SIGNAL( changed( QClipboard::Mode )), this, SLOT( clipboardChange ()));
 }
 
 MainWindow::~MainWindow() {
@@ -155,16 +155,16 @@ void MainWindow::createActions() {
 
     qaClearSearch = new QAction( IconLoader::Load( "edit-find" ), "", this );
         qaClearSearch->setStatusTip( tr( "Clear search words" ));
-        connect( qaClearSearch, SIGNAL( triggered()), this, SLOT( clearSearch()));
+        connect( qaClearSearch, SIGNAL( triggered()), this, SLOT( clearSearch ()));
 
-    qaPrintDialog = new QAction( IconLoader::Load( "document-print-preview" ), tr( "Print" ), this );
+    qaPrintDialog = new QAction( IconLoader::Load ( "document-print-preview" ), tr ( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
         qaPrintDialog->setStatusTip( tr( "Print Preview" ));
-        connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
+        connect( qaPrintDialog, SIGNAL( triggered ()), this, SLOT( printpreview ()));
 
-    qaZoomIn = new QAction( IconLoader::Load( "zoom-in" ), tr( "Zoom &In" ), this );
+    qaZoomIn = new QAction( IconLoader::Load ( "zoom-in" ), tr( "Zoom &In" ), this );
         qaZoomIn->setShortcut( QKeySequence::ZoomIn );
-        qaZoomIn->setStatusTip( tr( "Zoom in of the page" ));
+        qaZoomIn->setStatusTip( tr ( "Zoom in of the page" ));
 
     qaZoomOut = new QAction( IconLoader::Load( "zoom-out" ), tr( "Zoom &Out" ), this );
         qaZoomOut->setShortcut( QKeySequence::ZoomOut );
