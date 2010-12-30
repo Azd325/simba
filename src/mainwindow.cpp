@@ -402,12 +402,12 @@ void MainWindow::aboutCredits() {
 
     qglDialog = new QGridLayout( dialog );
     qglDialog->addWidget( qtwCredits, 0, 0,Qt::AlignCenter );
-        qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
+    qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
-        dialog->setWindowTitle( tr( "Credits" ));
-        dialog->setLayout( qglDialog );
-        dialog->setFixedSize( 250, 200 );
-        dialog->exec();
+    dialog->setWindowTitle( tr( "Credits" ));
+    dialog->setLayout( qglDialog );
+    dialog->setFixedSize( 250, 200 );
+    dialog->exec();
 }
 
 /* progressbar functions */
