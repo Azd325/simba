@@ -241,21 +241,16 @@ void MainWindow::zoomActionTriggered( QAction* action ) {
 }
 
 void MainWindow::navigationActionTriggered ( QAction *action ) {
-    if( action == qaHome ) {
+    if( action == qaHome )
         view->load( QString("%1%2" ).arg( url ).arg( loadINI ()));
-    }
-    else if( action == qaBack ) {
+    else if( action == qaBack )
         view->back ();
-    }
-    else if( action == qaForward ) {
+    else if( action == qaForward )
         view->forward ();
-    }
-    else if( action == qaReload ) {
+    else if( action == qaReload )
         view->reload ();
-    }
-    else if( action == qaStop ) {
+    else if( action == qaStop )
         view->stop ();
-    }
 }
 
 void MainWindow::search () {
