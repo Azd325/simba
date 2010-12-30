@@ -341,9 +341,9 @@ void MainWindow::aboutLicense() {
     QDialog *dialog = new QDialog( this );
 
     QFile file( ":/GPL" );
-    if(!file.open( QIODevice::ReadOnly | QIODevice::Text )) {
+    if(!file.open( QIODevice::ReadOnly | QIODevice::Text ))
         qCritical( "GPL LicenseFile not found" );
-    }
+
     QTextStream out ( &file );
     out.setFieldAlignment ( QTextStream::AlignCenter );
 
