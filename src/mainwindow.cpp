@@ -223,15 +223,12 @@ void MainWindow::languageActionTriggered( QAction *action ) {
 }
 
 void MainWindow::zoomActionTriggered( QAction* action ) {
-    if( action == qaZoomIn ) {
+    if( action == qaZoomIn )
         view->setZoomFactor( view->zoomFactor() + 0.1 );
-    }
-    else if( action == qaZoomNormal ) {
+    else if( action == qaZoomNormal )
         view->setZoomFactor( 1 );
-    }
-    else if( action == qaZoomOut ) {
+    else if( action == qaZoomOut )
         view->setZoomFactor( view->zoomFactor() - 0.1 );
-    }
 }
 
 void MainWindow::navigationActionTriggered ( QAction *action ) {
@@ -410,8 +407,7 @@ void MainWindow::finishedLoad( bool value ) {
         QResource res( ":/noLeo.html" );
         QByteArray html(( const char* )res.data(), res.size());
         view->setHtml( html );
-    }else {
+    }else
         qpbMain->hide();
-    }
 }
 
