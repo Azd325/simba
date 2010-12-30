@@ -317,13 +317,10 @@ void MainWindow::printpreview() {
     QPrintPreviewDialog dialog( this );
     connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
     dialog.showMaximized();
-    if( dialog.exec() == QDialog::Accepted ) {
-        QMessageBox msg( &dialog );
-            msg.setIcon( QMessageBox::Information );
-            msg.setWindowTitle( "Information" );
-            msg.setText( "Print was successful!" );
-            msg.exec();
-    }
+    if( dialog.exec() == QDialog::Accepted )
+        qsbMain->showMessage ( "Print was successful!" );
+    else
+        qsbMain->showMessage ( "Print was not successful!" );
 }
 
 /* about functions*/
@@ -338,7 +335,7 @@ void MainWindow::about() {
     QPushButton *qpbLicense = new QPushButton( tr( "&License" ), dialog );
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
-   QLabel *qlAbout = new QLabel( dialog );
+    QLabel *qlAbout = new QLabel( dialog );
 	qlAbout->setText( tr("<center><h1>%1%2</h1><h3>For better use of leo.org</h3>Copyright \251 2010 %3</center>")
 			.arg( QCoreApplication::applicationName())
 			.arg( QCoreApplication::applicationVersion())
@@ -364,21 +361,21 @@ void MainWindow::aboutLicense() {
     if(!file.open( QIODevice::ReadOnly | QIODevice::Text )) {
         qCritical( "GPL LicenseFile not found" );
     }
-    QTextStream out( &file );
-    out.setFieldAlignment( QTextStream::AlignCenter );
+    QTextStream out ( &file );
+    out.setFieldAlignment ( QTextStream::AlignCenter );
 
-    QTextEdit *qteLicense = new QTextEdit( dialog );
-        qteLicense->setText( out.readAll());
-        qteLicense->setReadOnly( 1 );
-    QPushButton *qpbClose = new QPushButton( IconLoader::Load( "window-close" ), tr( "&Close" ), dialog );
-        connect(qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
+    QTextEdit *qteLicense = new QTextEdit ( dialog );
+        qteLicense->setText ( out.readAll ());
+        qteLicense->setReadOnly ( 1 );
+    QPushButton *qpbClose = new QPushButton ( IconLoader::Load( "window-close" ), tr( "&Close" ), dialog );
+        connect( qpbClose, SIGNAL( clicked()), dialog, SLOT( deleteLater()));
 
     qglDialog = new QGridLayout( dialog );
         qglDialog->addWidget( qteLicense, 0, 0 );
         qglDialog->addWidget( qpbClose, 1, 0, Qt::AlignRight );
 
         dialog->setLayout( qglDialog);
-        dialog->setWindowTitle( tr( "GNU General Public License" ));
+        dialog->setWindowTitle( "GNU General Public License" );
         dialog->setFixedSize( 550, 400 );
         dialog->exec();
 }
