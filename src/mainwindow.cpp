@@ -284,9 +284,8 @@ void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ) {
             hide();
             tray->showMessage( "INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000 );
         }
-        else{
+        else
             show();
-        }
     }
 
 }
