@@ -25,12 +25,12 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
         view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( para ));
     setCentralWidget( view );
 
-    connect( view, SIGNAL( loadStarted()), this, SLOT( show()));
-    connect( view, SIGNAL( loadProgress( int )), this, SLOT( progressLoad( int )));
-    connect( view, SIGNAL( loadFinished( bool )), this, SLOT( finishedLoad( bool )));
+    connect( view, SIGNAL( loadStarted ()), this, SLOT( show ()));
+    connect( view, SIGNAL( loadProgress ( int )), this, SLOT( progressLoad ( int )));
+    connect( view, SIGNAL( loadFinished ( bool )), this, SLOT( finishedLoad ( bool )));
 
-    clipboard = QApplication::clipboard();
-        connect(clipboard,SIGNAL( changed(QClipboard::Mode)), this, SLOT( clipboardChange()));
+    clipboard = QApplication::clipboard ();
+        connect(clipboard,SIGNAL( changed( QClipboard::Mode )), this, SLOT( clipboardChange ()));
 }
 
 MainWindow::~MainWindow() {
@@ -140,7 +140,7 @@ void MainWindow::createActions() {
         qaAboutQt->setStatusTip( tr( "About the Qt version" ));
         connect( qaAboutQt, SIGNAL( triggered()), qApp, SLOT( aboutQt()));
 
-    qagNavigation = new QActionGroup( this );
+    qagNavigation = new QActionGroup ( this );
         qagNavigation->addAction ( qaHome );
         qagNavigation->addAction ( qaBack );
         qagNavigation->addAction ( qaReload );
@@ -148,31 +148,31 @@ void MainWindow::createActions() {
         qagNavigation->addAction ( qaStop );
         connect ( qagNavigation, SIGNAL( triggered( QAction* )), this, SLOT( navigationActionTriggered( QAction* )));
 
-    qaSearch = new QAction( IconLoader::Load( "edit-find" ), tr( "Search" ), this );
-        qaSearch->setShortcut( QKeySequence::Find );
-        qaSearch->setStatusTip( tr( "Search words" ));
+    qaSearch = new QAction ( IconLoader::Load ( "edit-find" ), tr ( "Search" ), this );
+        qaSearch->setShortcut ( QKeySequence::Find );
+        qaSearch->setStatusTip ( tr( "Search words" ));
         connect( qaSearch, SIGNAL( triggered()), this, SLOT( search()));
 
-    qaClearSearch = new QAction( IconLoader::Load( "edit-find" ), "", this );
-        qaClearSearch->setStatusTip( tr( "Clear search words" ));
-        connect( qaClearSearch, SIGNAL( triggered()), this, SLOT( clearSearch()));
+    qaClearSearch = new QAction ( IconLoader::Load ( "edit-find" ), "", this );
+        qaClearSearch->setStatusTip( tr ( "Clear search words" ));
+        connect( qaClearSearch, SIGNAL( triggered()), this, SLOT( clearSearch ()));
 
-    qaPrintDialog = new QAction( IconLoader::Load( "document-print-preview" ), tr( "Print" ), this );
+    qaPrintDialog = new QAction( IconLoader::Load ( "document-print-preview" ), tr ( "Print" ), this );
         qaPrintDialog->setShortcut( QKeySequence::Print );
-        qaPrintDialog->setStatusTip( tr( "Print Preview" ));
-        connect( qaPrintDialog, SIGNAL( triggered()), this, SLOT( printpreview()));
+        qaPrintDialog->setStatusTip( tr ( "Print Preview" ));
+        connect( qaPrintDialog, SIGNAL( triggered ()), this, SLOT( printpreview ()));
 
-    qaZoomIn = new QAction( IconLoader::Load( "zoom-in" ), tr( "Zoom &In" ), this );
+    qaZoomIn = new QAction( IconLoader::Load ( "zoom-in" ), tr ( "Zoom &In" ), this );
         qaZoomIn->setShortcut( QKeySequence::ZoomIn );
-        qaZoomIn->setStatusTip( tr( "Zoom in of the page" ));
+        qaZoomIn->setStatusTip( tr ( "Zoom in of the page" ));
 
-    qaZoomOut = new QAction( IconLoader::Load( "zoom-out" ), tr( "Zoom &Out" ), this );
+    qaZoomOut = new QAction( IconLoader::Load( "zoom-out" ), tr ( "Zoom &Out" ), this );
         qaZoomOut->setShortcut( QKeySequence::ZoomOut );
         qaZoomOut->setStatusTip( tr( "Zoom out of the page" ));
 
-   qaZoomNormal = new QAction( IconLoader::Load( "zoom-original" ), tr( "Zoom &Normal" ), this );
+   qaZoomNormal = new QAction( IconLoader::Load( "zoom-original" ), tr ( "Zoom &Normal" ), this );
         qaZoomNormal->setShortcut( QKeySequence( "CTRL+0" ));
-        qaZoomNormal->setStatusTip( tr( "Zoom normal of the page" ));
+        qaZoomNormal->setStatusTip( tr ( "Zoom normal of the page" ));
 
     qagZoom = new QActionGroup( this );
         qagZoom->addAction ( qaZoomIn );
@@ -181,17 +181,17 @@ void MainWindow::createActions() {
         connect ( qagZoom, SIGNAL( triggered( QAction* )), this, SLOT( zoomActionTriggered( QAction* )));
 
     qaEnglish = new QAction( QIcon( ":/flags/en.svg" ), tr( "English" ), this );
-        qaEnglish->setCheckable(true);
+        qaEnglish->setCheckable( true );
     qaSpanish = new QAction( QIcon( ":/flags/es.svg" ), tr( "Spanish" ), this );
-        qaSpanish->setCheckable(true);
+        qaSpanish->setCheckable( true );
     qaFrench = new QAction( QIcon( ":/flags/fr.svg" ), tr( "French" ), this );
-        qaFrench->setCheckable(true);
+        qaFrench->setCheckable( true );
     qaItalian = new QAction( QIcon( ":/flags/it.svg" ), tr( "Italian" ), this );
-            qaItalian->setCheckable(true);
+            qaItalian->setCheckable( true );
     qaChinese = new QAction( QIcon( ":/flags/cn.svg" ), tr( "Chinese" ), this );
-        qaChinese->setCheckable(true);
+        qaChinese->setCheckable( true );
     qaRussian = new QAction( QIcon( ":/flags/ru.svg" ), tr( "Russian" ), this );
-            qaRussian->setCheckable(true);
+            qaRussian->setCheckable( true );
 
     qagLanguages = new QActionGroup( this );
         qagLanguages->addAction ( qaEnglish );
