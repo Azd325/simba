@@ -317,13 +317,10 @@ void MainWindow::printpreview() {
     QPrintPreviewDialog dialog( this );
     connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
     dialog.showMaximized();
-    if( dialog.exec() == QDialog::Accepted ) {
-        QMessageBox msg( &dialog );
-            msg.setIcon( QMessageBox::Information );
-            msg.setWindowTitle( "Information" );
-            msg.setText( "Print was successful!" );
-            msg.exec();
-    }
+    if( dialog.exec() == QDialog::Accepted )
+        qsbMain->showMessage ( "Print was successful!" );
+    else
+        qsbMain->showMessage ( "Print was not successful!" );
 }
 
 /* about functions*/

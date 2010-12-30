@@ -23,7 +23,6 @@
 #include <QtGui/QPushButton>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHBoxLayout>
-#include <QtGui/QMessageBox>
 #include <QtGui/QPrintPreviewDialog>
 #include <QtGui/QPrinter>
 #include <QtGui/QTabWidget>
