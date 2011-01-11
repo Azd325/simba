@@ -3,7 +3,10 @@
 ######################################################################
 QT += webkit sql
 TEMPLATE = app
-TARGET = 
+TARGET =
+MOC_DIR     = ./moc
+OBJECTS_DIR = ./obj
+RCC_DIR     = ./rcc 
 DEPENDPATH += . src data
 INCLUDEPATH += . src
 

@@ -11,8 +11,8 @@ class Database
 {
     public:
         static bool openDB();
-    public slots:
         static bool deleteDB();
+        static QSqlDatabase db;
 };
 
 #endif // DATABASE_H

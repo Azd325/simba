@@ -15,6 +15,8 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     createBars();
     createSystemTray();
 
+    Database::openDB ();
+
     url = "http://pda.leo.org/";
 
     // Remove the path item of the argv-list
@@ -92,6 +94,16 @@ void MainWindow::createBars() {
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
+        Database::openDB ();
+    QSqlTableModel qstm;
+        qstm.setTable("lineEditComplete");
+        qstm.removeColumn(0); // remove the id column
+        qstm.removeColumn(2); // remove the numberofused column
+        qstm.select();
+
+    QCompleter *qcSearchWordHelp = new QCompleter(&qstm);
+        qcSearchWordHelp->setCompletionMode(QCompleter::InlineCompletion); // set the mode
+    qleSearch->setCompleter(qcSearchWordHelp);
 
     qtbMain = new QToolBar( "Toolbar" );
 	qtbMain->setFloatable( false );
