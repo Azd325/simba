@@ -1,6 +1,0 @@
-Create simba
-#######################################################
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make

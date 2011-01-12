@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=0.95
+Name=Simba
+GenericName=Simple Webbrowser
+GenericName[de]=Einfacher Webborwser
+Comment=Tool for better use of leo.org
+Comment[de]=Programm für die bessere Benutzung von leo.org
+Icon=Simba
+Exec=simba
+Categories=Office
