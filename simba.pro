@@ -28,7 +28,7 @@ unix:!macx { # installation on Unix-ish platforms
         isEmpty(DESKTOP_DIR):DESKTOP_DIR = $$DATA_DIR/applications
 
         target.path = $$BIN_DIR
-        documentation.files = LICENSE README.md
+        documentation.files = LICENSE README.md AUTHORS
         documentation.path = $$DOCS_DIR
         icon.files = data/Simba.png
         icon.path = $$ICON_DIR
