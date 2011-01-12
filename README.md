@@ -1,11 +1,11 @@
 Create simba app
 ######################################################
 
-./configure
-make
-sudo make install
+* ./configure
+* make
+* sudo make install
 
 OR
 
-qmake-qt4
-make
+* qmake-qt4
+* make
