@@ -1,9 +1,7 @@
 SIMBA
 =====
-
 Create simba app
 ----------------
-
 * ./configure
 * make
 * sudo make install
