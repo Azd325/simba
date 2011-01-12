@@ -29,8 +29,11 @@
 #include <QtGui/QClipboard>
 #include <QtGui/QSystemTrayIcon>
 #include <QtGui/QCloseEvent>
+#include <QtGui/QCompleter>
 
 #include <QtWebKit/QWebView>
+
+#include <QtSql/QSqlTableModel>
 
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>

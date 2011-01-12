@@ -6,7 +6,7 @@
 
 #include <QtGui/QApplication>
 #include <QtCore/QTranslator>
-#include <QLibraryInfo>
+#include <QtCore/QLibraryInfo>
 
 #include "mainwindow.h"
 #include "iconloader.h"
@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain ( "azd325.github.com/simba/" );
     QCoreApplication::setOrganizationName ( QCoreApplication::applicationName ());
 
-    if( !Database::openDB ())
-        exit (0);
+    Database::db.addDatabase ("QSQLITE", "connection");
+    Database::openDB ();
 
 #ifdef Q_OS_UNIX
     if ( geteuid () == 0 ) {
