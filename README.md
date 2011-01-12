@@ -1,5 +1,8 @@
+SIMBA
+=====
+
 Create simba app
-================
+----------------
 
 * ./configure
 * make
