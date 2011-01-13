@@ -275,24 +275,28 @@ void MainWindow::createSystemTray() {
     tray->show();
 }
 
-void MainWindow::trayActivate( QSystemTrayIcon::ActivationReason reason ) {
-    if( reason == QSystemTrayIcon::DoubleClick ){
-        if( !isHidden() ){
-            hide();
-            tray->showMessage( "INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000 );
-        }
-        else
-            show();
-    }
+void MainWindow::trayActivate ( QSystemTrayIcon::ActivationReason reason ) {
+    switch (reason) {
+        case QSystemTrayIcon::DoubleClick:
+            if (isHidden())
+                show();
+            else
+                hide();
+            break;
+        default:
+            break;
+     }
 
 }
 
 void MainWindow::closeEvent( QCloseEvent *event ) {
-    if ( !this->isHidden() ) {
-        this->hide();
-        tray->showMessage( "INFO","The application is minimize to the tray", QSystemTrayIcon::Information, 10000 );
+    if ( isVisible() ) {
+        hide();
+        tray->showMessage( tr( "INFO "), tr( "The application is minimize to the tray"), QSystemTrayIcon::Information, 10000 );
         event->ignore();
     }
+    else
+	event->accept();
 }
 
 void MainWindow::lineSearch() {
