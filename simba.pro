@@ -7,11 +7,11 @@
 QT += webkit sql
 TEMPLATE = app
 TARGET =
-MOC_DIR     = ./moc
-OBJECTS_DIR = ./obj
-RCC_DIR     = ./rcc 
-DEPENDPATH += . src data
-INCLUDEPATH += . src
+MOC_DIR     = ./build/moc
+OBJECTS_DIR = ./build/obj
+RCC_DIR     = ./build/rcc
+DEPENDPATH += ./src ./data
+INCLUDEPATH += ./src
 
 # Input
 HEADERS += src/mainwindow.h src/iconloader.h src/database.h
@@ -34,7 +34,7 @@ unix:!macx { # installation on Unix-ish platforms
         icon.path = $$ICON_DIR
         man.files = man/simba.1
         man.path = $$MAN_DIR
-        desktop.files = simba.desktop
+        desktop.files = data/simba.desktop
         desktop.path = $$DESKTOP_DIR
         INSTALLS = target documentation icon man desktop
 }
