@@ -8,6 +8,7 @@ OR
 
 * qmake-qt4
 
+THEN
 
 * make
 * sudo sudo make install
