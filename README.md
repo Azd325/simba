@@ -11,4 +11,4 @@ OR
 THEN
 
 * make
-* sudo sudo make install
+* sudo make install
