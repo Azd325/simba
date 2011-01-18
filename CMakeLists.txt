@@ -13,7 +13,7 @@ SET( simba_cpp
 SET( simba_h 
 	src/mainwindow.h)
 SET( simba_qrc 
-	data/data.qrc)
+	src/data/data.qrc)
 
 QT4_WRAP_CPP(simba_h_moc ${simba_h})
 QT4_ADD_RESOURCES(simba_qrc_rcc ${simba_qrc})
