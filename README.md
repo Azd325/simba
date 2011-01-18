@@ -6,4 +6,3 @@ Create simba app
 * cd build
 * cmake ..
 * make
-
