@@ -5,18 +5,28 @@
 #
 
 QT += webkit sql
-TEMPLATE = app
-TARGET =
-MOC_DIR     = ./build/moc
-OBJECTS_DIR = ./build/obj
-RCC_DIR     = ./build/rcc
-DEPENDPATH += ./src ./data
-INCLUDEPATH += ./src
 
-# Input
-HEADERS += src/mainwindow.h src/iconloader.h src/database.h
-SOURCES += src/main.cpp src/mainwindow.cpp src/iconloader.cpp src/database.cpp 
-RESOURCES += data/data.qrc
+TARGET = simba
+TEMPLATE = app
+DESTDIR = ../build
+
+HEADERS += \
+	mainwindow.h \
+	iconloader.h \
+	database.h
+
+SOURCES += \
+	main.cpp \
+	mainwindow.cpp \
+	iconloader.cpp \
+	database.cpp 
+
+RESOURCES += \
+	data/data.qrc
+
+MOC_DIR     = ../build/moc
+OBJECTS_DIR = ../build/obj
+RCC_DIR     = ../build/rcc
 
 unix:!macx { # installation on Unix-ish platforms
         isEmpty(INSTALL_PREFIX):INSTALL_PREFIX = /usr/local
@@ -37,4 +47,8 @@ unix:!macx { # installation on Unix-ish platforms
         desktop.files = data/simba.desktop
         desktop.path = $$DESKTOP_DIR
         INSTALLS = target documentation icon man desktop
+}
+
+macx {
+    ICON = images/autotester.icns
 }
