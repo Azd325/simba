@@ -9,7 +9,7 @@ moc_*.cpp
 
 CMakeCache.txt
 CMakeFiles/*
-cmake_install.cmake
+cmake_*.cmake
 qrc_*.cxx
 moc_*.cxx
 
