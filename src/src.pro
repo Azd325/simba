@@ -40,9 +40,9 @@ unix:!macx { # installation on Unix-ish platforms
         target.path = $$BIN_DIR
         documentation.files = LICENSE README.md AUTHORS
         documentation.path = $$DOCS_DIR
-        icon.files = data/Simba.png
+        icon.files = data/simba.png
         icon.path = $$ICON_DIR
-        man.files = man/simba.1
+        man.files = data/man/simba.1
         man.path = $$MAN_DIR
         desktop.files = data/simba.desktop
         desktop.path = $$DESKTOP_DIR
@@ -50,5 +50,5 @@ unix:!macx { # installation on Unix-ish platforms
 }
 
 macx {
-    ICON = images/autotester.icns
+    ICON = data/simba.icns
 }
