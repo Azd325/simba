@@ -5,6 +5,7 @@
 #
 
 QT += webkit sql
+CONFIG += warn_on
 
 TARGET = simba
 TEMPLATE = app
