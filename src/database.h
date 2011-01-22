@@ -10,9 +10,8 @@
 class Database
 {
     public:
-        static bool openDB();
+        static void openDB();
         static bool deleteDB();
-        static QSqlDatabase db;
 };
 
 #endif // DATABASE_H

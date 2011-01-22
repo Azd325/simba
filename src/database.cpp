@@ -1,6 +1,6 @@
 #include "database.h"
 
-bool Database::openDB () {
+void Database::openDB () {
     // Find QSLite driver
 
     QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
