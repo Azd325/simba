@@ -20,9 +20,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain ( "azd325.github.com/simba/" );
     QCoreApplication::setOrganizationName ( QCoreApplication::applicationName ());
 
-    Database::db.addDatabase ("QSQLITE", "connection");
-    Database::openDB ();
-
 #ifdef Q_OS_UNIX
     if ( geteuid () == 0 ) {
         qWarning ()<< QCoreApplication::applicationName () + QObject::tr ( " is not supposed to be run as root" );
