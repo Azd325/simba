@@ -1,3 +1,9 @@
+/* -*- coding: utf-8 -*-
+*   Copyright (c) 2010, Tim Kleinschmit.  This file is
+*   licensed under the General Public License version 3 or later.
+*   See the COPYRIGHT file.
+*/
+
 #include "database.h"
 
 void Database::openDB () {
