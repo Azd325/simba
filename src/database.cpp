@@ -36,3 +36,14 @@ bool Database::deleteDB () {
     return QFile::remove ( QCoreApplication::applicationName () + ".db" );
 #endif
 }
+
+bool Database::setSearchWord() {
+    QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
+
+    QSqlQuery query;
+    query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
+
+    db.close();
+    db.removeDatabase("QSQLITE");
+    return true;
+}

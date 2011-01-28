@@ -18,6 +18,8 @@ class Database
     public:
         static void openDB();
         static bool deleteDB();
+	static bool setSearchWord();
+	static bool getSearchWord();
 };
 
 #endif // DATABASE_H
