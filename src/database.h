@@ -12,11 +12,14 @@
 #include <QtCore/QFile>
 #include <QtCore/QDir>
 #include <QtSql/QSqlQuery>
+#include <QtSql>
+
+#include <QDebug>
 
 class Database
 {
     public:
-        static void openDB();
+        static bool openDB();
         static bool deleteDB();
 	static bool setSearchWord( QString );
 	static bool getSearchWord();

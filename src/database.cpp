@@ -7,7 +7,7 @@
 #include "database.h"
 #include "const.h"
 
-void Database::openDB () {
+bool Database::openDB () {
     // Find QSLite driver
 
     QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
@@ -18,21 +18,22 @@ void Database::openDB () {
     QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
     if( !QFile::exists ( path )) {
 	db.setDatabaseName( path );
-	db.open();
-	query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
-        query.exec();
     }
 #else
-    if( !QFile::exists ( APP_NAME + ".db" )) {
-	db.setDatabaseName( path );
-	db.open();
-	query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
-        query.exec();
-    }
+    if( !QFile::exists ( APP_NAME + ".db" ))
+	db.setDabaseName( APP_NAME + ".db");
 #endif
 
+    if( !db.open ()) {
+        qWarning()<< DB_NOT_OPEN ;
+	return false;
+    }
+
+    query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, seachWord VARCHAR(20), numberOfUsed INTEGER)" );
+
     db.close();
-    db.removeDatabase("QSQLITE");
+    db.removeDatabase( "QSQLITE" );
+    return true;
 }
 
 bool Database::deleteDB () {
@@ -43,18 +44,23 @@ bool Database::deleteDB () {
 #endif
 }
 
-bool Database::setSearchWord( QString word ) {
+bool Database::setSearchWord( QString word = "" ) {
     QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
+
     QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
     db.setDatabaseName( path );
-    db.open();
-
+    if( !db.open ()) {
+	qWarning()<< DB_NOT_OPEN ;
+	return false;
+    }
 
     QSqlQuery query;
-    query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
-    query.exec();
+	query.prepare( "INSERT INTO searchWords ( seachWord, numberOfUsed ) VALUES ( :w, :n )" );
+	query.bindValue( ":w", word, QSql::InOut );
+	query.bindValue( ":n", 1, QSql::InOut );
+	query.exec();
 
     db.close();
-    db.removeDatabase("QSQLITE");
+    db.removeDatabase( "QSQLITE" );
     return true;
 }
