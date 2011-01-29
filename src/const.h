@@ -3,8 +3,13 @@
 
 #include <QString>
 
+// Simba Infos
 const QString APP_NAME = "Simba";
 const QString APP_VERSION = "0.95";
 const QString APP_URL = "azd325.github.com/simba/";
+
+// Database Constants
+
+const QString DB_NOT_OPEN = "Cannot open database";
 
 #endif // CONST_H
