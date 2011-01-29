@@ -13,17 +13,22 @@ void Database::openDB () {
     QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
 
     QSqlQuery query;
-    query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
 
 #ifdef Q_OS_LINUX
     QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
-    if( !QFile::exists ( path ))
+    if( !QFile::exists ( path )) {
+	db.setDatabaseName( path );
+	db.open();
+	query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
         query.exec();
-    db.setDatabaseName( path );
+    }
 #else
-    if( !QFile::exists ( APP_NAME + ".db" ))
+    if( !QFile::exists ( APP_NAME + ".db" )) {
+	db.setDatabaseName( path );
+	db.open();
+	query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
         query.exec();
-    db.setDatabaseName( APP_NAME + ".db" );
+    }
 #endif
 
     db.close();
@@ -38,11 +43,16 @@ bool Database::deleteDB () {
 #endif
 }
 
-bool Database::setSearchWord() {
+bool Database::setSearchWord( QString word ) {
+    QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
     QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
+    db.setDatabaseName( path );
+    db.open();
+
 
     QSqlQuery query;
     query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
+    query.exec();
 
     db.close();
     db.removeDatabase("QSQLITE");

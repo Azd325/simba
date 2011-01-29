@@ -18,7 +18,7 @@ class Database
     public:
         static void openDB();
         static bool deleteDB();
-	static bool setSearchWord();
+	static bool setSearchWord( QString );
 	static bool getSearchWord();
 };
 
