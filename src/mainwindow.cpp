@@ -5,12 +5,13 @@
 */
 
 #include "mainwindow.h"
+#include "const.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
     loadSettings ();
 
-    setWindowTitle( tr( "%1 -- For better use of leo.org" ).arg( QCoreApplication::applicationName()));
+    setWindowTitle( tr( "%1 -- For better use of leo.org" ).arg( APP_NAME ));
 
     createBars();
     createSystemTray();
@@ -214,7 +215,7 @@ void MainWindow::createActions() {
 
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
-    settings.beginGroup ( QCoreApplication::applicationName ());
+    settings.beginGroup ( APP_NAME );
     if( action == qaEnglish )
         settings.setValue ( "Language", "?lp=ende&search=" );
     else if( action == qaSpanish )
@@ -306,7 +307,7 @@ void MainWindow::clipboardChange() {
 
 QString MainWindow::loadINI() {
     QSettings settings;
-    return settings.value ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" ).toString ();
+    return settings.value ( APP_NAME + "/Language", "?lp=ende&search=" ).toString ();
 }
 
 void MainWindow::printpreview() {
@@ -332,10 +333,8 @@ void MainWindow::about() {
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
     QLabel *qlAbout = new QLabel( dialog );
-	qlAbout->setText( tr("<center><h1>%1%2</h1><h3>For better use of leo.org</h3>Copyright \251 2010 %3</center>")
-			.arg( QCoreApplication::applicationName())
-			.arg( QCoreApplication::applicationVersion())
-			.arg( QCoreApplication::organizationName()));
+        qlAbout->setText( tr("<center><h1>%1 %2</h1><h3>For better use of leo.org</h3>Copyright \251 2010 %3</center>")
+                        .arg( APP_NAME ).arg( APP_VERSION ).arg( APP_NAME ));
 
 
     qglDialog = new QGridLayout( dialog );
@@ -344,7 +343,7 @@ void MainWindow::about() {
         qglDialog->addWidget( qpbLicense, 1, 1, Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 2, Qt::AlignCenter );
 
-        dialog->setWindowTitle( tr( "About %1").arg( QCoreApplication::applicationName()));
+        dialog->setWindowTitle( tr( "About %1").arg( APP_NAME ));
         dialog->setLayout( qglDialog );
         dialog->setFixedSize( 312, 156 );
         dialog->exec();

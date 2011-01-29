@@ -8,21 +8,21 @@
 #include <QtCore/QTranslator>
 #include <QtCore/QLibraryInfo>
 
+#include "const.h"
 #include "mainwindow.h"
 #include "iconloader.h"
-#include "database.h"
 
 int main(int argc, char *argv[])
 {
     // Settings stuff
-    QCoreApplication::setApplicationName ( "Simba" );
-    QCoreApplication::setApplicationVersion ( "0.95" );
-    QCoreApplication::setOrganizationDomain ( "azd325.github.com/simba/" );
-    QCoreApplication::setOrganizationName ( QCoreApplication::applicationName ());
+    QCoreApplication::setApplicationName ( APP_NAME );
+    QCoreApplication::setApplicationVersion ( APP_VERSION );
+    QCoreApplication::setOrganizationDomain ( APP_URL );
+    QCoreApplication::setOrganizationName ( APP_NAME);
 
 #ifdef Q_OS_UNIX
     if ( geteuid () == 0 ) {
-        qWarning ()<< QCoreApplication::applicationName () + QObject::tr ( " is not supposed to be run as root" );
+        qWarning ()<< APP_NAME + QObject::tr ( " is not supposed to be run as root" );
         exit(0);
     }
 #endif
