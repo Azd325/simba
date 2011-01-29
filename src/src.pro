@@ -14,7 +14,8 @@ DESTDIR = ../build
 HEADERS += \
 	mainwindow.h \
 	iconloader.h \
-	database.h
+	database.h \
+        const.h
 
 SOURCES += \
 	main.cpp \
