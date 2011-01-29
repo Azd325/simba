@@ -5,6 +5,7 @@
 */
 
 #include "database.h"
+#include "const.h"
 
 void Database::openDB () {
     // Find QSLite driver
@@ -15,14 +16,14 @@ void Database::openDB () {
     query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
 
 #ifdef Q_OS_LINUX
-    QString path( QDir::home ().path () + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
+    QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
     if( !QFile::exists ( path ))
         query.exec();
     db.setDatabaseName( path );
 #else
-    if( !QFile::exists ( QCoreApplication::applicationName () + ".db" ))
+    if( !QFile::exists ( APP_NAME + ".db" ))
         query.exec();
-    db.setDatabaseName( QCoreApplication::applicationName () + ".db" );
+    db.setDatabaseName( APP_NAME + ".db" );
 #endif
 
     db.close();
@@ -31,9 +32,9 @@ void Database::openDB () {
 
 bool Database::deleteDB () {
 #ifdef Q_OS_LINUX
-    return QFile::remove ( QDir::home ().path () + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
+    return QFile::remove ( QDir::home ().path () + "/.config/" + APP_NAME + ".db" + "/" + APP_NAME + ".db" + ".db" );
 #else
-    return QFile::remove ( QCoreApplication::applicationName () + ".db" );
+    return QFile::remove ( APP_NAME + ".db" + ".db" );
 #endif
 }
 
