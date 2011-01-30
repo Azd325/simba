@@ -7,22 +7,15 @@
 #include "database.h"
 
 bool Database::openDB () {
+// bracket are for the correct way to work with databases
+  {
     // Find QSLite driver
-{
     QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
 
-#ifdef Q_OS_LINUX
-    QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
-    if( QFile::exists ( path ))
+    if( QFile::exists ( DB_PATH ))
 	return true;
     else
-	db.setDatabaseName( path );
-#else
-    if( QFile::exists ( APP_NAME + ".db" ))
-	return true;
-    else
-	db.setDabaseName( APP_NAME + ".db");
-#endif
+	db.setDatabaseName( DB_PATH );
 
     if( db.open ()) {
 	QSqlQuery query( db );
@@ -31,33 +24,30 @@ bool Database::openDB () {
 	                                      "numberOfUsed INTEGER NOT NULL DEFAULT 1)" );
 	query.exec("CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" );
 
-    if ( !query.isActive ())
-	qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
+	if ( !query.isActive ())
+	    qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
+    }
     else {
         qWarning()<< DB_NOT_OPEN ;
-	return false;
+        return false;
+    }
+    db.close ();
   }
 
-    db.close ();
-}
     QSqlDatabase::removeDatabase ( "db" );
     return true;
 }
 
 bool Database::deleteDB () {
-#ifdef Q_OS_LINUX
-    return QFile::remove ( QDir::home ().path () + "/.config/" + APP_NAME + ".db" + "/" + APP_NAME + ".db" + ".db" );
-#else
-    return QFile::remove ( APP_NAME + ".db" + ".db" );
-#endif
+    return QFile::remove ( DB_PATH );
 }
 
 bool Database::setSearchWord( QString word = "" ) {
-    QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
-
-{
+// bracket are for the correct way to work with databases
+  {
     QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
-    db.setDatabaseName ( path );
+    db.setDatabaseName ( DB_PATH );
+
     if( db.open ()) {
 	QSqlQuery query( db );
             query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
@@ -71,7 +61,7 @@ bool Database::setSearchWord( QString word = "" ) {
     }
 
     db.close ();
-}
+  }
     QSqlDatabase::removeDatabase ( "db" );
     return true;
 }
