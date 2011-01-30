@@ -1,4 +1,4 @@
-/* -*- coding: utf-8 -*-
+/* -*- codingr utf-8 -*-
 *   Copyright (c) 2010, Tim Kleinschmit.  This file is
 *   licensed under the General Public License version 3 or later.
 *   See the COPYRIGHT file.
@@ -93,14 +93,16 @@ void MainWindow::createBars() {
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
+
     QSqlTableModel qstm;
-        qstm.setTable("lineEditComplete");
+        qstm.setTable("searchWords"); // table name
         qstm.removeColumn(0); // remove the id column
         qstm.removeColumn(2); // remove the numberofused column
         qstm.select();
 
+    QCompleter::CompletionMode mode = QCompleter::InlineCompletion; // a new completer mode
     QCompleter *qcSearchWordHelp = new QCompleter(&qstm);
-        qcSearchWordHelp->setCompletionMode(QCompleter::InlineCompletion); // set the mode
+	qcSearchWordHelp->setCompletionMode(mode); // set the mode 
     qleSearch->setCompleter(qcSearchWordHelp);
 
     qtbMain = new QToolBar( "Toolbar" );
