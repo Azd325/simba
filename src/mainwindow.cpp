@@ -1,4 +1,4 @@
-/* -*- coding: utf-8 -*-
+/* -*- codingr utf-8 -*-
 *   Copyright (c) 2010, Tim Kleinschmit.  This file is
 *   licensed under the General Public License version 3 or later.
 *   See the COPYRIGHT file.
@@ -10,12 +10,10 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
     loadSettings ();
 
-    setWindowTitle( tr( "%1 -- For better use of leo.org" ).arg( QCoreApplication::applicationName()));
+    setWindowTitle( tr( "%1 -- For better use of leo.org" ).arg( APP_NAME ));
 
     createBars();
     createSystemTray();
-
-    Database::openDB ();
 
     url = "http://pda.leo.org/";
 
@@ -91,18 +89,20 @@ void MainWindow::createBars() {
 
     qleSearch = new QLineEdit;
         connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
+	connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( setSearchWord ()));
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
-        Database::openDB ();
+
     QSqlTableModel qstm;
-        qstm.setTable("lineEditComplete");
+        qstm.setTable("searchWords"); // table name
         qstm.removeColumn(0); // remove the id column
         qstm.removeColumn(2); // remove the numberofused column
         qstm.select();
 
+    QCompleter::CompletionMode mode = QCompleter::InlineCompletion; // a new completer mode
     QCompleter *qcSearchWordHelp = new QCompleter(&qstm);
-        qcSearchWordHelp->setCompletionMode(QCompleter::InlineCompletion); // set the mode
+	qcSearchWordHelp->setCompletionMode(mode); // set the mode 
     qleSearch->setCompleter(qcSearchWordHelp);
 
     qtbMain = new QToolBar( "Toolbar" );
@@ -217,7 +217,7 @@ void MainWindow::createActions() {
 
 void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
-    settings.beginGroup ( QCoreApplication::applicationName ());
+    settings.beginGroup ( APP_NAME );
     if( action == qaEnglish )
         settings.setValue ( "Language", "?lp=ende&search=" );
     else if( action == qaSpanish )
@@ -263,6 +263,11 @@ void MainWindow::clearSearch () {
     qleSearch->clear();
 }
 
+void MainWindow::setSearchWord () {
+    if(!qleSearch->text ().isEmpty ())
+	Database::setSearchWord ( qleSearch->text ());
+}
+
 void MainWindow::createSystemTray() {
     tray = new QSystemTrayIcon( QIcon( ":/tray.png" ));
     tray->setContextMenu( qmTray = new QMenu );
@@ -276,12 +281,12 @@ void MainWindow::createSystemTray() {
 }
 
 void MainWindow::trayActivate ( QSystemTrayIcon::ActivationReason reason ) {
-    switch (reason) {
+    switch ( reason ) {
         case QSystemTrayIcon::DoubleClick:
-            if (isHidden())
-                show();
+            if ( isHidden ())
+                show ();
             else
-                hide();
+                hide ();
             break;
         default:
             break;
@@ -309,7 +314,7 @@ void MainWindow::clipboardChange() {
 
 QString MainWindow::loadINI() {
     QSettings settings;
-    return settings.value ( QCoreApplication::applicationName () + "/Language", "?lp=ende&search=" ).toString ();
+    return settings.value ( APP_NAME + "/Language", "?lp=ende&search=" ).toString ();
 }
 
 void MainWindow::printpreview() {
@@ -335,10 +340,8 @@ void MainWindow::about() {
         connect( qpbLicense, SIGNAL( clicked()), this, SLOT( aboutLicense()));
 
     QLabel *qlAbout = new QLabel( dialog );
-	qlAbout->setText( tr("<center><h1>%1%2</h1><h3>For better use of leo.org</h3>Copyright \251 2010 %3</center>")
-			.arg( QCoreApplication::applicationName())
-			.arg( QCoreApplication::applicationVersion())
-			.arg( QCoreApplication::organizationName()));
+        qlAbout->setText( tr("<center><h1>%1 %2</h1><h3>For better use of leo.org</h3>Copyright \251 2010 %3</center>")
+                        .arg( APP_NAME ).arg( APP_VERSION ).arg( APP_NAME ));
 
 
     qglDialog = new QGridLayout( dialog );
@@ -347,7 +350,7 @@ void MainWindow::about() {
         qglDialog->addWidget( qpbLicense, 1, 1, Qt::AlignCenter );
         qglDialog->addWidget( qpbClose, 1, 2, Qt::AlignCenter );
 
-        dialog->setWindowTitle( tr( "About %1").arg( QCoreApplication::applicationName()));
+        dialog->setWindowTitle( tr( "About %1").arg( APP_NAME ));
         dialog->setLayout( qglDialog );
         dialog->setFixedSize( 312, 156 );
         dialog->exec();

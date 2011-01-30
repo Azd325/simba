@@ -40,9 +40,11 @@
 #include <QtCore/QSettings>
 #include <QtCore/QResource>
 #include <QtCore/QDebug>
+#include <QtCore/QString>
 
 #include "iconloader.h"
 #include "database.h"
+#include "const.h"
 
 class MainWindow : public QMainWindow
 {
@@ -78,6 +80,7 @@ private slots:
     void languageActionTriggered( QAction* );
     void zoomActionTriggered( QAction* );
     void navigationActionTriggered( QAction* );
+    void setSearchWord();
 
 private:
     QMenuBar *qmbMain;

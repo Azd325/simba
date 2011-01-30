@@ -1,40 +1,68 @@
+/* -*- coding: utf-8 -*-
+*   Copyright (c) 2010, Tim Kleinschmit.  This file is
+*   licensed under the General Public License version 3 or later.
+*   See the COPYRIGHT file.
+*/
+
 #include "database.h"
 
-QSqlDatabase Database::db;
-
 bool Database::openDB () {
+// bracket are for the correct way to work with databases
+  {
     // Find QSLite driver
+    QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
 
-    db = QSqlDatabase::database ("connection", false);
-    db.open ();
-    QSqlQuery query;
-    query.prepare( "create table lineEditComplete (id int primary key, seachWord varchar(20), numberOfUsed int)" );
+    if( QFile::exists ( DB_PATH ))
+	return true;
+    else
+	db.setDatabaseName( DB_PATH );
 
-#ifdef Q_OS_LINUX
-    QString path( QDir::home ().path () + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
-    if( !QFile::exists ( path ))
-        query.exec();
-    // NOTE: We have to store database file into user home folder in Linux
-    db.setDatabaseName( path );
-#else
-    if( !QFile::exists ( QCoreApplication::applicationName () + ".db" ))
-        query.exec();
-    // NOTE: File exists in the application private folder, in Symbian Qt implementation
-    db.setDatabaseName( QCoreApplication::applicationName () + ".db" );
-#endif
-    if ( !db.open ()) {
-        qWarning ( "Unable to establish a database connection." );
+    if( db.open ()) {
+	QSqlQuery query( db );
+	query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, "
+	                                      "searchWord VARCHAR(20) NOT NULL,"
+	                                      "numberOfUsed INTEGER NOT NULL DEFAULT 1)" );
+	query.exec("CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" );
+
+	if ( !query.isActive ())
+	    qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
+    }
+    else {
+        qWarning()<< DB_NOT_OPEN ;
         return false;
     }
+    db.close ();
+  }
+
+    QSqlDatabase::removeDatabase ( "db" );
     return true;
 }
 
 bool Database::deleteDB () {
-#ifdef Q_OS_LINUX
-    // NOTE: We have to store database file into user home folder in Linux
-    return QFile::remove ( QDir::home ().path () + "/.config/" + QCoreApplication::applicationName () + "/" + QCoreApplication::applicationName () + ".db" );
-#else
-    // Remove created database binary file
-    return QFile::remove ( QCoreApplication::applicationName () + ".db" );
-#endif
+    return QFile::remove ( DB_PATH );
 }
+
+bool Database::setSearchWord( QString word = "" ) {
+// bracket are for the correct way to work with databases
+  {
+    QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
+    db.setDatabaseName ( DB_PATH );
+
+    if( db.open ()) {
+	QSqlQuery query( db );
+            query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
+            query.bindValue ( ":w", word, QSql::InOut );
+            query.exec ();
+	    if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
+    }
+    else {
+	qWarning()<< DB_NOT_OPEN ;
+	return false;
+    }
+
+    db.close ();
+  }
+    QSqlDatabase::removeDatabase ( "db" );
+    return true;
+}
+
