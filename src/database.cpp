@@ -5,7 +5,6 @@
 */
 
 #include "database.h"
-#include "const.h"
 
 bool Database::openDB () {
     // Find QSLite driver

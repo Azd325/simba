@@ -43,6 +43,7 @@
 
 #include "iconloader.h"
 #include "database.h"
+#include "const.h"
 
 class MainWindow : public QMainWindow
 {

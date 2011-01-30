@@ -11,12 +11,13 @@
 #include <QtCore/QFile>
 #include <QtCore/QDir>
 #include <QtCore/QVariant>
+#include <QtCore/QDebug>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
 #include <QtSql>
 
-#include <QDebug>
+#include "const.h"
 
 class Database
 {

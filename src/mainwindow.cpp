@@ -5,7 +5,6 @@
 */
 
 #include "mainwindow.h"
-#include "const.h"
 
 MainWindow::MainWindow( QStringList list, QWidget *parent )
     : QMainWindow( parent ) {
