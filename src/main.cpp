@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     qtTranslator.load( "qt_" + QLocale::system ().name (), QLibraryInfo::location ( QLibraryInfo::TranslationsPath ));
     a.installTranslator( &qtTranslator );
 
-    // verify the exist of the app database, when not create a database
+    // verify the exist of the app database, when not create a new database
     Database::openDB();
 
     // Icons
