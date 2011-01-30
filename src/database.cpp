@@ -9,30 +9,35 @@
 
 bool Database::openDB () {
     // Find QSLite driver
-
-    QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
-
-    QSqlQuery query;
+{
+    QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
 
 #ifdef Q_OS_LINUX
     QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
-    if( !QFile::exists ( path )) {
+    if( QFile::exists ( path ))
+	return true;
+    else
 	db.setDatabaseName( path );
-    }
 #else
-    if( !QFile::exists ( APP_NAME + ".db" ))
+    if( QFile::exists ( APP_NAME + ".db" ))
+	return true;
+    else
 	db.setDabaseName( APP_NAME + ".db");
 #endif
 
-    if( !db.open ()) {
+    if( db.open ()) {
+	QSqlQuery query( db );
+	query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, seachWord VARCHAR(20), numberOfUsed INTEGER)" );
+	if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
+    }
+    else {
         qWarning()<< DB_NOT_OPEN ;
 	return false;
     }
 
-    query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, seachWord VARCHAR(20), numberOfUsed INTEGER)" );
-
-    db.close();
-    db.removeDatabase( "QSQLITE" );
+    db.close ();
+}
+    QSqlDatabase::removeDatabase ( "db" );
     return true;
 }
 
@@ -47,20 +52,24 @@ bool Database::deleteDB () {
 bool Database::setSearchWord( QString word = "" ) {
     QString path( QDir::home ().path () + "/.config/" + APP_NAME + "/" + APP_NAME + ".db" );
 
-    QSqlDatabase db(QSqlDatabase::addDatabase("QSQLITE"));
-    db.setDatabaseName( path );
+{
+    QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
+    db.setDatabaseName ( path );
     if( !db.open ()) {
+	QSqlQuery query( db );
+            query.prepare ( "INSERT INTO searchWords ( seachWord, numberOfUsed ) VALUES ( :w, :n )" );
+            query.bindValue ( ":w", word, QSql::InOut );
+            query.bindValue ( ":n", 1, QSql::InOut );
+            query.exec ();
+	    if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
+    }
+    else {
 	qWarning()<< DB_NOT_OPEN ;
 	return false;
     }
 
-    QSqlQuery query;
-	query.prepare( "INSERT INTO searchWords ( seachWord, numberOfUsed ) VALUES ( :w, :n )" );
-	query.bindValue( ":w", word, QSql::InOut );
-	query.bindValue( ":n", 1, QSql::InOut );
-	query.exec();
-
-    db.close();
-    db.removeDatabase( "QSQLITE" );
+    db.close ();
+}
+    QSqlDatabase::removeDatabase ( "db" );
     return true;
 }

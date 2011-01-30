@@ -8,10 +8,12 @@
 #define DATABASE_H
 
 #include <QtGui/QApplication>
-#include <QtSql/QSqlDatabase>
 #include <QtCore/QFile>
 #include <QtCore/QDir>
+#include <QtCore/QVariant>
+#include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
 #include <QtSql>
 
 #include <QDebug>
