@@ -26,13 +26,17 @@ bool Database::openDB () {
 
     if( db.open ()) {
 	QSqlQuery query( db );
-	query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, seachWord VARCHAR(20), numberOfUsed INTEGER)" );
-	if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
-    }
+	query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, "
+	                                      "searchWord VARCHAR(20) NOT NULL,"
+	                                      "numberOfUsed INTEGER NOT NULL DEFAULT 1)" );
+	query.exec("CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" );
+
+    if ( !query.isActive ())
+	qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
     else {
         qWarning()<< DB_NOT_OPEN ;
 	return false;
-    }
+  }
 
     db.close ();
 }
@@ -56,9 +60,8 @@ bool Database::setSearchWord( QString word = "" ) {
     db.setDatabaseName ( path );
     if( db.open ()) {
 	QSqlQuery query( db );
-            query.prepare ( "INSERT INTO searchWords ( seachWord, numberOfUsed ) VALUES ( :w, :n )" );
+            query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
             query.bindValue ( ":w", word, QSql::InOut );
-            query.bindValue ( ":n", 1, QSql::InOut );
             query.exec ();
 	    if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
     }
@@ -72,3 +75,4 @@ bool Database::setSearchWord( QString word = "" ) {
     QSqlDatabase::removeDatabase ( "db" );
     return true;
 }
+
