@@ -54,7 +54,7 @@ bool Database::setSearchWord( QString word = "" ) {
 {
     QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
     db.setDatabaseName ( path );
-    if( !db.open ()) {
+    if( db.open ()) {
 	QSqlQuery query( db );
             query.prepare ( "INSERT INTO searchWords ( seachWord, numberOfUsed ) VALUES ( :w, :n )" );
             query.bindValue ( ":w", word, QSql::InOut );
