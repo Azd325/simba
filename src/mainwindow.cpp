@@ -89,6 +89,7 @@ void MainWindow::createBars() {
 
     qleSearch = new QLineEdit;
         connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
+	connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( setSearchWord ()));
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
@@ -260,6 +261,11 @@ void MainWindow::clearSearch () {
     qleSearch->clear();
 }
 
+void MainWindow::setSearchWord () {
+    if(!qleSearch->text ().isEmpty ())
+	Database::setSearchWord ( qleSearch->text ());
+}
+
 void MainWindow::createSystemTray() {
     tray = new QSystemTrayIcon( QIcon( ":/tray.png" ));
     tray->setContextMenu( qmTray = new QMenu );
@@ -273,12 +279,12 @@ void MainWindow::createSystemTray() {
 }
 
 void MainWindow::trayActivate ( QSystemTrayIcon::ActivationReason reason ) {
-    switch (reason) {
+    switch ( reason ) {
         case QSystemTrayIcon::DoubleClick:
-            if (isHidden())
-                show();
+            if ( isHidden ())
+                show ();
             else
-                hide();
+                hide ();
             break;
         default:
             break;
