@@ -12,9 +12,7 @@ bool Database::openDB () {
     // Find QSLite driver
     QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
 
-    if( QFile::exists ( DB_PATH ))
-	return true;
-    else
+    if( !QFile::exists ( DB_PATH ))
 	db.setDatabaseName( DB_PATH );
 
     if( db.open ()) {
