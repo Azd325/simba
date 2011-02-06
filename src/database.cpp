@@ -7,27 +7,31 @@
 #include "database.h"
 
 bool Database::openDB () {
-// bracket are for the correct way to work with databases
+    if( QFile::exists ( DB_PATH ))
+        return true;
+
+// bracket are for the correct way to work with databases. its fix problems
   {
     // Find QSLite driver
     QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
+    db.setDatabaseName ( DB_PATH );
 
-    if( !QFile::exists ( DB_PATH ))
-	db.setDatabaseName( DB_PATH );
-
-    if( db.open ()) {
-        QSqlQuery query( db );
-        if ( !query.exec ( "CREATE TABLE IF NOT EXISTS searchWords (id INTEGER PRIMARY KEY, "
-                        "searchWord VARCHAR(20) NOT NULL, numberOfUsed INTEGER NOT NULL DEFAULT 1)" ))
-            qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
-        if ( !query.exec( "CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" ))
-            qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
-    }
-    else {
-        qDebug() << db.lastError();
-        qFatal( DB_NOT_OPEN );
+    if( !db.open ()) {
+        qWarning() << db.lastError () << "\n" << DB_NOT_OPEN;
         return false;
     }
+
+    // create table with  index
+    QSqlQuery query( db );
+        query.prepare ( "CREATE TABLE IF NOT EXISTS searchWords (id INTEGER PRIMARY KEY, "
+                       "searchWord VARCHAR(20) NOT NULL, numberOfUsed INTEGER NOT NULL DEFAULT 1)");
+        if ( !query.exec ())
+            qWarning()<< QObject::tr( "Database Error: " ) << query.lastError ();
+
+        query.prepare ( "CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" );
+        if ( !query.exec())
+            qWarning()<< QObject::tr( "Database Error: " ) << query.lastError ();
+
     db.close ();
   }
 
@@ -39,24 +43,22 @@ bool Database::deleteDB () {
     return QFile::remove ( DB_PATH );
 }
 
-bool Database::setSearchWord( QString word = "" ) {
-// bracket are for the correct way to work with databases
-  {
+bool Database::setSearchWord( QString word ) {
+ {
     QSqlDatabase db( QSqlDatabase::addDatabase( "QSQLITE", "db" ));
     db.setDatabaseName ( DB_PATH );
 
-    if( db.open ()) {
-	QSqlQuery query( db );
-            query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
-            query.bindValue ( ":w", word, QSql::InOut );
-            if ( !query.exec ())
-                qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
+    if( !db.open ()) {
+        qWarning() << db.lastError () << "\n" << DB_NOT_OPEN;
+        return false;
     }
-    else {
-        qDebug() << db.lastError();
-        qFatal( DB_NOT_OPEN );
-	return false;
-    }
+
+    // insert the searchword in the db
+    QSqlQuery query( db );
+        query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
+        query.bindValue ( ":w", word );
+        if ( !query.exec ())
+            qWarning()<< QObject::tr( "Database Error: " ) << query.lastError ();
 
     db.close ();
   }
