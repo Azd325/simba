@@ -28,7 +28,8 @@ bool Database::openDB () {
 	    qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
     }
     else {
-        qWarning()<< DB_NOT_OPEN ;
+        qDebug() << db.lastError();
+        qFatal( DB_NOT_OPEN );
         return false;
     }
     db.close ();
@@ -56,7 +57,8 @@ bool Database::setSearchWord( QString word = "" ) {
 	    if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
     }
     else {
-	qWarning()<< DB_NOT_OPEN ;
+        qDebug() << db.lastError();
+        qFatal( DB_NOT_OPEN );
 	return false;
     }
 

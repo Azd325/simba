@@ -16,6 +16,6 @@ const QString DB_PATH = QDir::home ().path () + "/.config/" + APP_NAME + "/" + A
 const QString DB_PATH = APP_NAME + ".db";
 #endif // Q_OS_LINUX
 
-const QString DB_NOT_OPEN = "Cannot open database";
+const QString DB_NOT_OPEN = "Failed to connect. Cannot open database.";
 
 #endif // CONST_H
