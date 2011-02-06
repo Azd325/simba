@@ -20,7 +20,7 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     para = list.join(" ");
 
     view = new QWebView;
-        view->load( QString("%1%2%3" ).arg( URL ).arg( loadINI ()).arg( para ));
+        view->load( QString( "%1%2%3" ).arg( URL ).arg( loadINI ()).arg( para ));
     setCentralWidget( view );
 
     connect( view, SIGNAL( loadStarted ()), this, SLOT( show ()));
@@ -217,17 +217,17 @@ void MainWindow::languageActionTriggered( QAction *action ) {
     QSettings settings;
     settings.beginGroup ( APP_NAME );
     if( action == qaEnglish )
-        settings.setValue ( "Language", "?lp=ende&search=" );
+        settings.setValue ( "Language", EN );
     else if( action == qaSpanish )
-        settings.setValue ( "Language", "?lp=esde&search=" );
+        settings.setValue ( "Language", ES );
     else if( action == qaFrench )
-        settings.setValue ( "Language", "?lp=frde&search=" );
+        settings.setValue ( "Language", FR );
     else if( action == qaItalian )
-        settings.setValue ( "Language", "?lp=itde&search=" );
+        settings.setValue ( "Language", IT );
     else if( action == qaChinese )
-        settings.setValue ( "Language", "?lp=chde&search=" );
+        settings.setValue ( "Language", CN );
     else if( action == qaRussian )
-        settings.setValue ( "Language", "?lp=rude&search=" );
+        settings.setValue ( "Language", RU );
     settings.endGroup ();
 }
 
@@ -312,7 +312,7 @@ void MainWindow::clipboardChange() {
 
 QString MainWindow::loadINI() {
     QSettings settings;
-    return settings.value ( APP_NAME + "/Language", "?lp=ende&search=" ).toString ();
+    return settings.value ( APP_NAME + "/Language", EN ).toString ();
 }
 
 void MainWindow::printpreview() {
@@ -320,9 +320,9 @@ void MainWindow::printpreview() {
     connect( &dialog, SIGNAL( paintRequested( QPrinter* )), view, SLOT( print( QPrinter* )));
     dialog.showMaximized();
     if( dialog.exec() == QDialog::Accepted )
-        qsbMain->showMessage ( "Print was successful!" );
+        qsbMain->showMessage ( tr( "Print was successful!" ));
     else
-        qsbMain->showMessage ( "Print was not successful!" );
+        qsbMain->showMessage ( tr( "Print was not successful!" ));
 }
 
 /* about functions*/

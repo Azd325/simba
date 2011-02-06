@@ -11,6 +11,12 @@ const QString APP_URL = "azd325.github.com/simba/";
 
 // Simba MainWindow
 const QString URL = "http://pda.leo.org/";
+const QString EN = "?lp=ende&search=";
+const QString ES = "?lp=esde&search=";
+const QString FR = "?lp=frde&search=";
+const QString IT = "?lp=itde&search=";
+const QString CN = "?lp=chde&search=";
+const QString RU = "?lp=rude&search=";
 
 // Database Constants
 #ifdef Q_OS_LINUX
