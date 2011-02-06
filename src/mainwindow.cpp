@@ -420,12 +420,11 @@ void MainWindow::progressLoad( int i ) {
 }
 
 void MainWindow::finishedLoad( bool value ) {
-    if( value == false ) {
-        qpbMain->hide();
+    qpbMain->hide();
+    if( !value ) {
         QResource res( ":/noLeo.html" );
         QByteArray html(( const char* )res.data(), res.size());
         view->setHtml( html );
-    }else
-        qpbMain->hide();
+    }
 }
 
