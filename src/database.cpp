@@ -16,12 +16,11 @@ bool Database::openDB () {
 	db.setDatabaseName( DB_PATH );
 
     if( db.open ()) {
-	QSqlQuery query( db );
-        if ( !query.exec( "CREATE TABLE IF NOT EXISTS searchWords (id INTEGER PRIMARY KEY, "
-	                                      "searchWord VARCHAR(20) NOT NULL,"
-                                              "numberOfUsed INTEGER NOT NULL DEFAULT 1)" ))
+        QSqlQuery query( db );
+        if ( !query.exec ( "CREATE TABLE IF NOT EXISTS searchWords (id INTEGER PRIMARY KEY, "
+                        "searchWord VARCHAR(20) NOT NULL, numberOfUsed INTEGER NOT NULL DEFAULT 1)" ))
             qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
-        if ( !query.exec("CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" ))
+        if ( !query.exec( "CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" ))
             qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
     }
     else {
