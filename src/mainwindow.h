@@ -49,6 +49,7 @@
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Q_CLASSINFO( "Author", "Tim Kleinschmidt" )
 
 public:
     MainWindow(QStringList, QWidget *parent = 0);

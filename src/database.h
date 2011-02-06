@@ -21,6 +21,8 @@
 
 class Database
 {
+    Q_CLASSINFO( "Author", "Tim Kleinschmidt" )
+
     public:
         static bool openDB();
         static bool deleteDB();
