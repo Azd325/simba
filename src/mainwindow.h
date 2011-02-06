@@ -124,8 +124,7 @@ private:
     QClipboard *clipboard;
     QLineEdit *qleSearch;
     QSystemTrayIcon *tray;
-    QString para,
-        url;
+    QString para;
 };
 
 #endif // MAINWINDOW_H

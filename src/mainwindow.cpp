@@ -15,14 +15,12 @@ MainWindow::MainWindow( QStringList list, QWidget *parent )
     createBars();
     createSystemTray();
 
-    url = "http://pda.leo.org/";
-
     // Remove the path item of the argv-list
     list.removeFirst();
     para = list.join(" ");
 
     view = new QWebView;
-        view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( para ));
+        view->load( QString("%1%2%3" ).arg( URL ).arg( loadINI ()).arg( para ));
     setCentralWidget( view );
 
     connect( view, SIGNAL( loadStarted ()), this, SLOT( show ()));
@@ -244,7 +242,7 @@ void MainWindow::zoomActionTriggered( QAction* action ) {
 
 void MainWindow::navigationActionTriggered ( QAction *action ) {
     if( action == qaHome )
-        view->load( QString("%1%2" ).arg( url ).arg( loadINI ()));
+        view->load( QString("%1%2" ).arg( URL ).arg( loadINI ()));
     else if( action == qaBack )
         view->back ();
     else if( action == qaForward )
@@ -305,11 +303,11 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
 }
 
 void MainWindow::lineSearch() {
-    view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( qleSearch->text()));
+    view->load( QString("%1%2%3" ).arg( URL ).arg( loadINI ()).arg( qleSearch->text()));
 }
 
 void MainWindow::clipboardChange() {
-    view->load( QString("%1%2%3" ).arg( url ).arg( loadINI ()).arg( qleSearch->text()));
+    view->load( QString("%1%2%3" ).arg( URL ).arg( loadINI ()).arg( qleSearch->text()));
 }
 
 QString MainWindow::loadINI() {
