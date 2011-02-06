@@ -19,13 +19,12 @@ bool Database::openDB () {
 
     if( db.open ()) {
 	QSqlQuery query( db );
-	query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, "
+        if ( !query.exec( "CREATE TABLE searchWords (id INTEGER PRIMARY KEY, "
 	                                      "searchWord VARCHAR(20) NOT NULL,"
-	                                      "numberOfUsed INTEGER NOT NULL DEFAULT 1)" );
-	query.exec("CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" );
-
-	if ( !query.isActive ())
-	    qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
+                                              "numberOfUsed INTEGER NOT NULL DEFAULT 1)" ))
+            qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
+        if ( !query.exec("CREATE UNIQUE INDEX word_idx ON searchWords( searchWord )" ))
+            qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
     }
     else {
         qDebug() << db.lastError();
@@ -53,8 +52,8 @@ bool Database::setSearchWord( QString word = "" ) {
 	QSqlQuery query( db );
             query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
             query.bindValue ( ":w", word, QSql::InOut );
-            query.exec ();
-	    if ( !query.isActive ()){ qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();}
+            if ( !query.exec ())
+                qWarning()<< QObject::tr( "Database Error: " ) + query.lastError ().text ();
     }
     else {
         qDebug() << db.lastError();
