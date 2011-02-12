@@ -1,14 +1,3 @@
-# -*- coding: utf-8 -*-
-#   Copyright (c) 2010, Tim Kleinschmit.  This file is
-#   licensed under the General Public License version 3 or later.
-#   See the COPYRIGHT file.
-#
-QMAKEVERSION = $$[QMAKE_VERSION]
-ISQT4 = $$find(QMAKEVERSION, ^[2-9])
-isEmpty( ISQT4 ) {
-error("Use the qmake include with Qt4.4 or greater, on Debian that is qmake-qt4");
-}
-
 TEMPLATE = subdirs
 SUBDIRS += src
 
