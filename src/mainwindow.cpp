@@ -83,11 +83,14 @@ void MainWindow::createBars() {
             qmHelp->addAction( qaAbout );
 
     qtbDeleteSearch = new QToolButton(this);
-	qtbDeleteSearch->setDefaultAction( qaClearSearch );
+        qtbDeleteSearch->setDefaultAction( qaClearSearch );
+        qtbDeleteSearch->setToolTip( "Clear" );
+        qtbDeleteSearch->setFocusPolicy( Qt::NoFocus );
 
     qleSearch = new QLineEdit;
-        connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch()));
-	connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( setSearchWord ()));
+        connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch ()));
+	    connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( setSearchWord ()));
+
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
 #endif
