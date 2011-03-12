@@ -55,7 +55,7 @@ bool Database::setSearchWord( QString word ) {
 
     // insert the searchword in the db
     QSqlQuery query( db );
-        query.prepare ( "INSERT INTO searchWords ( searchWord ) VALUES ( :w )" );
+        query.prepare ( "INSERT OR IGNORE INTO searchWords ( searchWord ) VALUES ( :w )" );
         query.bindValue ( ":w", word );
         if ( !query.exec ())
             qWarning()<< QObject::tr( "Database Error: " ) << query.lastError ();
