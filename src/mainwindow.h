@@ -126,6 +126,8 @@ private:
     QLineEdit *qleSearch;
     QSystemTrayIcon *tray;
     QString para;
+
+    Database db;
 };
 
 #endif // MAINWINDOW_H

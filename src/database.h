@@ -24,10 +24,14 @@ class Database
     Q_CLASSINFO( "Author", "Tim Kleinschmidt" )
 
     public:
-        static bool openDB();
-        static bool deleteDB();
-	static bool setSearchWord( QString );
-	static bool getSearchWord();
+        Database();
+
+        bool deleteDB();
+        void setSearchWord( QString );
+        bool getSearchWord();
+
+    private:
+        void openDB();
 };
 
 #endif // DATABASE_H

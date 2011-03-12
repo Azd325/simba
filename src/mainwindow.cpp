@@ -88,8 +88,8 @@ void MainWindow::createBars() {
         qtbDeleteSearch->setFocusPolicy( Qt::NoFocus );
 
     qleSearch = new QLineEdit;
-        connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( lineSearch ()));
-	    connect( qleSearch, SIGNAL( returnPressed()), this, SLOT( setSearchWord ()));
+        connect( qleSearch, SIGNAL( returnPressed ()), this, SLOT( lineSearch ()));
+        connect( qleSearch, SIGNAL( returnPressed ()), this, SLOT( setSearchWord ()));
 
 #if ( QT_VERSION >= 0x040700 )
         qleSearch->setPlaceholderText( tr( "Search" ));
@@ -266,7 +266,7 @@ void MainWindow::clearSearch () {
 
 void MainWindow::setSearchWord () {
     if(!qleSearch->text ().isEmpty ())
-	Database::setSearchWord ( qleSearch->text ());
+        db.setSearchWord ( qleSearch->text ());
 }
 
 void MainWindow::createSystemTray() {
