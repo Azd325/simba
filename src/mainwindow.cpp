@@ -103,17 +103,17 @@ void MainWindow::createBars() {
 
     QCompleter::CompletionMode mode = QCompleter::InlineCompletion; // a new completer mode
     QCompleter *qcSearchWordHelp = new QCompleter(&qstm);
-	qcSearchWordHelp->setCompletionMode(mode); // set the mode 
+    qcSearchWordHelp->setCompletionMode(mode); // set the mode
     qleSearch->setCompleter(qcSearchWordHelp);
 
     qtbMain = new QToolBar( "Toolbar" );
-	qtbMain->setFloatable( false );
-	qtbMain->setMovable( false );
+    qtbMain->setFloatable( false );
+    qtbMain->setMovable( false );
         qtbMain->addAction( qaHome );
         qtbMain->addSeparator();
         qtbMain->addActions( qagNavigation->actions ());
-	qtbMain->addSeparator();
-	qtbMain->addWidget( qtbDeleteSearch );
+    qtbMain->addSeparator();
+    qtbMain->addWidget( qtbDeleteSearch );
         qtbMain->addWidget( qleSearch );
         addToolBar( qtbMain );
 }
@@ -302,7 +302,7 @@ void MainWindow::closeEvent( QCloseEvent *event ) {
         event->ignore();
     }
     else
-	event->accept();
+    event->accept();
 }
 
 void MainWindow::lineSearch() {

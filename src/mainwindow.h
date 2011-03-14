@@ -107,7 +107,7 @@ private:
         *qaAboutQt,
         *qaShow,
         *qaSearch,
-	*qaClearSearch,
+        *qaClearSearch,
         *qaPrintDialog,
         *qaZoomIn,
         *qaZoomOut,
