@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>519</width>
+    <height>341</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Simba -- For better use of leo.org</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="qmbMain">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>519</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="qmFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="qaPrint"/>
+    <addaction name="separator"/>
+    <addaction name="qaExit"/>
+   </widget>
+   <widget class="QMenu" name="qmEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <widget class="QMenu" name="qmLanguages">
+     <property name="title">
+      <string>Languages</string>
+     </property>
+     <addaction name="qaEnglish"/>
+     <addaction name="qaSpanish"/>
+     <addaction name="qaFrench"/>
+     <addaction name="qaItalian"/>
+     <addaction name="qaChinese"/>
+     <addaction name="qaRussian"/>
+    </widget>
+    <addaction name="qaHome"/>
+    <addaction name="qaBack"/>
+    <addaction name="qaReload"/>
+    <addaction name="qaForward"/>
+    <addaction name="qaStop"/>
+    <addaction name="qaSearch"/>
+    <addaction name="qmLanguages"/>
+   </widget>
+   <widget class="QMenu" name="qmView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="qaZoomIn"/>
+    <addaction name="qaZoomNormal"/>
+    <addaction name="qaZoomOut"/>
+   </widget>
+   <widget class="QMenu" name="qmHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="qaAboutQt"/>
+    <addaction name="qaAbout"/>
+   </widget>
+   <addaction name="qmFile"/>
+   <addaction name="qmEdit"/>
+   <addaction name="qmView"/>
+   <addaction name="qmHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="qsbMain"/>
+  <widget class="QToolBar" name="qtbMain">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="qaHome"/>
+   <addaction name="qaBack"/>
+   <addaction name="qaReload"/>
+   <addaction name="qaForward"/>
+   <addaction name="qaStop"/>
+   <addaction name="separator"/>
+  </widget>
+  <action name="qaPrint">
+   <property name="text">
+    <string>Print</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="qaExit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="qaHome">
+   <property name="text">
+    <string>Home</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="qaBack">
+   <property name="text">
+    <string>Back</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Left</string>
+   </property>
+  </action>
+  <action name="qaReload">
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="qaForward">
+   <property name="text">
+    <string>Foward</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Right</string>
+   </property>
+  </action>
+  <action name="qaStop">
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="qaSearch">
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="qaEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../data/data.qrc">
+     <normaloff>:/flags/en.svg</normaloff>:/flags/en.svg</iconset>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="qaSpanish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../data/data.qrc">
+     <normaloff>:/flags/es.svg</normaloff>:/flags/es.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Spanish</string>
+   </property>
+  </action>
+  <action name="qaFrench">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../data/data.qrc">
+     <normaloff>:/flags/fr.svg</normaloff>:/flags/fr.svg</iconset>
+   </property>
+   <property name="text">
+    <string>French</string>
+   </property>
+  </action>
+  <action name="qaItalian">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../data/data.qrc">
+     <normaloff>:/flags/it.svg</normaloff>:/flags/it.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Italian</string>
+   </property>
+  </action>
+  <action name="qaChinese">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../data/data.qrc">
+     <normaloff>:/flags/cn.svg</normaloff>:/flags/cn.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Chinese</string>
+   </property>
+  </action>
+  <action name="qaRussian">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../data/data.qrc">
+     <normaloff>:/flags/ru.svg</normaloff>:/flags/ru.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Russian</string>
+   </property>
+  </action>
+  <action name="qaZoomIn">
+   <property name="text">
+    <string>Zoom &amp;In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="qaZoomNormal">
+   <property name="text">
+    <string>Zoom &amp;Normal</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="qaZoomOut">
+   <property name="text">
+    <string>Zoom &amp;Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="qaAboutQt">
+   <property name="text">
+    <string>About &amp;Qt</string>
+   </property>
+  </action>
+  <action name="qaAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../data/data.qrc"/>
+ </resources>
+ <connections/>
+</ui>

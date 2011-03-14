@@ -10,7 +10,7 @@ HEADERS += \
 	mainwindow.h \
 	iconloader.h \
 	database.h \
-        const.h
+    const.h
 
 SOURCES += \
 	main.cpp \
@@ -18,11 +18,18 @@ SOURCES += \
 	iconloader.cpp \
 	database.cpp 
 
+FORMS += \
+    ui/mainwindow.ui \
+    ui/about.ui \
+    ui/license.ui \
+    ui/credits.ui
+
 RESOURCES += \
 	data/data.qrc
 
 MOC_DIR     = ../build/moc
 OBJECTS_DIR = ../build/obj
+UI_DIR      = ../build/ui
 RCC_DIR     = ../build/rcc
 
 unix:!macx { # installation on Unix-ish platforms
