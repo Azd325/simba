@@ -1,8 +1,9 @@
 QT += webkit sql
-CONFIG += warn_on
+CONFIG += warn_on release qt
 
 TARGET = simba
 TEMPLATE = app
+LANGUAGE = C++
 DESTDIR = ../build
 
 HEADERS += \
