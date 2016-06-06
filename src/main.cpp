@@ -11,6 +11,7 @@
 #include "const.h"
 #include "mainwindow.h"
 #include "iconloader.h"
+#include <unistd.h>
 
 int main(int argc, char *argv[])
 {
